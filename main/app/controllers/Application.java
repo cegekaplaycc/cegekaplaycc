@@ -1,14 +1,13 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-
-import views.html.*;
+import play.mvc.Controller;
+import play.mvc.Result;
+import views.html.index;
 
 public class Application extends Controller {
   
-    public static Result grid() {
-        return ok(grid.render("129129"));
+    public static Result index() {
+        return ok(index.render());
     }
  
   

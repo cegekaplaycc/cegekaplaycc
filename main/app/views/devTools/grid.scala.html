@@ -1,4 +1,4 @@
-@(color: String)
+@(color: String, lineHeight: String)
 
 @template("DEV_ONLY page - GRID DEMO") {
     
@@ -10,7 +10,7 @@
 	
 	.container p {
 	    color: #fff;
-	    line-height: 100px;
+	    line-height: @lineHeight;
 	    background: #@color;
 	    text-align: center;
 	    margin: 20px 0 0 0;

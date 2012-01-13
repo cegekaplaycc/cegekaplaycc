@@ -6,19 +6,34 @@
 <head>
     <title>@title</title>
     <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<!--[if lte IE 9]><link rel="stylesheet" href="css/ie.css" type="text/css" media="screen" /><![endif]-->
 	<link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("stylesheets/1140.css")' />
+	<link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("stylesheets/stickyfooter.css")'/>
     <link rel="stylesheet" type="text/css" media="screen" href='@routes.Assets.at("stylesheets/main.css")'>
 
     <script type="text/javascript" src='@routes.Assets.at("javascripts/jquery-1.6.4.min.js")'></script>
 	<script type="text/javascript" src='@routes.Assets.at("javascripts/css3-mediaqueries.js")'></script>
-		
+
 </head>
 <body>
-    @content
+	<div class="wrapper">
+		@content
+		<div class="push"></div>
+	</div>
+
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="twelvecol last">
+					Put the footer here
+				</div>
+			</div>
+		</div>
+	</div>
+
 </body>
 
 </html>

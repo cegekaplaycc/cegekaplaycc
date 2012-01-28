@@ -20,19 +20,28 @@
 </head>
 <body>
 	<div class="wrapper">
-		@content
+		<div class="header container">
+			<div class="row">
+				<div id="header" class="twelvecol last">
+					<img src='@routes.Assets.at("images/logo.gif")' alt="" class="logo"/>
+				</div>
+
+			</div>
+		</div>
+		<div class="content container">
+			@content
+		</div>
 		<div class="push"></div>
 	</div>
 
-	<div class="footer">
-		<div class="container">
+
+		<div class="footer container">
 			<div class="row">
 				<div class="twelvecol last">
 					Put the footer here
 				</div>
 			</div>
 		</div>
-	</div>
 
 </body>
 

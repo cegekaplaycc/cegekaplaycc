@@ -1,4 +1,5 @@
 @import 'theme.less';
+@import 'lib.less';
 
 /*
   this .less file will be compiled (using the google closure compiler) to javascript together with the whole play app.
@@ -8,7 +9,23 @@
 body {
     background-color: white;
 
+    div.header {
+    	.box-shadow(0, 4px);
+    	.linearGradient(#DDD, #BBB);
+
+      	.logo {
+      		margin: 12px 0;
+      	}
+
+    }
+
+    div.content {
+    	margin:10px 0;
+    }
+
     div.footer {
-    	background-color: @footerColor;
+
+    	.linearGradient(#333, #555);
+    	color: #EEE;
     }
 }

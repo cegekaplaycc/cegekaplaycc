@@ -18,15 +18,15 @@ public class Race extends Model {
 	public static final int MAX_AVAILABLE_SLOTS = 8;
 
 	@OneToMany
-	// public Set<Horse> horses = new HashSet<Horse>();
+	public Set<Horse> horses = new HashSet<Horse>();
 	
 	public void enter(Horse horse) {
-		// this.horses.add(horse);
+		this.horses.add(horse);
 //		throw new NotImplementedException();
 	}
 
 	public int getAvailableSlots() {
-		return MAX_AVAILABLE_SLOTS;
+		return MAX_AVAILABLE_SLOTS - horses.size();
 	}
 
 	public void start() {

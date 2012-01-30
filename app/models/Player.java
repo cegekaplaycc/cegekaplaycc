@@ -6,16 +6,16 @@ import play.data.validation.Required;
 import play.db.jpa.Model;
 
 @Entity
-public class User extends Model {
+public class Player extends Model {
 
 	private String name;
 	private final String userId;
 
-	public User(String userId) {
+	public Player(String userId) {
 		this.userId = userId;
 	}
 
-	public User(String userId, String name) {
+	public Player(String userId, String name) {
 		this(userId);
 		this.name = name;
 	}

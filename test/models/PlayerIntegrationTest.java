@@ -10,7 +10,7 @@ public class PlayerIntegrationTest extends IntegrationTestCase {
 		Player player = new Player("ID", "jos");
 		player.save();
 
-		Player.em().clear();
+		clearEntityContext();
 		Assertions.assertThat(Player.findAll()).hasSize(1);
 		Player refreshed = (Player) Player.findAll().iterator().next();
 
@@ -31,10 +31,20 @@ public class PlayerIntegrationTest extends IntegrationTestCase {
 		player.addHorse(horse1);
 		player.addHorse(horse2);
 
-		Player.em().clear();
+		clearEntityContext();
 		Player refreshedPlayer = Player.findById(player.getId());
 		Assertions.assertThat(refreshedPlayer.getHorses()).hasSize(2);
 		Assertions.assertThat(refreshedPlayer.getId()).isEqualTo(player.getId());
+	}
 
+	@Test
+	public void addHorse() {
+		Player player = new Player("azerty");
+		Horse horse1 = new Horse("horse1").save();
+		Horse horse2 = new Horse("horse2").save();
+		player.addHorse(horse1);
+		player.addHorse(horse2);
+
+		Assertions.assertThat(player.getHorses()).containsOnly(horse1, horse2);
 	}
 }

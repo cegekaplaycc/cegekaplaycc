@@ -1,6 +1,5 @@
 package models;
 
-
 import java.util.List;
 
 import org.fest.assertions.Assertions;
@@ -14,7 +13,8 @@ public class HorseIntegrationTest extends IntegrationTestCase {
 		horse.setPrice(12654L);
 		horse.save();
 		List<Horse> horses = Horse.findAll();
-		
+
+		clearEntityContext();
 		Assertions.assertThat(horses).hasSize(1);
 		Horse refreshedHorse = horses.iterator().next();
 		Assertions.assertThat(refreshedHorse.getName()).isEqualTo("joske");

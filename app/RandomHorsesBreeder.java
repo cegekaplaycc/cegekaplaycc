@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import org.joda.time.Hours;
+
 import controllers.Horses;
 
 import models.Horse;
@@ -29,13 +31,16 @@ public class RandomHorsesBreeder extends Job {
 
 	@Override
 	public void doJob() throws Exception {
-		if (!Play.mode.isProd()) {
+		if (Play.mode.isDev()) {
 			Horse.deleteAll();
-			generateRandomHorsesWith(new Random(new Date().getTime()));
+			generateRandomHorses();
+		} else if (Horse.count() == 0) {
+			generateRandomHorses();
 		}
 	}
 
-	private void generateRandomHorsesWith(Random random) {
+	private void generateRandomHorses() {
+		Random random = new Random(new Date().getTime());
 		for (int i = 0; i < 20; i++) {
 			int randomIndex = random.nextInt(horsePrefixes.size());
 			Horse horse = new Horse(horsePrefixes.get(randomIndex) + " " + horseSuffixes.get(randomIndex), random.nextInt(2000));

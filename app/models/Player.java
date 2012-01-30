@@ -15,6 +15,9 @@ public class Player extends Model {
 
     @Column(unique = true)
 	private final String userId;
+	
+	@OneToMany
+	public Set<Horse> horses = new HashSet<Horse>();
 
 	public Player(String userId) {
 		this.userId = userId;
@@ -35,6 +38,15 @@ public class Player extends Model {
 
 	public String getUserId() {
 		return userId;
+	}
+	
+	public Set<Horse> getHorses() {
+		return horses;
+	}
+	
+	public void addHorse(Horse horse) {
+		this.horses.add(horse);
+		this.save();
 	}
 
 }

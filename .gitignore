@@ -4,7 +4,6 @@
 *.iml
 .*
 !.gitignore
-!.project
 
 db
 log

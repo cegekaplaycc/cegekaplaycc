@@ -31,20 +31,12 @@ public class RandomHorsesBreeder extends Job {
 
 	@Override
 	public void doJob() throws Exception {
-		if(!shouldWeRun()) {
-			return;
-		}
-		
-		if (!Play.mode.isProd()) {
+		if (Play.mode.isDev()) {
 			Horse.deleteAll();
 			generateRandomHorses();
 		} else if (Horse.count() == 0) {
 			generateRandomHorses();
 		}
-	}
-
-	boolean shouldWeRun() {
-		return Play.runingInTestMode();
 	}
 
 	private void generateRandomHorses() {

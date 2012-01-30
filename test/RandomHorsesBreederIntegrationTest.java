@@ -14,12 +14,7 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTestCase {
 
 	@Before
 	public void setUp() {
-		this.breeder = new RandomHorsesBreeder() {
-			@Override
-			boolean shouldWeRun() {
-				return true;
-			}
-		};
+		this.breeder = new RandomHorsesBreeder();
 	}
 
 	@Test

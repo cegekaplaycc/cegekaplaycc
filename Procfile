@@ -1,0 +1,1 @@
+web:	play precompile ./horse --silent 2>&1

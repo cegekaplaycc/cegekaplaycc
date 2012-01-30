@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
+
+import controllers.Horses;
 
 import models.Horse;
 import play.Play;
@@ -30,14 +30,17 @@ public class RandomHorsesBreeder extends Job {
 	@Override
 	public void doJob() throws Exception {
 		if (!Play.mode.isProd()) {
-			Random random = new Random(new Date().getTime());
+			Horse.deleteAll();
+			generateRandomHorsesWith(new Random(new Date().getTime()));
+		}
+	}
 
-			for (int i = 0; i < 20; i++) {
-				int randomIndex = random.nextInt(horsePrefixes.size());
-				Horse horse = new Horse(horsePrefixes.get(randomIndex) + " " + horseSuffixes.get(randomIndex));
-				System.out.println("Breeding a random horse: " + horse);
-				horse.save();
-			}
+	private void generateRandomHorsesWith(Random random) {
+		for (int i = 0; i < 20; i++) {
+			int randomIndex = random.nextInt(horsePrefixes.size());
+			Horse horse = new Horse(horsePrefixes.get(randomIndex) + " " + horseSuffixes.get(randomIndex));
+			System.out.println("Breeding a random horse: " + horse);
+			horse.save();
 		}
 	}
 

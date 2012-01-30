@@ -4,23 +4,29 @@
 body {
     background-color: white;
 
-    div.header {
-    	.box-shadow(0, 4px);
-    	.linearGradient(#DDD, #BBB);
-
-      	.logo {
-      		margin: 12px 0;
-      	}
-
-    }
-
-    div.content {
-    	margin:10px 0;
-    }
-
-    div.footer {
-
-    	.linearGradient(#333, #555);
-    	color: #EEE;
-    }
+	div {
+		&.header {
+	    	.box-shadow(0, 4px);
+	    	.linearGradient(#DDD, #BBB);
+	
+	      	&.logo {
+	      		margin: 12px 0;
+	      	}		
+		}
+		
+		&.content {
+    		margin:10px 0;
+    	}
+				
+	    &.footer {
+	    	.linearGradient(#333, #555);
+	    	color: #EEE;
+	    }
+	}
+	
+	#horses {
+		li {
+			margin: 3px;
+		}
+	}
 }

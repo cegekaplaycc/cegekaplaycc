@@ -10,7 +10,7 @@ public class Application extends Controller {
         renderArgs.put("user", SecureSocial.getCurrentUser());
         render();
     }
-    
+
     public static void logout() {
         render();
     }

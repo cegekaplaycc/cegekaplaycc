@@ -5,11 +5,16 @@ import static org.junit.Assert.assertEquals;
 
 import org.fest.assertions.Assertions;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import play.test.UnitTest;
 
 public class RaceTest {
+	
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
 	
 	private Race race;
 	
@@ -36,20 +41,13 @@ public class RaceTest {
 	
 	@Test
 	public void shouldBeAbleToDetermineAvailableSlots_AllSlotsFull() {
-		race.enter(new Horse());
-		race.enter(new Horse());
-		race.enter(new Horse());
-		race.enter(new Horse());
-		race.enter(new Horse());
-		race.enter(new Horse());
-		race.enter(new Horse());
-		race.enter(new Horse());
+		enterHorses(8);
 		
 		int availableSlots = race.getAvailableSlots();
 		
 		assertThat(availableSlots).isEqualTo(0);
 	}
-	
+
 	@Test
 	public void shouldBeAbleToEnterAHorse(){
 		Horse horse = new Horse();
@@ -59,7 +57,19 @@ public class RaceTest {
 	}
 	
 	@Test
-	public void shouldNotBeAbleToEnterMoreHorsesThanTheMaximumAvailableHorses(){
+	public void shouldNotBeAbleToEnterMoreHorsesThanTheMaximumAvailableSlots(){
+		enterHorses(8);
 		
+		expectedException.expect(IllegalStateException.class);
+		expectedException.expectMessage(Race.MAX_AVAILABLE_SLOTS_EXCEEDED);
+		
+		race.enter(new Horse());
+	}
+
+	private void enterHorses(int count) {
+		for (int i = 0; i < count; i++) {
+			race.enter(new Horse());
+		}
 	}
 }
+

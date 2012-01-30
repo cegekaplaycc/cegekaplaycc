@@ -17,12 +17,17 @@ public class Race extends Model {
 	
 	public static final int MAX_AVAILABLE_SLOTS = 8;
 
+	public static final String MAX_AVAILABLE_SLOTS_EXCEEDED = "Cannot enter more than the maximum available slots";
+
 	@OneToMany
 	public Set<Horse> horses = new HashSet<Horse>();
 	
 	public void enter(Horse horse) {
+		if (getAvailableSlots() == 0) {
+			throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
+		}
+		
 		this.horses.add(horse);
-//		throw new NotImplementedException();
 	}
 
 	public int getAvailableSlots() {

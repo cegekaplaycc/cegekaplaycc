@@ -21,10 +21,10 @@ public class Race extends Model {
 	public Long id;
 	
 	@OneToMany
-	public Set<Horse> horses = new HashSet<Horse>();
+	// public Set<Horse> horses = new HashSet<Horse>();
 	
 	public void enter(Horse horse) {
-		this.horses.add(horse);
+		// this.horses.add(horse);
 //		throw new NotImplementedException();
 	}
 

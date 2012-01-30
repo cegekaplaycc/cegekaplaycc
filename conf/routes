@@ -14,3 +14,6 @@ GET     /public/                                staticDir:public
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}
+
+# Authentication
+*       /auth       module:securesocial

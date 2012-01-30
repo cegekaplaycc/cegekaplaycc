@@ -11,9 +11,9 @@ public class Horse extends Model {
 
 	public String name;
 
-	public Horse() {
-	}
-	
+//	public Horse() {
+//	}
+//	
 	public Horse(String name) {
 		this.name = name;
 	}

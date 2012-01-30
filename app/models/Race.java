@@ -16,7 +16,6 @@ import play.db.jpa.Model;
 public class Race extends Model {
 	
 	public static final int MAX_AVAILABLE_SLOTS = 8;
-
 	public static final String MAX_AVAILABLE_SLOTS_EXCEEDED = "Cannot enter more than the maximum available slots";
 
 	@OneToMany

@@ -3,6 +3,7 @@
 # ~~~~
 
 GET     /                                   controllers.Application.index()
+GET		/login								controllers.LoginController.showLoginScreen()
 
 
 GET     /dev/grid                           controllers.DevTools.showCssGrid()

@@ -1,26 +1,20 @@
 package models;
 
-import static junit.framework.Assert.assertEquals;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.fest.assertions.Assertions;
 import org.junit.Test;
 
-import com.mchange.util.AssertException;
-
-import play.db.jpa.JPABase;
-import play.test.UnitTest;
-
-public class HorseIntegrationTest extends UnitTest {
+public class HorseIntegrationTest extends IntegrationTestCase {
 
 	@Test
 	public void canBePersisted() {
 		new Horse("joske").save();
 		List<Horse> horses = Horse.findAll();
 		
-		assertEquals(1, horses.size());
-		assertEquals("joske", horses.iterator().next().name);
+		Assertions.assertThat(horses).hasSize(1);
+		Horse refreshedHorse = horses.iterator().next();
+		Assertions.assertThat(refreshedHorse.name).isEqualTo("joske");
 	}
 }

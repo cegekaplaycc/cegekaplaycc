@@ -7,7 +7,7 @@ import org.junit.Test;
 
 import play.test.UnitTest;
 
-public class RaceTest extends UnitTest {
+public class RaceTest {
 	
 	private Race race;
 	
@@ -19,6 +19,7 @@ public class RaceTest extends UnitTest {
 	@Test
 	public void shouldBeAbleToDetermineAvailableSlots_whenNoHorsesEnteredTheRace() {
 		int availableSlots = race.getAvailableSlots();
+		
 		
 		assertEquals(Race.MAX_AVAILABLE_SLOTS, availableSlots);
 	}

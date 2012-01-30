@@ -1,5 +1,5 @@
 # Application dependencies
 
 require:
-    - play -> crud
+    - play
     - org.easytesting -> fest-assert 1.4

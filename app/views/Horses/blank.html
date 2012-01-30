@@ -1,0 +1,9 @@
+#{extends 'template.html' /}
+
+<h2>New Horse</h2>
+
+<form action="@{Horses.create()}" method="GET">
+	<input type="text" name="name" />
+   	<input type="submit" name="save" />
+</form>
+   

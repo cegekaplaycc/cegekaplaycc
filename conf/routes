@@ -4,7 +4,8 @@
 
 # Home page
 GET     /                                       Application.index
-GET     /horse                                  module:crud
+GET     /horse                                  Horses.blank
+GET     /horses                                 Horses.list
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

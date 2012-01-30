@@ -17,9 +17,6 @@ public class Race extends Model {
 	
 	public static final int MAX_AVAILABLE_SLOTS = 8;
 
-	@Id
-	public Long id;
-	
 	@OneToMany
 	// public Set<Horse> horses = new HashSet<Horse>();
 	

@@ -4,8 +4,8 @@
 *.iml
 .*
 !.gitignore
-!.project
 
+lib
 db
 log
 logs

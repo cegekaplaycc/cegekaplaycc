@@ -8,4 +8,4 @@ libraryDependencies += "play" %% "play" % "2.0-beta"
 
 resolvers += Classpaths.typesafeResolver
  
-addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse" % "1.4.0")
+addSbtPlugin("com.typesafe.sbteclipse" % "sbteclipse" % "1.5.0")

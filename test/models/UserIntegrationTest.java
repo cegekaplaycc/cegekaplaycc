@@ -7,13 +7,14 @@ public class UserIntegrationTest extends IntegrationTestCase {
 
 	@Test
 	public void canBePersisted() {
-		User user = new User("ID");
+		User user = new User("ID", "jos");
 		user.save();
 		
 		Assertions.assertThat(User.findAll()).hasSize(1);
 		User refreshed = (User) User.findAll().iterator().next();
 		
 		Assertions.assertThat(refreshed.getUserId()).isEqualTo("ID");
-		Assertions.assertThat(refreshed.getName()).isNullOrEmpty();
+		Assertions.assertThat(refreshed.getName()).isEqualTo("jos");
 	}
+	
 }

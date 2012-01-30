@@ -32,7 +32,7 @@ public class RaceTest {
 	
 	@Test
 	public void shouldBeAbleToDetermineAvailableSlots_whenHorsesEnteredTheRace() {
-		race.enter(new Horse());
+		race.enter(new Horse("horse 1"));
 		
 		int availableSlots = race.getAvailableSlots();
 		
@@ -50,7 +50,7 @@ public class RaceTest {
 
 	@Test
 	public void shouldBeAbleToEnterAHorse(){
-		Horse horse = new Horse();
+		Horse horse = new Horse("horse 1");
 		race.enter(horse);
 		
 		assertThat(race.horses).containsOnly(horse);
@@ -63,12 +63,46 @@ public class RaceTest {
 		expectedException.expect(IllegalStateException.class);
 		expectedException.expectMessage(Race.MAX_AVAILABLE_SLOTS_EXCEEDED);
 		
-		race.enter(new Horse());
+		race.enter(new Horse("horse 9"));
 	}
 
+	@Test
+	public void startRaceShouldBeAbleToDetermineAWinner() {
+		assertThat(race.winner).isNull();
+		
+		enterHorses(3);
+		race.start();
+		
+		assertThat(race.winner).isIn(race.horses);
+	}
+	
+	@Test
+	public void shouldNotBeAbleToStartRaceWhenLessThanMinimumAmountOfHorsesAreEntered(){
+		enterHorses(Race.MIN_HORSES_ENTERED_TO_START_RACE - 1);
+		
+		expectedException.expect(IllegalStateException.class);
+		expectedException.expectMessage(Race.LESS_THAN_MIN_AMOUNT_HORSES_ENTERED_TO_START_RACE);
+		
+		race.start();
+	}
+	
+	@Test
+	public void shouldBeAbleToDetermineIfRaceIsReadyToStart() {
+		enterHorses(Race.MIN_HORSES_ENTERED_TO_START_RACE);
+		
+		assertThat(race.readyToStart()).isTrue();
+	}
+	
+	@Test
+	public void shouldBeAbleToDetermineIfRaceIsReadyToStart_lessThanTheAmountNeeded() {
+		enterHorses(Race.MIN_HORSES_ENTERED_TO_START_RACE - 1);
+		
+		assertThat(race.readyToStart()).isFalse();
+	}
+	
 	private void enterHorses(int count) {
 		for (int i = 0; i < count; i++) {
-			race.enter(new Horse());
+			race.enter(new Horse("horse " + i + 1));
 		}
 	}
 }

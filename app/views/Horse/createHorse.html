@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<div>
+	#{form @Horse.addHorse()}
+	
+		<input type="text" name="name"/>
+		<input type="submit" value="createHorse" />
+	
+	#{/form}
+</div>

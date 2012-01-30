@@ -9,6 +9,7 @@ import play.data.validation.Required;
 import play.data.validation.Unique;
 import play.db.jpa.Model;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,6 +23,14 @@ public class Player extends Model {
 
 	@OneToMany
 	public Set<Horse> horses = new HashSet<Horse>();
+
+    private String avatarUrl;
+
+    private String email;
+
+    private String authMethod;
+
+    private Date lastAccess;
 
 	public Player(String userId) {
 		this.userId = userId;
@@ -53,4 +62,35 @@ public class Player extends Model {
 		this.save();
 	}
 
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAuthMethod() {
+        return authMethod;
+    }
+
+    public void setAuthMethod(String authMethod) {
+        this.authMethod = authMethod;
+    }
+
+    public Date getLastAccess() {
+        return lastAccess;
+    }
+
+    public void setLastAccess(Date lastAccess) {
+        this.lastAccess = lastAccess;
+    }
 }

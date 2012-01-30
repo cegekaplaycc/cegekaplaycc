@@ -14,6 +14,8 @@ public class UserService implements securesocial.provider.UserService.Service {
             SocialUser user = new SocialUser();
             user.id = id;
             user.displayName = player.getName();
+            user.email = player.getEmail();
+            user.avatarUrl = player.getAvatarUrl();
             return user;
         } else {
             return null;
@@ -25,6 +27,10 @@ public class UserService implements securesocial.provider.UserService.Service {
         if (find(user.id) == null) {
             Player player = new Player(user.id.id);
             player.setName(user.displayName);
+            player.setAvatarUrl(user.avatarUrl);
+            player.setAuthMethod(user.authMethod.toString());
+            player.setEmail(user.email);
+            player.setLastAccess(user.lastAccess);
             player.save();
         }
     }

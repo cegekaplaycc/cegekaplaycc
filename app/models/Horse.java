@@ -19,6 +19,11 @@ public class Horse extends Model {
 		this.name = name;
 	}
 
+	public Horse(String name, long price) {
+		this(name);
+		this.price = price;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -34,7 +39,7 @@ public class Horse extends Model {
 	public void setPrice(long price) {
 		this.price = price;
 	}
-	
+
 	@Override
 	public String toString() {
 		return name;

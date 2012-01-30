@@ -38,7 +38,7 @@ public class RandomHorsesBreeder extends Job {
 	private void generateRandomHorsesWith(Random random) {
 		for (int i = 0; i < 20; i++) {
 			int randomIndex = random.nextInt(horsePrefixes.size());
-			Horse horse = new Horse(horsePrefixes.get(randomIndex) + " " + horseSuffixes.get(randomIndex));
+			Horse horse = new Horse(horsePrefixes.get(randomIndex) + " " + horseSuffixes.get(randomIndex), random.nextInt(2000));
 			System.out.println("Breeding a random horse: " + horse);
 			horse.save();
 		}

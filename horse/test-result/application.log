@@ -1,0 +1,4 @@
+30 jan 2012 11:32:00,213 INFO  ~ Starting D:\PrivateWS\playcc\cegekaplaycc\horse\.
+30 jan 2012 11:32:00,790 WARN  ~ You're running Play! in DEV mode
+30 jan 2012 11:32:01,852 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL;LOCK_MODE=0
+30 jan 2012 11:32:02,399 INFO  ~ Application 'horse' is now started !

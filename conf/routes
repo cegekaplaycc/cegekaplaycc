@@ -6,6 +6,7 @@
 GET     /                                       Application.index
 GET     /horse                                  Horses.blank
 GET     /horses                                 Horses.list
+GET		/horses/buy/{id}						Horses.buy
 GET 	/login									LoginController.login
 
 # Ignore favicon requests

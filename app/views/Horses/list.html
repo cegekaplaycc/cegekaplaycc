@@ -4,7 +4,7 @@
 
 <table>
 #{list horses}
-	<tr><td>${_.id}</td><td>${_.name}</td></tr>
+	<tr><td>${_.id}</td><td>${_.name}</td><td><a href="@{Horses.buy(_.id)}">Buy horse!</a></td></tr>
 #{/list}
 </table>
 

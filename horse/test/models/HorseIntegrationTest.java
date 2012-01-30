@@ -18,9 +18,9 @@ public class HorseIntegrationTest extends UnitTest {
 	@Test
 	public void canBePersisted() {
 		new Horse("joske").save();
-		List<JPABase> horses = Horse.findAll();
+		List<Horse> horses = Horse.findAll();
 		
 		assertEquals(1, horses.size());
-		assertEquals("joske", ((Horse) horses.iterator().next()).name);
+		assertEquals("joske", horses.iterator().next().name);
 	}
 }

@@ -2,9 +2,14 @@
 *.ipr
 *.iws
 *.iml
-main/db/
-horse/.settings/
-horse/eclipse/
-horse/.classpath
+.*
+!.gitignore
+!.project
 
-
+db
+log
+logs
+precompiled
+tmp
+test-result
+eclipse

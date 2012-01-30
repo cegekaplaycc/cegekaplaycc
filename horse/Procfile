@@ -1,1 +1,1 @@
-web:	play run horse
+web:	play precompile ./horse --silent 2>&1

@@ -3,4 +3,8 @@
 *.iws
 *.iml
 main/db/
+horse/.settings/
+horse/eclipse/
+horse/.classpath
+
 

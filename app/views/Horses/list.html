@@ -1,0 +1,13 @@
+#{extends 'template.html' /}
+
+<h2>Horses Overview</h2>
+
+<table>
+#{list horses}
+	<tr><td>${_.id}</td><td>${_.name}</td></tr>
+#{/list}
+</table>
+
+<br />
+
+<a href="@{Horses.blank()}">New horse</a>

@@ -10,11 +10,14 @@ public class HorseIntegrationTest extends IntegrationTestCase {
 
 	@Test
 	public void canBePersisted() {
-		new Horse("joske").save();
+		Horse horse = new Horse("joske");
+		horse.setPrice(12654L);
+		horse.save();
 		List<Horse> horses = Horse.findAll();
 		
 		Assertions.assertThat(horses).hasSize(1);
 		Horse refreshedHorse = horses.iterator().next();
-		Assertions.assertThat(refreshedHorse.name).isEqualTo("joske");
+		Assertions.assertThat(refreshedHorse.getName()).isEqualTo("joske");
+		Assertions.assertThat(refreshedHorse.getPrice()).isEqualTo(12654L);
 	}
 }

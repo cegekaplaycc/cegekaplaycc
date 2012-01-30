@@ -9,13 +9,30 @@ import play.db.jpa.Model;
 @Entity
 public class Horse extends Model {
 
-	public String name;
+	private String name;
+	private long price;
 
 	public Horse() {
 	}
-	
+
 	public Horse(String name) {
 		this.name = name;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public long getPrice() {
+		return price;
+	}
+
+	public void setPrice(long price) {
+		this.price = price;
 	}
 
 	@Override

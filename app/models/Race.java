@@ -2,6 +2,7 @@ package models;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Random;
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import org.apache.commons.lang.NotImplementedException;
 
+import play.data.validation.Required;
 import play.db.jpa.Model;
 
 
@@ -25,15 +27,21 @@ public class Race extends Model {
 	public static final String LESS_THAN_MIN_AMOUNT_HORSES_ENTERED_TO_START_RACE = "Less than minimum amount of horses entered to start race";
 
 	@OneToMany
-	public Set<Horse> horses = new HashSet<Horse>();
+	private Set<Horse> horses = new HashSet<Horse>();
 	public Horse winner;
+	@Required
+	public String name;
 	
 	public void enter(Horse horse) {
-		if (getAvailableSlots() == 0) {
+		if (!canEnterHorse()) {
 			throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
 		}
 		
 		this.horses.add(horse);
+	}
+
+	public boolean canEnterHorse() {
+		return getAvailableSlots() > 0;
 	}
 
 	public int getAvailableSlots() {
@@ -52,6 +60,10 @@ public class Race extends Model {
 
 	public boolean readyToStart() {
 		return horses.size() >= MIN_HORSES_ENTERED_TO_START_RACE;
+	}
+	
+	public Set<Horse> getEnteredHorses() {
+		return Collections.unmodifiableSet(horses);
 	}
 
 }

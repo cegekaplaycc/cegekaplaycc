@@ -1,0 +1,32 @@
+#{extends 'template.html' /}
+
+<h2>Race Detail</h2>
+
+<table>
+	<tr>
+		<th>Id</th>
+		<td>${race.id}</td>
+	</tr>
+	<tr>
+		<th>Name</th>
+		<td>${race.name}</td>
+	</tr>
+	<tr>
+		<th>Entered horses</th>
+		<td>
+			<table>
+				#{list items:race.getEnteredHorses(), as:'horse'}
+				<tr>
+					<td>${horse.name}</td>
+				</tr>
+				#{/list}
+			</table>
+		</td>
+</table>
+#{if race.canEnterHorse()}
+<a href="@{enter()}">Enter horse</a>
+#{/if}
+<br />
+#{if race.readyToStart()}
+<a href="#">Start race</a>
+#{/if}

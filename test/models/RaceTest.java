@@ -53,7 +53,7 @@ public class RaceTest {
 		Horse horse = new Horse("horse 1");
 		race.enter(horse);
 		
-		assertThat(race.horses).containsOnly(horse);
+		assertThat(race.getEnteredHorses()).containsOnly(horse);
 	}
 	
 	@Test
@@ -73,7 +73,7 @@ public class RaceTest {
 		enterHorses(3);
 		race.start();
 		
-		assertThat(race.winner).isIn(race.horses);
+		assertThat(race.winner).isIn(race.getEnteredHorses());
 	}
 	
 	@Test
@@ -98,6 +98,20 @@ public class RaceTest {
 		enterHorses(Race.MIN_HORSES_ENTERED_TO_START_RACE - 1);
 		
 		assertThat(race.readyToStart()).isFalse();
+	}
+	
+	@Test
+	public void shouldBeAbleToDetermineIfAHorseCanBeEntered() {
+		enterHorses(Race.MAX_AVAILABLE_SLOTS - 1);
+		
+		assertThat(race.canEnterHorse()).isTrue();
+	}
+	
+	@Test
+	public void shouldBeAbleToDetermineIfAHorseCanBeEntered_maxAvailableSlotsExceeded() {
+		enterHorses(Race.MAX_AVAILABLE_SLOTS);
+		
+		assertThat(race.canEnterHorse()).isFalse();
 	}
 	
 	private void enterHorses(int count) {

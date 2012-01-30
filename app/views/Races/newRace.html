@@ -1,0 +1,19 @@
+#{extends 'template.html' /}
+
+<h2>New Race</h2>
+
+#{form @create()}
+ 
+    <p>
+        #{field 'name'}
+        <label>Name:</label>
+        <input type="text" name="${field.name}" />
+        #{/field}
+    </p>
+    
+    <p>
+        <input type="submit" value="Add race" />
+    </p>
+    
+#{/form}
+   

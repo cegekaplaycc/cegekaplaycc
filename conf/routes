@@ -7,6 +7,12 @@ GET     /                                       Application.index
 GET     /horse                                  Horses.blank
 GET     /horses                                 Horses.list
 
+GET		/races									Races.list
+GET		/races/new								Races.newRace
+POST	/races/new								Races.create
+GET		/races/{<[0-9]+>id}						Races.detail
+GET		/races/enter							Races.enter
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

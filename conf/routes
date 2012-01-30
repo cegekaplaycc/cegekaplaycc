@@ -6,6 +6,8 @@
 GET     /                                       Application.index
 GET     /horse                                  Horses.blank
 GET     /horses                                 Horses.list
+GET		/horses/buy/{id}						Horses.buy
+GET 	/login									LoginController.login
 
 GET		/races									Races.list
 GET		/races/new								Races.newRace
@@ -18,9 +20,6 @@ GET     /favicon.ico                            404
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
-
-# Tmp: for dev purposes only!
-GET 	/secret									SecuredController.someSecretPage
 
 # Catch all
 *       /{controller}/{action}                  {controller}.{action}

@@ -3,6 +3,8 @@ package controllers;
 import java.util.List;
 
 import models.Horse;
+import models.Player;
+import play.db.jpa.JPABase;
 import play.mvc.Controller;
 
 public class Horses extends Controller {
@@ -20,7 +22,14 @@ public class Horses extends Controller {
 
 	public static void list() {
 		List<Horse> horses = Horse.findAll();
-		render(horses);
+		List<Horse> ownHorses = Horse.findAll();
+		render(horses, ownHorses);
+	}
+	
+	public static void buy(Long id) {
+		//TODO getCurrentPlayer and addHorse() :-)
+		Horse.findById(id);
+		list();
 	}
 
 }

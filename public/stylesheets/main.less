@@ -4,23 +4,45 @@
 body {
     background-color: white;
 
-    div.header {
-    	.box-shadow(0, 4px);
-    	.linearGradient(#DDD, #BBB);
+	div {
+		&.header {
+	    	.box-shadow(0, 4px);
+	    	.linearGradient(#DDD, #BBB);
+	
+	      	&.logo {
+	      		margin: 12px 0;
+	      	}		
+		}
+		
+		&.content {
+    		margin:10px 0;
+    	}
+				
+	    &.footer {
+	    	.linearGradient(#333, #555);
+	    	color: #EEE;
+	    }
+	}
+	
+	#horses {
+		li {
+			margin: 3px;
+		}
+	}
 
-      	.logo {
-      		margin: 12px 0;
-      	}
-
-    }
-
-    div.content {
-    	margin:10px 0;
-    }
-
-    div.footer {
-
-    	.linearGradient(#333, #555);
-    	color: #EEE;
-    }
+	table {
+		border: 3px solid #CCC;
+		margin: 10px;
+		padding: 5px;
+		
+		&.horsesTable {
+			float:left;
+			td {
+				padding: 5px;
+			}
+			th {
+				background-color: #CCC;
+			}
+		}
+	}
 }

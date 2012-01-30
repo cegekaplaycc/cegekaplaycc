@@ -22,7 +22,8 @@ public class Horses extends Controller {
 
 	public static void list() {
 		List<Horse> horses = Horse.findAll();
-		render(horses);
+		List<Horse> ownHorses = Horse.findAll();
+		render(horses, ownHorses);
 	}
 	
 	public static void buy(Long id) {

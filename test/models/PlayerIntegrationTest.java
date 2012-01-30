@@ -3,15 +3,15 @@ package models;
 import org.fest.assertions.Assertions;
 import org.junit.Test;
 
-public class UserIntegrationTest extends IntegrationTestCase {
+public class PlayerIntegrationTest extends IntegrationTestCase {
 
 	@Test
 	public void canBePersisted() {
-		User user = new User("ID", "jos");
-		user.save();
+		Player player = new Player("ID", "jos");
+		player.save();
 		
-		Assertions.assertThat(User.findAll()).hasSize(1);
-		User refreshed = (User) User.findAll().iterator().next();
+		Assertions.assertThat(Player.findAll()).hasSize(1);
+		Player refreshed = (Player) Player.findAll().iterator().next();
 		
 		Assertions.assertThat(refreshed.getUserId()).isEqualTo("ID");
 		Assertions.assertThat(refreshed.getName()).isEqualTo("jos");

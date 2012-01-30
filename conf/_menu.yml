@@ -1,0 +1,15 @@
+home:
+  name: home
+  url: '@{Application.index()}'
+  title: Home
+  
+horses:
+  name: horses
+  url: '@{Horses.list()}'
+  title: Paarden
+  
+blankhorse:
+  parent: horses
+  name: blankhorse
+  url: '@{Horses.blank()}'
+  title: Blank

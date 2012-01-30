@@ -4,3 +4,4 @@ require:
     - play
     - org.easytesting -> fest-assert 1.4
     - play -> securesocial 0.2.3
+    - play -> menu 1.1a

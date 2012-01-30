@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/1140.css'}"/>
     <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/stylesheets/stickyfooter.css'}"/>
     <link rel="stylesheet/less" type="text/css" media="screen" href="@{'/public/stylesheets/main.less'}">
+    <link rel="stylesheet/less" type="text/css" media="screen" href="@{'/modules/menu-1.1a/public/stylesheets/_menu.css'}">
 #{get 'moreStyles' /}
 
     <script type="text/javascript" charset="${_response_encoding}"
@@ -31,17 +32,20 @@
                 <a href="@{Application.index()}"><img src="@{'/public/images/logo.gif'}" alt="" class="logo"/></a>
 
                 <div style="float: right">
-                #{if user != null }
-                    <div class="user-details">
-                        <img src="${user.avatarUrl}" width="40px" height="40px"/>${user.displayName} (<a href="/securesocial.securesocial/logout">logout</a>)
-                    </div>
-                #{/if}
-                #{elseif user == null}
-                    <a href="@{LoginController.login()}">login</a>
-                #{/elseif}
+	                #{if user != null }
+	                    <div class="user-details">
+	                        <img src="${user.avatarUrl}" width="40px" height="40px"/>${user.displayName} (<a href="/securesocial.securesocial/logout">logout</a>)
+	                    </div>
+	                #{/if}
+	                #{elseif user == null}
+	                    <a href="@{LoginController.login()}">login</a>
+	                #{/elseif}
+
+					<div id='navigation'>
+					   #{menu.menu /}
+					</div>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="content container">

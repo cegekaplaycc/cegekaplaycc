@@ -1,0 +1,8 @@
+#{extends 'template.html' /}
+
+<h2>Enter Horse</h2>
+
+#{form @create()}
+#{select 'horses', items:horses, valueProperty:'id', labelProperty:'name', id:'horses' /}
+
+#{/form}

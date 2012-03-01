@@ -1,167 +1,429 @@
-<mockup version="1.0" skin="sketch" measuredW="1224" measuredH="1285" mockupW="1189" mockupH="1280">
+<mockup version="1.0" skin="sketch" measuredW="1663" measuredH="1960" mockupW="1437" mockupH="1932">
   <controls>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Canvas" x="587" y="5" w="637" h="286" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="1049" y="20" w="-1" h="-1" measuredW="154" measuredH="21" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="180" controlTypeID="__group__" x="226" y="743" w="623" h="402" measuredW="623" measuredH="402" zOrder="0" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="22" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="623" h="402" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="180"/>
+        <control controlID="23" controlTypeID="com.balsamiq.mockups::Title" x="15" y="15" w="380" h="-1" measuredW="284" measuredH="37" zOrder="1" locked="false" isInGroup="180">
+          <controlProperties>
+            <align>left</align>
+            <size>28</size>
+            <text>Stable%201%3A%20Alberton%20Star</text>
+          </controlProperties>
+        </control>
+        <control controlID="24" controlTypeID="__group__" x="479" y="15" w="129" h="26" measuredW="129" measuredH="26" zOrder="2" locked="false" isInGroup="180">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Title" x="0" y="0" w="58" h="-1" measuredW="51" measuredH="26" zOrder="0" locked="false" isInGroup="24">
+              <controlProperties>
+                <align>left</align>
+                <size>18</size>
+                <text>Cash%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="62" y="0" w="67" h="-1" measuredW="68" measuredH="26" zOrder="1" locked="false" isInGroup="24">
+              <controlProperties>
+                <align>right</align>
+                <size>18</size>
+                <text>2600%20%24</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="25" controlTypeID="__group__" x="35" y="89" w="243" h="53" measuredW="243" measuredH="53" zOrder="3" locked="false" isInGroup="180">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Link" x="207" y="0" w="-1" h="-1" measuredW="36" measuredH="21" zOrder="0" locked="false" isInGroup="25">
+              <controlProperties>
+                <text>%28edit%29</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="166" h="22" measuredW="125" measuredH="21" zOrder="1" locked="false" isInGroup="25">
+              <controlProperties>
+                <text>Food%3A%20Power%20Biscuits</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="0" y="31" w="187" h="22" measuredW="141" measuredH="21" zOrder="2" locked="false" isInGroup="25">
+              <controlProperties>
+                <text>Trainer%3A%2030%20%24%20per%20week</text>
+              </controlProperties>
+            </control>
+            <control controlID="3" controlTypeID="com.balsamiq.mockups::Link" x="207" y="31" w="-1" h="-1" measuredW="36" measuredH="21" zOrder="3" locked="false" isInGroup="25">
+              <controlProperties>
+                <text>%28edit%29</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="26" controlTypeID="__group__" x="334" y="69" w="252" h="116" measuredW="252" measuredH="116" zOrder="4" locked="false" isInGroup="180">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::DataGrid" x="0" y="28" w="252" h="88" measuredW="128" measuredH="85" zOrder="0" locked="false" isInGroup="26">
+              <controlProperties>
+                <text>%20%0AOverall%20fitness%2C%2060%0ATraining%20level%2C%2050</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="0" y="0" w="158" h="-1" measuredW="54" measuredH="28" zOrder="1" locked="false" isInGroup="26">
+              <controlProperties>
+                <align>left</align>
+                <size>20</size>
+                <text>Stats</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="27" controlTypeID="com.balsamiq.mockups::DataGrid" x="20" y="224" w="272" h="118" measuredW="214" measuredH="115" zOrder="5" locked="false" isInGroup="180">
+          <controlProperties>
+            <text>Date%2CStatus%0A%5B20/02/2012%5D%2C%20Finished%20%28won%29%0A%5B21/02/2012%5D%2C%20Finished%20%285th%20place%29%0A%5B21/03/2012%5D%2C%20Subscribed</text>
+          </controlProperties>
+        </control>
+        <control controlID="28" controlTypeID="com.balsamiq.mockups::Title" x="21" y="195" w="170" h="-1" measuredW="62" measuredH="28" zOrder="6" locked="false" isInGroup="180">
+          <controlProperties>
+            <align>left</align>
+            <size>20</size>
+            <text>Races</text>
+          </controlProperties>
+        </control>
+        <control controlID="29" controlTypeID="com.balsamiq.mockups::LineChart" x="337" y="227" w="249" h="150" measuredW="187" measuredH="175" zOrder="7" locked="false" isInGroup="180"/>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="182" controlTypeID="__group__" x="1040" y="470" w="623" h="402" measuredW="623" measuredH="402" zOrder="13" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="21" controlTypeID="__group__" x="0" y="0" w="623" h="402" measuredW="623" measuredH="402" zOrder="0" locked="false" isInGroup="182">
+          <groupChildrenDescriptors>
+            <control controlID="15" controlTypeID="__group__" x="0" y="0" w="623" h="402" measuredW="623" measuredH="402" zOrder="0" locked="false" isInGroup="21">
+              <groupChildrenDescriptors>
+                <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="623" h="402" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="15"/>
+                <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="16" y="22" w="380" h="-1" measuredW="159" measuredH="37" zOrder="1" locked="false" isInGroup="15">
+                  <controlProperties>
+                    <align>left</align>
+                    <size>28</size>
+                    <text>Buy%20Supplies</text>
+                  </controlProperties>
+                </control>
+                <control controlID="2" controlTypeID="com.balsamiq.mockups::DataGrid" x="30" y="74" w="562" h="237" measuredW="331" measuredH="55" zOrder="2" locked="false" isInGroup="15">
+                  <controlProperties>
+                    <text>Name%2C%20In%20Stock%2C%20unit%20price%2C%20amount%2C%20total%0APower%20Biscuits%2C%2030%2C%2012%24%2C%20%2C%20120</text>
+                  </controlProperties>
+                </control>
+                <control controlID="3" controlTypeID="__group__" x="479" y="15" w="129" h="26" measuredW="129" measuredH="26" zOrder="3" locked="false" isInGroup="15">
+                  <groupChildrenDescriptors>
+                    <control controlID="0" controlTypeID="com.balsamiq.mockups::Title" x="0" y="0" w="58" h="-1" measuredW="51" measuredH="26" zOrder="0" locked="false" isInGroup="3">
+                      <controlProperties>
+                        <align>left</align>
+                        <size>18</size>
+                        <text>Cash%3A</text>
+                      </controlProperties>
+                    </control>
+                    <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="62" y="0" w="67" h="-1" measuredW="68" measuredH="26" zOrder="1" locked="false" isInGroup="3">
+                      <controlProperties>
+                        <align>right</align>
+                        <size>18</size>
+                        <text>2600%20%24</text>
+                      </controlProperties>
+                    </control>
+                  </groupChildrenDescriptors>
+                </control>
+                <control controlID="4" controlTypeID="com.balsamiq.mockups::NumericStepper" x="432" y="98" w="85" h="-1" measuredW="47" measuredH="24" zOrder="4" locked="false" isInGroup="15">
+                  <controlProperties>
+                    <text>10</text>
+                  </controlProperties>
+                </control>
+                <control controlID="5" controlTypeID="com.balsamiq.mockups::HelpButton" x="133" y="101" w="-1" h="-1" measuredW="18" measuredH="18" zOrder="5" locked="false" isInGroup="15"/>
+                <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="517" y="345" w="70" h="27" measuredW="45" measuredH="27" zOrder="6" locked="false" isInGroup="15">
+                  <controlProperties>
+                    <text>Buy</text>
+                  </controlProperties>
+                </control>
+                <control controlID="7" controlTypeID="com.balsamiq.mockups::Title" x="411" y="317" w="181" h="-1" measuredW="157" measuredH="28" zOrder="7" locked="false" isInGroup="15">
+                  <controlProperties>
+                    <align>right</align>
+                    <size>20</size>
+                    <text>Total%20price%3A%20150%24</text>
+                  </controlProperties>
+                </control>
+              </groupChildrenDescriptors>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="183" controlTypeID="com.balsamiq.mockups::Canvas" x="266" y="48" w="623" h="402" measuredW="100" measuredH="70" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="184" controlTypeID="com.balsamiq.mockups::Title" x="282" y="70" w="380" h="-1" measuredW="328" measuredH="37" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Welcome%20horseRider485%21</text>
+        <align>left</align>
+        <size>28</size>
+        <text>Welcome%2C%20horseRider485%21</text>
       </controlProperties>
     </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::DataGrid" x="684" y="90" w="504" h="178" measuredW="259" measuredH="175" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="192" controlTypeID="com.balsamiq.mockups::Title" x="745" y="66" w="58" h="-1" measuredW="51" measuredH="26" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Stable%2C%20Horse%2C%20Training%20level%0A1%2C%20Alberton%20Star%2C5%0A2%2CJack%20the%20Jumper%2C8%0A3%2CRamblin%20Man%2C%203%0A4%2CPeyton%2C%200%0A5</text>
+        <align>left</align>
+        <size>18</size>
+        <text>Cash%3A</text>
       </controlProperties>
     </control>
-    <control controlID="41" controlTypeID="com.balsamiq.mockups::DataGrid" x="684" y="660" w="277" h="87" measuredW="198" measuredH="55" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="193" controlTypeID="com.balsamiq.mockups::Title" x="807" y="66" w="67" h="-1" measuredW="68" measuredH="26" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Item%2C%20Amount%2C%20Add%0APower%20biscuits%2C%2020%2C</text>
+        <align>right</align>
+        <size>18</size>
+        <text>2600%20%24</text>
       </controlProperties>
     </control>
-    <control controlID="49" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="609" y="52" w="594" h="225" measuredW="200" measuredH="178" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="194" controlTypeID="com.balsamiq.mockups::DataGrid" x="593" y="317" w="272" h="116" measuredW="207" measuredH="55" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
-        <selectedIndex>0</selectedIndex>
-        <text>Horses%0AJockeys%0ARaces%0ASupplies</text>
+        <text>Date%2Chorse%0A%5B22/03/2012%5D%2C%20Jack%20The%20Jumper</text>
       </controlProperties>
     </control>
-    <control controlID="50" controlTypeID="com.balsamiq.mockups::Canvas" x="587" y="299" w="637" h="263" measuredW="100" measuredH="70" zOrder="4" locked="false" isInGroup="-1"/>
-    <control controlID="51" controlTypeID="com.balsamiq.mockups::Label" x="1049" y="314" w="-1" h="-1" measuredW="154" measuredH="21" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="195" controlTypeID="com.balsamiq.mockups::Title" x="593" y="295" w="170" h="-1" measuredW="152" measuredH="28" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Welcome%20horseRider485%21</text>
+        <align>left</align>
+        <size>20</size>
+        <text>Upcoming%20Races</text>
       </controlProperties>
     </control>
-    <control controlID="52" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="609" y="346" w="594" h="201" measuredW="200" measuredH="178" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="196" controlTypeID="com.balsamiq.mockups::DataGrid" x="593" y="147" w="272" h="91" measuredW="157" measuredH="85" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
-        <selectedIndex>1</selectedIndex>
-        <text>Horses%0AJockeys%0ARaces%0ASupplies</text>
+        <text>Name%2C%20Amount%0APower%20biscuits%2C%2020%0AHay%2C%2010</text>
       </controlProperties>
     </control>
-    <control controlID="53" controlTypeID="com.balsamiq.mockups::DataGrid" x="684" y="382" w="504" h="150" measuredW="130" measuredH="145" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="197" controlTypeID="com.balsamiq.mockups::Title" x="595" y="119" w="170" h="-1" measuredW="155" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Jockey%2C%20Level%0AJockey%231%2C%202%0AJockey%234%2C%208%0AJockey%237%2C%206%0AJockey%2312%2C%200</text>
+        <align>left</align>
+        <size>20</size>
+        <text>Supplies%20In%20Stock</text>
       </controlProperties>
     </control>
-    <control controlID="54" controlTypeID="com.balsamiq.mockups::Canvas" x="587" y="573" w="637" h="263" measuredW="100" measuredH="70" zOrder="8" locked="false" isInGroup="-1"/>
-    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="1049" y="588" w="-1" h="-1" measuredW="154" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="198" controlTypeID="com.balsamiq.mockups::Link" x="593" y="236" w="-1" h="-1" measuredW="75" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Welcome%20horseRider485%21</text>
+        <text>Buy%20supplies</text>
       </controlProperties>
     </control>
-    <control controlID="56" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="609" y="620" w="594" h="201" measuredW="200" measuredH="178" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="199" controlTypeID="com.balsamiq.mockups::Title" x="283" y="119" w="170" h="-1" measuredW="93" measuredH="28" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
-        <selectedIndex>3</selectedIndex>
-        <text>Horses%0AJockeys%0ARaces%0ASupplies</text>
+        <align>left</align>
+        <size>20</size>
+        <text>My%20Stable</text>
       </controlProperties>
     </control>
-    <control controlID="59" controlTypeID="com.balsamiq.mockups::Canvas" x="587" y="848" w="637" h="437" measuredW="100" measuredH="70" zOrder="12" locked="false" isInGroup="-1"/>
-    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="1049" y="863" w="-1" h="-1" measuredW="154" measuredH="21" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="200" controlTypeID="com.balsamiq.mockups::DataGrid" x="282" y="147" w="291" h="110" measuredW="177" measuredH="115" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Welcome%20horseRider485%21</text>
+        <text>Box%2C%20Name%0A1%2C%20%5BAlberton%20Star%5D%0A2%2C%20%5BJack%20The%20Jumper%5D%0A3%2C%20%28empty%29%20%5BBuy%20a%20hoirse%21%5D</text>
       </controlProperties>
     </control>
-    <control controlID="61" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="609" y="893" w="594" h="382" measuredW="200" measuredH="178" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="207" controlTypeID="com.balsamiq.mockups::Link" x="283" y="257" w="-1" h="-1" measuredW="97" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
-        <selectedIndex>2</selectedIndex>
-        <text>Horses%0AJockeys%0ARaces%0ASupplies</text>
+        <text>Build%20a%20new%20box%21</text>
       </controlProperties>
     </control>
-    <control controlID="64" controlTypeID="com.balsamiq.mockups::DataGrid" x="690" y="1023" w="-1" h="-1" measuredW="356" measuredH="115" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="231" controlTypeID="__group__" x="1040" y="28" w="623" h="402" measuredW="623" measuredH="402" zOrder="15" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="23" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="623" h="402" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="231"/>
+        <control controlID="24" controlTypeID="com.balsamiq.mockups::Title" x="16" y="22" w="380" h="-1" measuredW="173" measuredH="37" zOrder="1" locked="false" isInGroup="231">
+          <controlProperties>
+            <align>left</align>
+            <size>28</size>
+            <text>Horse%20Market</text>
+          </controlProperties>
+        </control>
+        <control controlID="25" controlTypeID="com.balsamiq.mockups::DataGrid" x="30" y="74" w="562" h="237" measuredW="345" measuredH="175" zOrder="2" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>%2CName%2C%20training%20level%2C%20fitness%2C%20price%0A%28%29%2CGreat%20Humperdink%2C%2010%2C%2068%2C%20450%24%0A%28%29%2CBlack%20Shadow%2C%2062%2C45%2C860%24%0A%28o%29%2CHeavy%20Rider%2C%2024%2C48%2C260%24%0A%28%29%2CShallow%20Night%2C80%2C76%2C1830%24%0A%28%29%2CStumbling%20Cow%2C36%2C74%2C900%24</text>
+          </controlProperties>
+        </control>
+        <control controlID="26" controlTypeID="__group__" x="479" y="15" w="129" h="26" measuredW="129" measuredH="26" zOrder="3" locked="false" isInGroup="231">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Title" x="0" y="0" w="58" h="-1" measuredW="51" measuredH="26" zOrder="0" locked="false" isInGroup="26">
+              <controlProperties>
+                <align>left</align>
+                <size>18</size>
+                <text>Cash%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="62" y="0" w="67" h="-1" measuredW="68" measuredH="26" zOrder="1" locked="false" isInGroup="26">
+              <controlProperties>
+                <align>right</align>
+                <size>18</size>
+                <text>2600%20%24</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="29" controlTypeID="com.balsamiq.mockups::Button" x="517" y="345" w="70" h="27" measuredW="45" measuredH="27" zOrder="4" locked="false" isInGroup="231">
+          <controlProperties>
+            <text>Buy</text>
+          </controlProperties>
+        </control>
+        <control controlID="30" controlTypeID="com.balsamiq.mockups::Title" x="411" y="317" w="181" h="-1" measuredW="161" measuredH="28" zOrder="5" locked="false" isInGroup="231">
+          <controlProperties>
+            <align>right</align>
+            <size>20</size>
+            <text>Total%20price%3A%20260%24</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="232" controlTypeID="__group__" x="391" y="500" w="348" h="211" measuredW="348" measuredH="211" zOrder="14" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::TitleWindow" x="0" y="0" w="348" h="211" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="232">
+          <controlProperties>
+            <text>Build%20a%20new%20box</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Button" x="42" y="145" w="-1" h="-1" measuredW="140" measuredH="27" zOrder="1" locked="false" isInGroup="232">
+          <controlProperties>
+            <text>Yes%2C%20build%20me%20a%20box%21</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Link" x="217" y="148" w="-1" h="-1" measuredW="43" measuredH="21" zOrder="2" locked="false" isInGroup="232">
+          <controlProperties>
+            <text>cancel</text>
+          </controlProperties>
+        </control>
+        <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="199" y="148" w="18" h="21" measuredW="18" measuredH="21" zOrder="3" locked="false" isInGroup="232">
+          <controlProperties>
+            <text>or</text>
+          </controlProperties>
+        </control>
+        <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="63" y="47" w="223" h="83" measuredW="647" measuredH="21" zOrder="4" locked="false" isInGroup="232">
+          <controlProperties>
+            <align>center</align>
+            <text>Are%20you%20sure%20you%20want%20to%20build%20a%20new%20box%3F%20This%20will%20cost%20you%20300%20%24%20to%20build%20and%2030%20%24%20maintenance%20cost%20per%20week%21</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="234" controlTypeID="com.balsamiq.mockups::Link" x="803" y="123" w="-1" h="-1" measuredW="65" measuredH="21" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Date%2C%20Subscription%20fee%2C%20Prize%20money%0A17-02-2012%2C%20100%2C%20500%2C%20subscribe%0A22-02-2012%2C%20100%2C%20550%2C%20subscribe%0A03-03-2012%2C%2075%2C%20400%2C%20subscribe</text>
+        <text>Buy%20more%21</text>
       </controlProperties>
     </control>
-    <control controlID="65" controlTypeID="com.balsamiq.mockups::DataGrid" x="690" y="1175" w="-1" h="-1" measuredW="481" measuredH="85" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="236" controlTypeID="__group__" x="992" y="936" w="623" h="481" measuredW="623" measuredH="481" zOrder="17" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="22" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="623" h="481" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="236"/>
+        <control controlID="23" controlTypeID="com.balsamiq.mockups::Title" x="15" y="15" w="380" h="-1" measuredW="85" measuredH="37" zOrder="1" locked="false" isInGroup="236">
+          <controlProperties>
+            <align>left</align>
+            <size>28</size>
+            <text>Races</text>
+          </controlProperties>
+        </control>
+        <control controlID="24" controlTypeID="__group__" x="479" y="15" w="129" h="26" measuredW="129" measuredH="26" zOrder="2" locked="false" isInGroup="236">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Title" x="0" y="0" w="58" h="-1" measuredW="51" measuredH="26" zOrder="0" locked="false" isInGroup="24">
+              <controlProperties>
+                <align>left</align>
+                <size>18</size>
+                <text>Cash%3A</text>
+              </controlProperties>
+            </control>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="62" y="0" w="67" h="-1" measuredW="68" measuredH="26" zOrder="1" locked="false" isInGroup="24">
+              <controlProperties>
+                <align>right</align>
+                <size>18</size>
+                <text>2600%20%24</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="31" controlTypeID="com.balsamiq.mockups::DataGrid" x="15" y="282" w="593" h="178" measuredW="481" measuredH="175" zOrder="3" locked="false" isInGroup="236">
+          <controlProperties>
+            <text>Date%2C%20Subscription%20fee%2C%20Prize%20money%2C%20places%20left%0A%5B21-02-2012%5D%2C%20100%2C%20500%2C%205%2C%20%5Bsubscribe%5D%0A%5B22-02-2012%5D%2C%20100%2C%20550%2C%204%2C%20Jack%20The%20Jumper%0A%5B23-02-2012%5D%2C%2075%2C%20400%2C%204%2C%20Alberton%20Star%0A%5B24-02-2012%5D%2C%2075%2C%20400%2C%203%2C%20%5Bsubscribe%5D%0A%5B25-02-2012%5D%2C%2075%2C%20400%2C%207%2C</text>
+          </controlProperties>
+        </control>
+        <control controlID="32" controlTypeID="com.balsamiq.mockups::DataGrid" x="15" y="77" w="593" h="149" measuredW="375" measuredH="145" zOrder="4" locked="false" isInGroup="236">
+          <controlProperties>
+            <text>Date%2C%20Horse%2C%20Result%2C%20Prize%20money%20won%0A%5B17-02-2012%5D%2C%20Jack%20The%20Jumper%2C%202nd%2C%20300%24%0A%5B18-02-2012%5D%2C%20Alberton%20Star%2C%208th%2C%200%24%0A%5B19-02-2012%5D%2C%20Alberton%20Star%2C%203rd%2C%2030%24%0A%5B20-02-2012%5D%2C%20Jack%20The%20Jumper%2C%201st%2C%20150%24</text>
+          </controlProperties>
+        </control>
+        <control controlID="33" controlTypeID="com.balsamiq.mockups::Title" x="15" y="52" w="380" h="-1" measuredW="46" measuredH="28" zOrder="5" locked="false" isInGroup="236">
+          <controlProperties>
+            <align>left</align>
+            <size>20</size>
+            <text>Past</text>
+          </controlProperties>
+        </control>
+        <control controlID="34" controlTypeID="com.balsamiq.mockups::Title" x="15" y="254" w="380" h="-1" measuredW="90" measuredH="28" zOrder="6" locked="false" isInGroup="236">
+          <controlProperties>
+            <align>left</align>
+            <size>20</size>
+            <text>Upcoming</text>
+          </controlProperties>
+        </control>
+        <control controlID="35" controlTypeID="com.balsamiq.mockups::ComboBox" x="468" y="427" w="120" h="-1" measuredW="113" measuredH="23" zOrder="7" locked="false" isInGroup="236">
+          <controlProperties>
+            <text>select%20a%20horse</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="246" controlTypeID="com.balsamiq.mockups::DataGrid" x="283" y="314" w="290" h="116" measuredW="289" measuredH="115" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Date%20%5E%2C%20Horse%2C%20Place%2C%20Winning%20horse%2C%20Prize%20money%20won%0A16-02-2012%2C%20Jack%20the%20Jumper%2C%208%20out%20of%208%2C%20Black%20Beauty%2C%200%0A12-02-2012%2C%20Alberton%20Star%2C%202%20out%20of%208%2C%20Blue%20Moon%2C%20200</text>
+        <text>Date%2C%20Horse%2C%20Result%0A%5B03/02/2012%5D%2C%20Jack%20The%20Jumper%2C%202nd%20%28100%24%29%0A%5B02/02/2012%5D%2C%20Jack%20The%20Jumper%2C%201st%20%28300%24%29%0A%5B01/02/2012%5D%2C%20Alberton%20Star%2C%209th%20%280%24%29</text>
       </controlProperties>
     </control>
-    <control controlID="66" controlTypeID="com.balsamiq.mockups::Label" x="693" y="999" w="-1" h="-1" measuredW="80" measuredH="21" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="247" controlTypeID="com.balsamiq.mockups::Title" x="283" y="288" w="181" h="-1" measuredW="132" measuredH="28" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Future%20races</text>
+        <align>left</align>
+        <size>20</size>
+        <text>Recent%20Races</text>
       </controlProperties>
     </control>
-    <control controlID="67" controlTypeID="com.balsamiq.mockups::Label" x="692" y="1153" w="-1" h="-1" measuredW="68" measuredH="21" zOrder="18" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Past%20races</text>
-      </controlProperties>
+    <control controlID="251" controlTypeID="__group__" x="255" y="1248" w="623" h="481" measuredW="623" measuredH="481" zOrder="20" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="22" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="623" h="481" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="251"/>
+        <control controlID="23" controlTypeID="com.balsamiq.mockups::Title" x="15" y="20" w="525" h="-1" measuredW="398" measuredH="37" zOrder="1" locked="false" isInGroup="251">
+          <controlProperties>
+            <align>left</align>
+            <size>28</size>
+            <text>Past%20Race%20Result%20%2817-02-2012%29</text>
+          </controlProperties>
+        </control>
+        <control controlID="36" controlTypeID="com.balsamiq.mockups::DataGrid" x="30" y="91" w="562" h="265" measuredW="363" measuredH="265" zOrder="2" locked="false" isInGroup="251">
+          <controlProperties>
+            <text>Place%2C%20Horse%2C%20Player%2C%20Prize%20Money%0A1st%2C%20Jolly%20Jumper%2C%20Player%201%2C%20300%24%0A2nd%2C%20Anakin%2C%20Player45%2C%20150%24%0A3rd%2C%20%20Alladin%27s%20Treasure%2C%20HorseRider445%2C%2050%24%0A4th%2C%20Red%20Admiral%2C%20Player665%2C%0A5th%2C%20Blue%20Moon%2C%20Player%2041%2C%20%0A6th%2C%20Handy%20Man%2C%20Player5%0A7th%2C%20Dark%20Hazel%2C%20Player53%0A8th%2C%20Magic%20At%20Last%2C%20Player97</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
     </control>
-    <control controlID="69" controlTypeID="com.balsamiq.mockups::DataGrid" x="690" y="930" w="-1" h="-1" measuredW="458" measuredH="55" zOrder="19" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Date%20%5E%2C%20Horse%2C%20Place%2C%20Winning%20horse%2C%20Prize%20money%20won%0A12-02-2012%2C%20Alberton%20Star%2C%202%20out%20of%208%2C%20Blue%20Moon%2C%20200</text>
-      </controlProperties>
-    </control>
-    <control controlID="70" controlTypeID="com.balsamiq.mockups::Label" x="692" y="908" w="-1" h="-1" measuredW="120" measuredH="21" zOrder="20" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Recently%20won%20races</text>
-      </controlProperties>
-    </control>
-    <control controlID="71" controlTypeID="com.balsamiq.mockups::Link" x="684" y="361" w="-1" h="-1" measuredW="86" measuredH="21" zOrder="21" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Hire%20a%20jockey%21</text>
-      </controlProperties>
-    </control>
-    <control controlID="74" controlTypeID="com.balsamiq.mockups::Icon" x="918" y="684" w="-1" h="-1" measuredW="24" measuredH="24" zOrder="22" locked="false" isInGroup="-1">
-      <controlProperties>
-        <icon>CircledPlusIcon%7Csmall</icon>
-      </controlProperties>
-    </control>
-    <control controlID="76" controlTypeID="com.balsamiq.mockups::Link" x="684" y="67" w="-1" h="-1" measuredW="113" measuredH="21" zOrder="23" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Build%20a%20new%20stable%21</text>
-      </controlProperties>
-    </control>
-    <control controlID="77" controlTypeID="com.balsamiq.mockups::Link" x="783" y="241" w="-1" h="-1" measuredW="78" measuredH="21" zOrder="24" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Buy%20a%20horse%21</text>
-      </controlProperties>
-    </control>
-    <control controlID="78" controlTypeID="com.balsamiq.mockups::Link" x="684" y="639" w="-1" h="-1" measuredW="79" measuredH="21" zOrder="25" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Buy%20supplies%21</text>
-      </controlProperties>
-    </control>
-    <control controlID="79" controlTypeID="com.balsamiq.mockups::Link" x="951" y="205" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="26" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="80" controlTypeID="com.balsamiq.mockups::Link" x="951" y="176" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="27" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="81" controlTypeID="com.balsamiq.mockups::Link" x="951" y="147" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="28" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="82" controlTypeID="com.balsamiq.mockups::Link" x="951" y="118" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="29" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="83" controlTypeID="com.balsamiq.mockups::Link" x="942" y="409" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="30" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="84" controlTypeID="com.balsamiq.mockups::Link" x="942" y="435" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="31" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="85" controlTypeID="com.balsamiq.mockups::Link" x="942" y="471" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="32" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="86" controlTypeID="com.balsamiq.mockups::Link" x="942" y="501" w="-1" h="-1" measuredW="45" measuredH="21" zOrder="33" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28detail%29</text>
-      </controlProperties>
-    </control>
-    <control controlID="87" controlTypeID="com.balsamiq.mockups::CheckBoxGroup" x="35" y="35" w="-1" h="-1" measuredW="208" measuredH="147" zOrder="34" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%5B%20%5D%20horse%20detail%0A%5B%20%5D%20jockey%20detail%0A%5B%20%5D%20buy%20supplies%20%28in%20zelfde%20scherm%29%0A%5B%20%5D%20%20dashboard%0A%5B%20%5D%20buy%20horse%0A%5B%20%5D%20hire%20jockey%0A%5B%20%5D%20admin%20%28nog%20alles%29%20</text>
-      </controlProperties>
+    <control controlID="252" controlTypeID="__group__" x="992" y="1479" w="623" h="481" measuredW="623" measuredH="481" zOrder="21" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="22" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="623" h="481" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="252"/>
+        <control controlID="23" controlTypeID="com.balsamiq.mockups::Title" x="21" y="23" w="532" h="-1" measuredW="458" measuredH="37" zOrder="1" locked="false" isInGroup="252">
+          <controlProperties>
+            <align>left</align>
+            <size>28</size>
+            <text>Upcoming%20Race%20Detail%20%2821-02-2012%29</text>
+          </controlProperties>
+        </control>
+        <control controlID="37" controlTypeID="com.balsamiq.mockups::DataGrid" x="346" y="116" w="223" h="114" measuredW="135" measuredH="115" zOrder="2" locked="false" isInGroup="252">
+          <controlProperties>
+            <text>Place%2C%20Prize%20Money%0A1st%2C%20300%24%0A2nd%2C%20150%24%0A3rd%2C%2050%24</text>
+          </controlProperties>
+        </control>
+        <control controlID="38" controlTypeID="com.balsamiq.mockups::Title" x="346" y="88" w="142" h="-1" measuredW="113" measuredH="28" zOrder="3" locked="false" isInGroup="252">
+          <controlProperties>
+            <align>left</align>
+            <size>20</size>
+            <text>Prize%20Money</text>
+          </controlProperties>
+        </control>
+        <control controlID="40" controlTypeID="com.balsamiq.mockups::DataGrid" x="54" y="118" w="223" h="264" measuredW="254" measuredH="265" zOrder="4" locked="false" isInGroup="252">
+          <controlProperties>
+            <text>Slot%2C%20Player%2C%20Horse%0A1%2C%20Player%2041%2C%20Blue%20Moon%0A2%2C%20%20Player5%2C%20Handy%20Man%0A3%2C%20Player%2054%20Dark%20Hazel%0A4%2C%20%28empty%29%0A5%2C%20%28empty%29%0A6%2C%20%28empty%29%0A7%2C%20%28empty%29%0A8%2C%20%28empty%29</text>
+          </controlProperties>
+        </control>
+        <control controlID="41" controlTypeID="com.balsamiq.mockups::Title" x="54" y="90" w="164" h="-1" measuredW="106" measuredH="28" zOrder="5" locked="false" isInGroup="252">
+          <controlProperties>
+            <align>left</align>
+            <size>20</size>
+            <text>Participants</text>
+          </controlProperties>
+        </control>
+        <control controlID="42" controlTypeID="com.balsamiq.mockups::Title" x="346" y="286" w="223" h="-1" measuredW="211" measuredH="28" zOrder="6" locked="false" isInGroup="252">
+          <controlProperties>
+            <align>left</align>
+            <size>20</size>
+            <text>Subscription%20Fee%3A%20100%24</text>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
     </control>
   </controls>
 </mockup>

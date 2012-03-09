@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RaceBuilder {
+public class RaceBuilder  {
 
 	private boolean withStarted;
 	private List<Horse> horses = new ArrayList<Horse>();
@@ -21,6 +21,17 @@ public class RaceBuilder {
 		if (winningHorse != null) {
 			race.winner = winningHorse;
 		}
+		return race;
+	}
+	
+	public Race persist() {
+		Race race = build();
+		for(Horse enteredHorses : race.getEnteredHorses()) {
+			if(enteredHorses.getId() == null) {
+				enteredHorses.save();
+			}
+		}
+		race.save();
 		return race;
 	}
 

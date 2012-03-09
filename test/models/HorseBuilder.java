@@ -1,5 +1,7 @@
 package models;
 
+import models.randomizer.RandomizerProvider;
+
 public class HorseBuilder {
 
 	private static final int DEFAULT_TRAINING = 20;
@@ -21,18 +23,21 @@ public class HorseBuilder {
 	}
 
 	private Horse createHorse() {
-		Horse horse = null;
+		Horse horse = new Horse(name, price);
+		setRandomFactorForScoringIfNeeded(horse);
+		return horse;
+	}
+
+	private void setRandomFactorForScoringIfNeeded(Horse horse) {
 		if (randomFactorForScoring != null) {
-			horse = new Horse(name, price) {
+			horse.randomizerProvider = new RandomizerProvider() {
+				
 				@Override
-				int getRandomFactorForScoring() {
+				public int get(int max) {
 					return randomFactorForScoring;
 				}
 			};
-		} else {
-			horse = new Horse(name, price);
 		}
-		return horse;
 	}
 
 	public HorseBuilder withRandomFactorForScoring(int randomFactorForScoring) {

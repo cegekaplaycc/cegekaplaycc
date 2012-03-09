@@ -26,6 +26,14 @@ public class Horse extends Model {
 		this.price = price;
 	}
 
+	long getRandomFactorForScoring() {
+		return 0;
+	}
+	
+	public double calculateRaceScore() {
+		throw new UnsupportedOperationException();
+	}
+	
 	public String getName() {
 		return name;
 	}

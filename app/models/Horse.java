@@ -33,11 +33,11 @@ public class Horse extends Model {
 	long getRandomFactorForScoring() {
 		return 0;
 	}
-	
+
 	public double calculateRaceScore() {
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -79,5 +79,5 @@ public class Horse extends Model {
 	public void setTraining(int training) {
 		this.training = training;
 	}
-	
+
 }

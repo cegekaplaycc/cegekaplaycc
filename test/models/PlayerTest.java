@@ -13,23 +13,22 @@ import static models.PlayerTestBuilder.PLAYER_TOKEN;
 import static models.PlayerTestBuilder.PLAYER_USER_ID;
 import static models.PlayerTestBuilder.PLAYER_USER_PROVIDER_TYPE;
 import static models.PlayerTestBuilder.aPlayer;
-import models.Player;
 
+import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import play.test.Fixtures;
-import play.test.UnitTest;
 import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
-public class PlayerTest extends UnitTest {
+public class PlayerTest extends IntegrationTestCase {
 
 	@Before
-	public void setup() {
-		Fixtures.deleteAllModels();
+	public void initHorseNames() {
+		new HorseNamePrefix("Windy").save();
+		new HorseNameSuffix("City").save();
 	}
 
 	@Test
@@ -41,42 +40,43 @@ public class PlayerTest extends UnitTest {
 		Player actualPlayer = Player.find("byDisplayName", expectedDisplayName)
 				.first();
 
-		assertEquals(expectedDisplayName, actualPlayer.displayName);
+		Assertions.assertThat(actualPlayer.displayName).isEqualTo(
+				expectedDisplayName);
 	}
 
 	@Test
 	public void createANewPlayer_DisplayNameNull_ReturnsFalse() {
 		Player player = aPlayer().withDisplayName(null).build();
 
-		assertFalse(player.validateAndSave());
+		Assertions.assertThat(player.validateAndSave()).isFalse();
 	}
 
 	@Test
 	public void createANewPlayer_DisplayNameEmpty_ReturnsFalse() {
 		Player player = aPlayer().withDisplayName("").build();
 
-		assertFalse(player.validateAndSave());
+		Assertions.assertThat(player.validateAndSave()).isFalse();
 	}
 
 	@Test
 	public void createANewPlayer_UserIdNull_ReturnsFalse() {
 		Player player = aPlayer().withUserId(null).build();
 
-		assertFalse(player.validateAndSave());
+		Assertions.assertThat(player.validateAndSave()).isFalse();
 	}
 
 	@Test
 	public void createANewPlayer_UserIdEmpty_ReturnsFalse() {
 		Player player = aPlayer().withUserId("").build();
 
-		assertFalse(player.validateAndSave());
+		Assertions.assertThat(player.validateAndSave()).isFalse();
 	}
 
 	@Test
 	public void createANewPlayer_ProviderTypeNull_ReturnsFalse() {
 		Player player = aPlayer().withProviderType(null).build();
 
-		assertFalse(player.validateAndSave());
+		Assertions.assertThat(player.validateAndSave()).isFalse();
 	}
 
 	@Test
@@ -93,9 +93,10 @@ public class PlayerTest extends UnitTest {
 
 		Player actualPlayer = Player.findByUserId(userId);
 
-		assertNotNull(actualPlayer);
-		assertEquals(id, actualPlayer.userId);
-		assertEquals(providerType, actualPlayer.providerType);
+		Assertions.assertThat(actualPlayer).isNotNull();
+		Assertions.assertThat(actualPlayer.userId).isEqualTo(id);
+		Assertions.assertThat(actualPlayer.providerType)
+				.isEqualTo(providerType);
 	}
 
 	@Test
@@ -111,7 +112,7 @@ public class PlayerTest extends UnitTest {
 
 		Player actualPlayer = Player.findByUserId(userId);
 
-		assertNull(actualPlayer);
+		Assertions.assertThat(actualPlayer).isNull();
 	}
 
 	@Test
@@ -126,7 +127,7 @@ public class PlayerTest extends UnitTest {
 
 		Player actualPlayer = Player.findByUserId(userId);
 
-		assertNull(actualPlayer);
+		Assertions.assertThat(actualPlayer).isNull();
 	}
 
 	@Test
@@ -140,7 +141,7 @@ public class PlayerTest extends UnitTest {
 
 		Player actualPlayer = Player.findByUserId(userId);
 
-		assertNull(actualPlayer);
+		Assertions.assertThat(actualPlayer).isNull();
 	}
 
 	@Test
@@ -149,18 +150,33 @@ public class PlayerTest extends UnitTest {
 
 		Player actualPlayer = Player.create(socialUser);
 
-		assertEquals(PLAYER_USER_ID, actualPlayer.userId);
-		assertEquals(PLAYER_USER_PROVIDER_TYPE, actualPlayer.providerType);
-		assertEquals(PLAYER_DISPLAY_NAME, actualPlayer.displayName);
-		assertEquals(PLAYER_EMAIL, actualPlayer.email);
-		assertEquals(PLAYER_AVATAR_URL, actualPlayer.avatarUrl);
-		assertEquals(PLAYER_LAST_ACCESS, actualPlayer.lastAccess);
-		assertEquals(PLAYER_AUTH_METHOD, actualPlayer.authMethod);
-		assertEquals(PLAYER_TOKEN, actualPlayer.token);
-		assertEquals(PLAYER_SECRET, actualPlayer.secret);
-		assertEquals(PLAYER_ACCESS_TOKEN, actualPlayer.accessToken);
-		assertEquals(PLAYER_PASSWORD, actualPlayer.password);
-		assertEquals(PLAYER_EMAIL_VERIFIED, actualPlayer.isEmailVerified);
+		Assertions.assertThat(actualPlayer.userId).isEqualTo(PLAYER_USER_ID);
+		Assertions.assertThat(actualPlayer.providerType).isEqualTo(
+				PLAYER_USER_PROVIDER_TYPE);
+		Assertions.assertThat(actualPlayer.displayName).isEqualTo(
+				PLAYER_DISPLAY_NAME);
+		Assertions.assertThat(actualPlayer.email).isEqualTo(PLAYER_EMAIL);
+		Assertions.assertThat(actualPlayer.avatarUrl).isEqualTo(
+				PLAYER_AVATAR_URL);
+		Assertions.assertThat(actualPlayer.lastAccess).isEqualTo(
+				PLAYER_LAST_ACCESS);
+		Assertions.assertThat(actualPlayer.authMethod).isEqualTo(
+				PLAYER_AUTH_METHOD);
+		Assertions.assertThat(actualPlayer.token).isEqualTo(PLAYER_TOKEN);
+		Assertions.assertThat(actualPlayer.secret).isEqualTo(PLAYER_SECRET);
+		Assertions.assertThat(actualPlayer.accessToken).isEqualTo(
+				PLAYER_ACCESS_TOKEN);
+		Assertions.assertThat(actualPlayer.password).isEqualTo(PLAYER_PASSWORD);
+		Assertions.assertThat(actualPlayer.isEmailVerified).isEqualTo(
+				PLAYER_EMAIL_VERIFIED);
 	}
 
+	@Test
+	public void create_AddsOneHorseToSet() {
+		SocialUser socialUser = SocialUserFactory.create(aPlayer().build());
+
+		Player actualPlayer = Player.create(socialUser);
+
+		Assertions.assertThat(actualPlayer.getHorses()).hasSize(1);
+	}
 }

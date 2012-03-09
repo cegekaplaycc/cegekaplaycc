@@ -1,8 +1,27 @@
-#{extends 'template.html' /}
+#{extends 'main.html' /}
 #{set title:'Dashboard' /}
 
-<div class="row">
-    <div class="threecol last">
-        Feed the horse njam njam
-    </div>
+<div>
+	<h1>Races</h1>
+	<table class="table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Horse</th>
+				<th>Result</th>
+				<th>Price money won</th>
+			</tr>
+		</thead>
+		<tbody>
+			#{list player.getPastEnteredRaces()}
+			<tr>
+				<td>${_.startTime.format()}</td>
+				<td>${_.getHorseOfPlayer(player).name}</td>
+				<td>TODO</td>
+				<td>TODO</td>
+			</tr>
+			#{/list}
+		</tbody>
+	</table>
+	
 </div>

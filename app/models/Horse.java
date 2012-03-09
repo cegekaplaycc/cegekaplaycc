@@ -2,9 +2,14 @@ package models;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+import models.randomizer.RandomizerProvider;
+import models.randomizer.RandomizerProviderImpl;
 
 import play.db.jpa.Model;
 
@@ -17,11 +22,16 @@ public class Horse extends Model {
 	private long price;
 	private int fitness;
 	private int training;
+	
+	@Transient
+	RandomizerProvider randomizerProvider;
 
 	public Horse() {
+		this.randomizerProvider = new RandomizerProviderImpl();
 	}
 
 	public Horse(String name) {
+		this();
 		this.name = name;
 	}
 
@@ -30,8 +40,8 @@ public class Horse extends Model {
 		this.price = price;
 	}
 
-	long getRandomFactorForScoring() {
-		return 0;
+	private int getRandomFactorForScoring() {
+		return randomizerProvider.get(100);
 	}
 
 	public double calculateRaceScore() {
@@ -39,8 +49,7 @@ public class Horse extends Model {
 	}
 
 	private double randomScore() {
-		return getRandomFactorForScoring()
-				* RaceWeights.get().getRandomFactorMod();
+		return getRandomFactorForScoring() * RaceWeights.get().getRandomFactorMod();
 	}
 
 	private double trainingScore() {
@@ -73,7 +82,8 @@ public class Horse extends Model {
 	}
 
 	public Set<Race> getPastEnteredRaces() {
-		List<Race> races = Race.find("select race from Race race join race.horses horse where horse = ? and startTime < ?", this, new Date()).<Race> fetch();
+		List<Race> races = Race.find("select race from Race race join race.horses horse where horse = ? and startTime < ?", this, new Date())
+				.<Race> fetch();
 		return Sets.newHashSet(races);
 	}
 

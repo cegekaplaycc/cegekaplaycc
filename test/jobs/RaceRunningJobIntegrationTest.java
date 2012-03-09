@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import models.Horse;
+import models.HorseBuilder;
 import models.IntegrationTestCase;
 import models.Race;
 import models.RaceBuilder;
@@ -35,12 +36,12 @@ public class RaceRunningJobIntegrationTest extends IntegrationTestCase {
 		new RaceBuilder()
 				.withName("race 1")
 				.withStartTimeInPast()
-				.withMinimalAmountOfHorses()
+				.withHorses(new HorseBuilder().build())
 				.persist();
 		new RaceBuilder()
 				.withName("race 2")
 				.withStartTimeInPast()
-				.withMinimalAmountOfHorses()
+				.withHorses(new HorseBuilder().build())
 				.persist();
 
 		doJob();

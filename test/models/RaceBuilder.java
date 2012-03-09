@@ -25,7 +25,7 @@ public class RaceBuilder {
 
 		Whitebox.setInternalState(race, "horses", horses);
 		if (withStarted) {
-			race.start();
+			race.calculateWinner();
 		}
 		if (winningHorse != null) {
 			race.winner = winningHorse;
@@ -72,13 +72,6 @@ public class RaceBuilder {
 
 	public RaceBuilder withStartTimeInPast() {
 		return withStartTime(new DateTime().minusMinutes(15).toDate());
-	}
-
-	public RaceBuilder withMinimalAmountOfHorses() {
-		for (int i = 0; i < Race.MIN_HORSES_ENTERED_TO_START_RACE; i++) {
-			horses.add(new Horse("default horse #" + (i + 1)));
-		}
-		return this;
 	}
 
 }

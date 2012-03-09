@@ -8,6 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 
+import jobs.RandomHorsesBreeder;
 import play.data.validation.Email;
 import play.data.validation.Required;
 import play.db.jpa.Model;
@@ -65,7 +66,7 @@ public class Player extends Model {
 		Player.delete("UUID != null");
 	}
 
-	private Set<Horse> getHorses() {
+	public Set<Horse> getHorses() {
 		return horses;
 	}
 
@@ -84,6 +85,9 @@ public class Player extends Model {
 		player.accessToken = user.accessToken;
 		player.password = user.password;
 		player.isEmailVerified = user.isEmailVerified;
+
+		Horse horse = RandomHorsesBreeder.createRandomHorse().save();
+		player.horses.add(horse);
 
 		return player;
 	}

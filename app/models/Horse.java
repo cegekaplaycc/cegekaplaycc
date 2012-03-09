@@ -35,7 +35,20 @@ public class Horse extends Model {
 	}
 
 	public double calculateRaceScore() {
-		throw new UnsupportedOperationException();
+		return fitnessScore() + trainingScore() + randomScore();
+	}
+
+	private double randomScore() {
+		return getRandomFactorForScoring()
+				* RaceWeights.get().getRandomFactorMod();
+	}
+
+	private double trainingScore() {
+		return training * RaceWeights.get().getTrainingLevelMod();
+	}
+
+	private double fitnessScore() {
+		return fitness * RaceWeights.get().getFitnessLevelMod();
 	}
 
 	public String getName() {

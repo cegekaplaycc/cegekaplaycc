@@ -30,7 +30,7 @@ public class RaceWeights extends Model {
 		this.randomFactorMod = randomFactorMod;
 	}
 
-	public static RaceWeights get() {
+	public static synchronized RaceWeights get() {
 		List<RaceWeights> weights = RaceWeights.findAll();
 		if (weights.isEmpty()) {
 			return reset();

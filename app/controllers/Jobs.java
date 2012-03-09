@@ -6,10 +6,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import jobs.RaceRunningJob;
+import play.Play;
 import play.jobs.Job;
+import play.mvc.Before;
 import play.mvc.Controller;
 
 public class Jobs extends Controller {
+	
+	@Before
+    static void checkAuthentification() {
+        if (Play.mode.isProd()) {
+        	throw new RuntimeException("Can't manually trigger jobs in DEV mode!");
+        }
+    }
 	
 	public static void index() {
 		File jobsDir = new File("app/jobs");
@@ -26,7 +35,7 @@ public class Jobs extends Controller {
 	public static void run(String job) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		Job<?> jobToRun = (Job) Class.forName("jobs." + job).newInstance();
 		jobToRun.now();
-		
+
 		flash.success("Started job " + job + "!");
 		index();
 	}

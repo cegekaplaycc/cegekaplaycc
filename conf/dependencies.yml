@@ -5,3 +5,5 @@ require:
     - org.easytesting -> fest-assert 1.4
     - play -> securesocial 0.2.3
     - play -> menu 1.1a
+    - com.google.guava -> guava 11.0.2
+    - org.powermock -> powermock-module-junit4 1.4.11

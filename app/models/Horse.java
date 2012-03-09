@@ -33,11 +33,24 @@ public class Horse extends Model {
 	long getRandomFactorForScoring() {
 		return 0;
 	}
-	
+
 	public double calculateRaceScore() {
-		throw new UnsupportedOperationException();
+		return fitnessScore() + trainingScore() + randomScore();
 	}
-	
+
+	private double randomScore() {
+		return getRandomFactorForScoring()
+				* RaceWeights.get().getRandomFactorMod();
+	}
+
+	private double trainingScore() {
+		return training * RaceWeights.get().getTrainingLevelMod();
+	}
+
+	private double fitnessScore() {
+		return fitness * RaceWeights.get().getFitnessLevelMod();
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -79,5 +92,5 @@ public class Horse extends Model {
 	public void setTraining(int training) {
 		this.training = training;
 	}
-	
+
 }

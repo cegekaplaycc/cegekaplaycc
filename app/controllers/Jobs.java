@@ -15,9 +15,9 @@ public class Jobs extends Controller {
 	
 	@Before
     static void checkAuthentification() {
-        //if (Play.mode.isProd()) {
-        	throw new RuntimeException("Can't manually trigger jobs in PROD mode!");
-        //}
+        if (Play.mode.isProd()) {
+        	//throw new RuntimeException("Can't manually trigger jobs in PROD mode!");
+        }
     }
 	
 	public static void index() {

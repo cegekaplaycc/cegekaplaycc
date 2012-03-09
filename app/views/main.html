@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>#{get 'title' /}</title>
+		<meta charset="${_response_encoding}">
+		<meta name="description" content="Hold your horses, a horse racing game">
+		<meta name="author" content="Cegeka">
+		<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+
+		<!-- Le styles -->
+		<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/bootstrap/bootstrap.less'}" />
+		<style type="text/css">
+		body {
+			padding-top: 60px;
+			padding-bottom: 40px;
+		}
+		</style>
+		#{get 'moreStyles' /}
+	
+		<!-- Le fav and touch icons -->
+		<link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+		<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png">
+	
+		<script src="@{'/public/javascripts/jquery-1.7.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="@{'/public/javascripts/bootstrap/bootstrap-dropdown.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="@{'/public/javascripts/bootstrap/bootstrap-tab.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="@{'/public/javascripts/bootstrap/bootstrap-alert.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="@{'/public/javascripts/bootstrap/bootstrap-modal.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="@{'/public/javascripts/bootstrap/bootstrap-transition.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		<script src="@{'/public/javascripts/less-1.2.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+		#{get 'moreScripts' /}
+	
+	</head>
+	<body>
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="brand" href="#">Hold your Horses <sup><span class="label label-warning">beta</span></sup></a>
+					<div class="nav-collapse">
+					#{if user != null }
+	                    <p class="navbar-text pull-right">Logged in as ${user.displayName}</p>
+	                #{/if}
+	                #{elseif user == null}
+						<ul class="nav pull-right">
+							<li><a href="@{Players.index}">Login</a></li>
+						</ul>
+	                #{/elseif}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			#{doLayout /}
+			<hr />
+			<footer>
+			<p>&copy; Cegeka 2012</p>
+			</footer>
+		</div>
+	</body>
+</html>

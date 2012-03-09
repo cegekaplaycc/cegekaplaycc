@@ -1,0 +1,50 @@
+#{extends 'main.html' /} #{set title:'Home' /}
+
+<div class="page-header">
+	<h2>Welcome ${user.displayName}</h2>
+</div>
+<div class="row">
+	<div class="span12">
+		<table class="table table-bordered table-striped table-condensed">
+			<tr>
+				<th colspan="3">User details</th>
+			</tr>
+			<tr>
+				<td rowspan="6"><img src="${user.avatarUrl}" alt="" /></td>
+				<th>User id</th>
+				<td>${user.id.id}</td>
+			</tr>
+			<tr>
+				<th>Logged in from</th>
+				<td>${user.id.provider}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>${user.email}</td>
+			</tr>
+			<tr>
+				<th>Authentication method</th>
+				<td>${user.authMethod}</td>
+			</tr>
+		#{if user.authMethod == securesocial.provider.AuthenticationMethod.OAUTH1 || user.authMethod == securesocial.provider.AuthenticationMethod.OPENID_OAUTH_HYBRID}
+			<tr>
+				<th>Token</th>
+				<td>${user.token}</td>
+			</tr>
+			<tr>
+				<th>Secret</th>
+				<td>${user.secret}</td>
+			</tr>
+		#{/if} 
+		#{if user.authMethod == securesocial.provider.AuthenticationMethod.OAUTH2}
+			<tr>
+				<th>Access token</th>
+				<td>${user.accessToken}</td>
+			</tr>
+		#{/if}
+			<tr>
+				<td colspan="3"><a href="@{securesocial.SecureSocial.logout}" class="btn btn-primary pull-right">Logout</a></td>
+			</tr>
+		</table>
+	</div>
+</div>

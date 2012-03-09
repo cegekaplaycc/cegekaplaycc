@@ -1,13 +1,9 @@
 package models;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 import java.util.List;
 
 import org.fest.assertions.Assertions;
 import org.junit.Test;
-
-import play.db.jpa.JPABase;
 
 public class RaceIntegrationTest extends IntegrationTestCase {
 

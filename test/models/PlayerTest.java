@@ -18,18 +18,17 @@ import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import play.test.Fixtures;
-import play.test.UnitTest;
 import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
-public class PlayerTest extends UnitTest {
+public class PlayerTest extends IntegrationTestCase {
 
 	@Before
-	public void setup() {
-		Fixtures.deleteAllModels();
+	public void initHorseNames() {
+		new HorseNamePrefix("Windy").save();
+		new HorseNameSuffix("City").save();
 	}
 
 	@Test

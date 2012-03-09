@@ -10,15 +10,11 @@ import models.HorseNameSuffix;
 
 public class RandomHorsesBreeder {
 
-	private static List<HorseNamePrefix> horsePrefixes;
-	private static List<HorseNameSuffix> horseSuffixes;
-
-	static {
-		horsePrefixes = HorseNamePrefix.findAll();
-		horseSuffixes = HorseNameSuffix.findAll();
-	}
-
 	public static Horse createRandomHorse() {
+
+		List<HorseNamePrefix> horsePrefixes = HorseNamePrefix.findAll();
+		List<HorseNameSuffix> horseSuffixes = HorseNameSuffix.findAll();
+
 		Random random = new Random(new Date().getTime());
 		int randomPrefix = random.nextInt(horsePrefixes.size());
 		int randomSuffix = random.nextInt(horseSuffixes.size());
@@ -29,6 +25,7 @@ public class RandomHorsesBreeder {
 		if (horseCount > 0) {
 			return createRandomHorse();
 		}
+
 		return horse;
 	}
 

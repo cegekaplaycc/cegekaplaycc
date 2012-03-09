@@ -14,17 +14,9 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTestCase {
 
 	@Before
 	public void setUp() {
-		HorseNameSuffix suffix = new HorseNameSuffix();
-		suffix.suffix = "Zorro";
-		suffix.save();
-
-		HorseNamePrefix prefix = new HorseNamePrefix();
-		prefix.prefix = "Windy";
-		prefix.save();
-
-		HorseNamePrefix prefix2 = new HorseNamePrefix();
-		prefix2.prefix = "Cloudy";
-		prefix2.save();
+		new HorseNameSuffix("Zorro").save();
+		new HorseNamePrefix("Windy").save();
+		new HorseNamePrefix("Cloudy").save();
 
 		new HorseBuilder().withName("Cloudy Zorro").build().save();
 	}

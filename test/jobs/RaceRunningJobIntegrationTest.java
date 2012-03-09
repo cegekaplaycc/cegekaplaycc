@@ -15,6 +15,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import play.db.jpa.JPA;
 import play.test.UnitTest;
 import assertion.PlayAssertions;
 
@@ -42,10 +43,10 @@ public class RaceRunningJobIntegrationTest extends UnitTest {
 			.persist();
 
 		doJob();
-		
 		List<Race> allRaces = Race.findAll();
 		for(Race race : allRaces) {
 			PlayAssertions.assertThat(race).hasBeenStarted();
+			assertNotNull(race.winner);
 		}
 	}
 	
@@ -59,7 +60,7 @@ public class RaceRunningJobIntegrationTest extends UnitTest {
 	
 	@Test
 	public void doJobDoesNotRestartRacesWhichAreAlreadyRun() {
-		Horse winningHorse = new Horse("fast fury");
+		Horse winningHorse = new Horse("fast fury").save();
 		Race race = new RaceBuilder()
 			.withWinner(winningHorse)
 			.withHorses(new Horse("losing horse 1"), new Horse("losing horse 2"))
@@ -67,12 +68,13 @@ public class RaceRunningJobIntegrationTest extends UnitTest {
 		
 		doJob();
 		Race refreshedRace = Race.findById(race.getId());
-		PlayAssertions.assertThat(refreshedRace.winner).isSameAs(winningHorse);
+		PlayAssertions.assertThat(refreshedRace.winner.getName()).isEqualTo(winningHorse.getName());
 	}
 
 	private void doJob() {
 		try {
 			new RaceRunningJob().doJob();
+			JPA.em().clear();
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

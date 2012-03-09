@@ -65,7 +65,7 @@ public class Player extends Model {
 		Player.delete("UUID != null");
 	}
 
-	private Set<Horse> getHorses() {
+	public Set<Horse> getHorses() {
 		return horses;
 	}
 

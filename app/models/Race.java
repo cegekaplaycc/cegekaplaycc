@@ -61,6 +61,18 @@ public class Race extends Model {
 		return getAvailableSlots() > 0;
 	}
 
+	public Horse getHorseOfPlayer(Player player) {
+		for (Horse horse : player.getHorses()) {
+			for (Horse enteredHorse : getEnteredHorses()) {
+				if (horse.equals(enteredHorse)) {
+					return horse;
+				}
+			}
+		}
+
+		return null;
+	}
+
 	public int getAvailableSlots() {
 		return MAX_AVAILABLE_SLOTS - horses.size();
 	}

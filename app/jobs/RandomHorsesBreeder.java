@@ -1,53 +1,35 @@
 package jobs;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
-import org.joda.time.Hours;
-
-import controllers.Horses;
-
 import models.Horse;
-import play.Play;
-import play.jobs.Job;
-import play.jobs.OnApplicationStart;
+import models.HorseNamePrefix;
+import models.HorseNameSuffix;
 
-@OnApplicationStart
-public class RandomHorsesBreeder extends Job {
+public class RandomHorsesBreeder {
 
-	private static List<String> horsePrefixes;
-	private static List<String> horseSuffixes;
+	private static List<HorseNamePrefix> horsePrefixes;
+	private static List<HorseNameSuffix> horseSuffixes;
 
 	static {
-		horsePrefixes = new ArrayList<String>();
-		horseSuffixes = new ArrayList<String>();
-
-		horsePrefixes.addAll(Arrays.asList(new String[] { "windy", "shallow", "black", "freaky", "heavy", "amazing", "great", "superfast", "readily",
-				"lazy", "stumbling", "zorro" }));
-		horseSuffixes.addAll(Arrays.asList(new String[] { "traveller", "night", "shadow", "horse", "rider", "stumper", "humperdink", "legend",
-				"nightmare", "rabbit", "cow", "beast" }));
+		horsePrefixes = HorseNamePrefix.findAll();
+		horseSuffixes = HorseNameSuffix.findAll();
 	}
 
-	@Override
-	public void doJob() throws Exception {
-		if (Play.mode.isDev()) {
-			Horse.deleteAll();
-			generateRandomHorses();
-		} else if (Horse.count() == 0) {
-			generateRandomHorses();
-		}
-	}
-
-	private void generateRandomHorses() {
+	public static Horse createRandomHorse() {
 		Random random = new Random(new Date().getTime());
-		for (int i = 0; i < 20; i++) {
-			int randomIndex = random.nextInt(horsePrefixes.size());
-			Horse horse = new Horse(horsePrefixes.get(randomIndex) + " " + horseSuffixes.get(randomIndex), random.nextInt(2000));
-			System.out.println("Breeding a random horse: " + horse);
-			horse.save();
+		int randomPrefix = random.nextInt(horsePrefixes.size());
+		int randomSuffix = random.nextInt(horseSuffixes.size());
+		Horse horse = new Horse(horsePrefixes.get(randomPrefix).prefix + " "
+				+ horseSuffixes.get(randomSuffix).suffix, random.nextInt(2000));
+
+		long horseCount = Horse.count("byName", horse.getName());
+		if (horseCount > 0) {
+			return createRandomHorse();
 		}
+		return horse;
 	}
 
 }

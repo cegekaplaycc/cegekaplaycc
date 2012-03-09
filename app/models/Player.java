@@ -1,14 +1,13 @@
 package models;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
-import org.apache.commons.lang.NotImplementedException;
+import javax.persistence.OneToMany;
 
 import play.data.validation.Email;
 import play.data.validation.Required;
@@ -53,11 +52,18 @@ public class Player extends Model {
 
 	public String UUID;
 
+	@OneToMany
+	private Set<Horse> horses = new HashSet<Horse>();
+
+	public Player() {
+		// horses.add(Horse.find)
+	}
+
 	public static Player findByUserId(UserId userId) {
 		return find("byUserIdAndProviderType", userId.id, userId.provider)
 				.first();
 	}
-	
+
 	public static void deletePendingActivations() {
 		Player.delete("UUID != null");
 	}
@@ -79,6 +85,10 @@ public class Player extends Model {
 		player.isEmailVerified = user.isEmailVerified;
 
 		return player;
+	}
+
+	public Set<Horse> getHorses() {
+		return horses;
 	}
 
 }

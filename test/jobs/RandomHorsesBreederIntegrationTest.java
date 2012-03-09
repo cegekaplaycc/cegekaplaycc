@@ -1,55 +1,39 @@
 package jobs;
-import jobs.RandomHorsesBreeder;
+
 import models.Horse;
+import models.HorseBuilder;
+import models.HorseNamePrefix;
+import models.HorseNameSuffix;
 import models.IntegrationTestCase;
 
 import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import play.Play;
-import play.Play.Mode;
-
 public class RandomHorsesBreederIntegrationTest extends IntegrationTestCase {
-
-	private RandomHorsesBreeder breeder;
 
 	@Before
 	public void setUp() {
-		this.breeder = new RandomHorsesBreeder();
+		HorseNameSuffix suffix = new HorseNameSuffix();
+		suffix.suffix = "Zorro";
+		suffix.save();
+
+		HorseNamePrefix prefix = new HorseNamePrefix();
+		prefix.prefix = "Windy";
+		prefix.save();
+
+		HorseNamePrefix prefix2 = new HorseNamePrefix();
+		prefix2.prefix = "Cloudy";
+		prefix2.save();
+
+		new HorseBuilder().withName("Cloudy Zorro").build().save();
 	}
 
 	@Test
-	public void doJobShouldAddRandomHorsesAndRemoveAllExisting() throws Exception {
-		Play.mode = Mode.DEV;
+	public void getRandomHorse_() {
+		Horse randomHorse = RandomHorsesBreeder.createRandomHorse();
+		Assertions.assertThat(randomHorse.getName()).isEqualTo("Windy Zorro");
 
-		addOneHundredHorses();
-		breeder.doJob();
-		Assertions.assertThat(Horse.count()).isGreaterThan(1);
-		Assertions.assertThat(Horse.count()).isLessThan(100);
-	}
-
-	@Test
-	public void doJobShouldOnlyAddHorsesIfDBEmptyInProduction() throws Exception {
-		Play.mode = Mode.PROD;
-
-		breeder.doJob();
-		Assertions.assertThat(Horse.count()).isGreaterThan(1);
-	}
-
-	@Test
-	public void doJobShouldNotAddHorsesIfDBNotEmptyInProduction() throws Exception {
-		Play.mode = Mode.PROD;
-
-		addOneHundredHorses();
-		breeder.doJob();
-		Assertions.assertThat(Horse.count()).isEqualTo(100);
-	}
-
-	private void addOneHundredHorses() {
-		for (int i = 0; i < 100; i++) {
-			new Horse().save();
-		}
 	}
 
 }

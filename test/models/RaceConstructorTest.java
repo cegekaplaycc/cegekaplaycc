@@ -14,7 +14,7 @@ import org.junit.rules.ExpectedException;
 
 import play.test.UnitTest;
 
-public class RaceConstructorTest {
+public class RaceConstructorTest extends UnitTest {
 	
 	@Before
 	public void setSystemTime() {
@@ -29,8 +29,10 @@ public class RaceConstructorTest {
 	@Test
 	public void shouldHaveAStartTimeWhenCreated() {
 		Race race =  new Race();
+		
+		System.out.println(race.getStartTime());
 
-		assertThat(race.getStartTime()).isEqualTo(new DateTime("2012-03-09T10:15:00").toDate());
+		Assertions.assertThat(race.getStartTime()).isEqualTo(new DateTime("2012-03-09T10:10:00").toDate());
 	}
 	
 }

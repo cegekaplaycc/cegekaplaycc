@@ -13,6 +13,7 @@ import javax.persistence.OneToOne;
 
 import org.joda.time.DateTime;
 
+import play.Play;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
@@ -42,7 +43,10 @@ public class Race extends Model {
 	}
 
 	private void initializeStartTime() {
-		this.startTime = new DateTime().plusMinutes(15).toDate();
+		Object o = Play.configuration.get("horse.race.starttime.offset.minutes");
+		System.out.println(o.getClass());
+		Integer startTimeOffset = Integer.parseInt(Play.configuration.getProperty("horse.race.starttime.offset.minutes"));
+		this.startTime = new DateTime().plusMinutes(startTimeOffset).toDate();
 	}
 
 	public void enter(Horse horse) {

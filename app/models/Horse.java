@@ -15,6 +15,8 @@ public class Horse extends Model {
 
 	private String name;
 	private long price;
+	private int fitness;
+	private int training;
 
 	public Horse() {
 	}
@@ -53,4 +55,21 @@ public class Horse extends Model {
 		List<Race> races = Race.find("select race from Race race join race.horses horse where horse = ? and startTime < ?", this, new Date()).<Race> fetch();
 		return Sets.newHashSet(races);
 	}
+
+	public int getFitness() {
+		return fitness;
+	}
+
+	public void setFitness(int fitness) {
+		this.fitness = fitness;
+	}
+
+	public int getTraining() {
+		return training;
+	}
+
+	public void setTraining(int training) {
+		this.training = training;
+	}
+	
 }

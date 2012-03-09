@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import models.Horse;
+import models.IntegrationTestCase;
 import models.Race;
 import models.RaceBuilder;
 
@@ -15,10 +16,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import play.db.jpa.JPA;
-import play.test.UnitTest;
 import assertion.PlayAssertions;
 
-public class RaceRunningJobIntegrationTest extends UnitTest {
+public class RaceRunningJobIntegrationTest extends IntegrationTestCase {
 
 	@Before
 	public void freezeTime() {

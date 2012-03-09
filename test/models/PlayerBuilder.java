@@ -11,7 +11,7 @@ public class PlayerBuilder {
 	private Set<Horse> horses = Sets.newHashSet();
 
 	public Player build() {
-		Player player = new Player("joske");
+		Player player = new Player();
 		Whitebox.setInternalState(player, "horses", horses);
 		return player;
 	}

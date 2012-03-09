@@ -5,6 +5,7 @@ import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
 
 import java.util.Date;
 
+import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +13,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import play.test.UnitTest;
 import assertion.PlayAssertions;
+
 public class RaceTest extends UnitTest {
 
 	@Rule

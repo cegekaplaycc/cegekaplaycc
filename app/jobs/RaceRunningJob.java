@@ -13,6 +13,7 @@ public class RaceRunningJob extends Job<Void> {
 		for (Race race : allRaces) {
 			if (!race.hasRun() && !race.startTimeInFuture()) {
 				race.start();
+				race.save();
 			}
 		}
 	}

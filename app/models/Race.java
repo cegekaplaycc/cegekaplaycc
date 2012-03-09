@@ -11,6 +11,7 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.apache.commons.lang.NotImplementedException;
 import org.joda.time.DateTime;
@@ -29,6 +30,7 @@ public class Race extends Model {
 	@OneToMany
 	private Set<Horse> horses = new HashSet<Horse>();
 	
+	@OneToOne
 	public Horse winner;
 	
 	@Required

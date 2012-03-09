@@ -2,8 +2,6 @@ package models;
 
 public class HorseBuilder {
 
-	
-	
 	private static final int DEFAULT_TRAINING = 20;
 	private static final int DEFAULT_FITNESS = 20;
 
@@ -11,12 +9,33 @@ public class HorseBuilder {
 	private int training = DEFAULT_TRAINING;
 	private String name = "Jolly Jumper";
 	private long price = 28;
-	
+	private Long randomFactorForScoring;
+
 	public Horse build() {
-		Horse horse = new Horse(name, price);
+		Horse horse = createHorse();
 		horse.setFitness(fitness);
 		horse.setTraining(training);
 		return horse;
+	}
+
+	private Horse createHorse() {
+		Horse horse = null;
+		if(randomFactorForScoring != null) {
+			horse = new Horse(name, price) {
+				@Override
+				long getRandomFactorForScoring() {
+					return randomFactorForScoring;
+				}
+			};
+		} else {
+			horse = new Horse(name, price);
+		}
+		return horse;
+	}
+
+	public HorseBuilder withRandomFactorForScoring(long randomFactorForScoring) {
+		this.randomFactorForScoring = randomFactorForScoring;
+		return this;
 	}
 	
 	public HorseBuilder withFitness(int fitness) {
@@ -38,5 +57,5 @@ public class HorseBuilder {
 		this.price = price;
 		return this;
 	}
-	
+
 }

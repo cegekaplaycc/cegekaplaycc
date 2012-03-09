@@ -1,96 +1,84 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import play.data.validation.Required;
-import play.data.validation.Unique;
-import play.db.jpa.Model;
-
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+
+import javax.persistence.Embedded;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import org.apache.commons.lang.NotImplementedException;
+
+import play.data.validation.Email;
+import play.data.validation.Required;
+import play.db.jpa.Model;
+import securesocial.provider.AuthenticationMethod;
+import securesocial.provider.ProviderType;
+import securesocial.provider.SocialUser;
+import securesocial.provider.UserId;
 
 @Entity
 public class Player extends Model {
 
-	private String name;
+	@Required
+	public String userId;
 
-    @Column(unique = true)
-	private final String userId;
+	@Required
+	@Enumerated(EnumType.STRING)
+	public ProviderType providerType;
 
-	@OneToMany
-	public Set<Horse> horses = new HashSet<Horse>();
+	@Required
+	public String displayName;
 
-    private String avatarUrl;
+	@Email
+	public String email;
 
-    private String email;
+	public String avatarUrl;
 
-    private String authMethod;
+	public Date lastAccess;
 
-    private Date lastAccess;
+	@Enumerated(EnumType.STRING)
+	public AuthenticationMethod authMethod;
 
-	public Player(String userId) {
-		this.userId = userId;
+	public String token;
+
+	public String secret;
+
+	public String accessToken;
+
+	public String password;
+
+	public boolean isEmailVerified;
+
+	public String UUID;
+
+	public static Player findByUserId(UserId userId) {
+		return find("byUserIdAndProviderType", userId.id, userId.provider)
+				.first();
+	}
+	
+	public static void deletePendingActivations() {
+		Player.delete("UUID != null");
 	}
 
-	public Player(String userId, String name) {
-		this(userId);
-		this.name = name;
+	public static Player create(SocialUser user) {
+		Player player = new Player();
+
+		player.userId = user.id.id;
+		player.providerType = user.id.provider;
+		player.displayName = user.displayName;
+		player.email = user.email;
+		player.avatarUrl = user.avatarUrl;
+		player.lastAccess = user.lastAccess;
+		player.authMethod = user.authMethod;
+		player.token = user.token;
+		player.secret = user.secret;
+		player.accessToken = user.accessToken;
+		player.password = user.password;
+		player.isEmailVerified = user.isEmailVerified;
+
+		return player;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public Set<Horse> getHorses() {
-		return horses;
-	}
-
-	public void addHorse(Horse horse) {
-		this.horses.add(horse);
-		this.save();
-	}
-
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
-
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getAuthMethod() {
-        return authMethod;
-    }
-
-    public void setAuthMethod(String authMethod) {
-        this.authMethod = authMethod;
-    }
-
-    public Date getLastAccess() {
-        return lastAccess;
-    }
-
-    public void setLastAccess(Date lastAccess) {
-        this.lastAccess = lastAccess;
-    }
 }

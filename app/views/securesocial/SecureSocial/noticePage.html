@@ -1,0 +1,12 @@
+#{extends 'main.html' /}
+
+<div class="page-header">
+	<h1>${title}</h1>
+</div>
+<div class="row">
+	<div class="span12">
+		<div class="alert #{if flash.error} alert-error #{/if} #{else} alert-info #{/else}">
+			#{if flash.error} ${flash.error} #{/if} #{else}${flash.success.raw()} #{/else}
+		</div>
+	</div>
+</div>

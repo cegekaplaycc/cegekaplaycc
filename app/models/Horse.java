@@ -6,6 +6,10 @@ import java.util.Random;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
+
+import models.randomizer.RandomizerProvider;
+import models.randomizer.RandomizerProviderImpl;
 
 import play.db.jpa.Model;
 
@@ -18,11 +22,16 @@ public class Horse extends Model {
 	private long price;
 	private int fitness;
 	private int training;
+	
+	@Transient
+	RandomizerProvider randomizerProvider;
 
 	public Horse() {
+		this.randomizerProvider = new RandomizerProviderImpl();
 	}
 
 	public Horse(String name) {
+		this();
 		this.name = name;
 	}
 
@@ -31,8 +40,8 @@ public class Horse extends Model {
 		this.price = price;
 	}
 
-	int getRandomFactorForScoring() {
-		return new Random(new Date().getTime()).nextInt(100);
+	private int getRandomFactorForScoring() {
+		return randomizerProvider.get(100);
 	}
 
 	public double calculateRaceScore() {

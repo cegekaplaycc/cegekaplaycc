@@ -12,7 +12,7 @@ public class RaceRunningJob extends Job<Void> {
 		List<Race> allRaces = Race.findAll();
 		for (Race race : allRaces) {
 			if (!race.hasRun() && !race.startTimeInFuture()) {
-				race.start();
+				race.calculateWinner();
 				race.save();
 			}
 		}

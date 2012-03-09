@@ -17,10 +17,9 @@ import org.apache.commons.lang.NotImplementedException;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
-
 @Entity
 public class Race extends Model {
-	
+
 	public static final int MAX_AVAILABLE_SLOTS = 8;
 	public static final int MIN_HORSES_ENTERED_TO_START_RACE = 2;
 	public static final String MAX_AVAILABLE_SLOTS_EXCEEDED = "Cannot enter more than the maximum available slots";
@@ -31,12 +30,12 @@ public class Race extends Model {
 	public Horse winner;
 	@Required
 	public String name;
-	
+
 	public void enter(Horse horse) {
 		if (!canEnterHorse()) {
 			throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
 		}
-		
+
 		this.horses.add(horse);
 	}
 
@@ -52,16 +51,20 @@ public class Race extends Model {
 		if (!readyToStart()) {
 			throw new IllegalStateException(LESS_THAN_MIN_AMOUNT_HORSES_ENTERED_TO_START_RACE);
 		}
-		
+
 		Random random = new Random(new Date().getTime());
 		int randomIndex = random.nextInt(horses.size());
 		winner = new ArrayList<Horse>(horses).get(randomIndex);
 	}
 
+	public boolean hasRun() {
+		return winner != null;
+	}
+
 	public boolean readyToStart() {
 		return horses.size() >= MIN_HORSES_ENTERED_TO_START_RACE;
 	}
-	
+
 	public Set<Horse> getEnteredHorses() {
 		return Collections.unmodifiableSet(horses);
 	}

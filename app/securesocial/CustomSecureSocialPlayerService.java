@@ -6,7 +6,7 @@ import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 import securesocial.provider.UserService;
 
-public class SecureSocialPlayerService implements UserService.Service {
+public class CustomSecureSocialPlayerService implements UserService.Service {
 
 	@Override
 	public SocialUser find(UserId id) {

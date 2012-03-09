@@ -36,37 +36,28 @@ public class RaceTest extends UnitTest {
 
 	@Test
 	public void startTimeInFuture_TrueInFuture() {
-		Race race = new RaceBuilder()
-				.withStartTime(new DateTime().plus(100).toDate())
-				.build();
+		Race race = new RaceBuilder().withStartTime(new DateTime().plus(100).toDate()).build();
 
 		PlayAssertions.assertThat(race.startTimeInFuture()).isTrue();
 	}
 
 	@Test
 	public void startTimeInFuture_FalseInPresent() {
-		Race race = new RaceBuilder()
-				.withStartTime(new DateTime().toDate())
-				.build();
+		Race race = new RaceBuilder().withStartTime(new DateTime().toDate()).build();
 
 		PlayAssertions.assertThat(race.startTimeInFuture()).isFalse();
 	}
 
 	@Test
 	public void startTimeInFuture_FalseInPast() {
-		Race race = new RaceBuilder()
-				.withStartTime(new DateTime().minus(100).toDate())
-				.build();
+		Race race = new RaceBuilder().withStartTime(new DateTime().minus(100).toDate()).build();
 
 		PlayAssertions.assertThat(race.startTimeInFuture()).isFalse();
 	}
 
 	@Test
 	public void hasRunShouldReturnTrueIfWinnerDetermined() {
-		Race race = new RaceBuilder()
-				.withStarted()
-				.withMinimalAmountOfHorses()
-				.build();
+		Race race = new RaceBuilder().withStarted().withHorses(new HorseBuilder().build()).build();
 
 		Assertions.assertThat(race.hasRun()).isTrue();
 	}
@@ -118,40 +109,6 @@ public class RaceTest extends UnitTest {
 		expectedException.expectMessage(Race.MAX_AVAILABLE_SLOTS_EXCEEDED);
 
 		race.enter(new Horse("horse 9"));
-	}
-
-	@Test
-	public void startRaceShouldBeAbleToDetermineAWinner() {
-		Assertions.assertThat(race.winner).isNull();
-
-		enterHorses(3);
-		race.start();
-
-		Assertions.assertThat(race.winner).isIn(race.getEnteredHorses());
-	}
-
-	@Test
-	public void shouldNotBeAbleToStartRaceWhenLessThanMinimumAmountOfHorsesAreEntered() {
-		enterHorses(Race.MIN_HORSES_ENTERED_TO_START_RACE - 1);
-
-		expectedException.expect(IllegalStateException.class);
-		expectedException.expectMessage(Race.LESS_THAN_MIN_AMOUNT_HORSES_ENTERED_TO_START_RACE);
-
-		race.start();
-	}
-
-	@Test
-	public void shouldBeAbleToDetermineIfRaceIsReadyToStart() {
-		enterHorses(Race.MIN_HORSES_ENTERED_TO_START_RACE);
-
-		Assertions.assertThat(race.readyToStart()).isTrue();
-	}
-
-	@Test
-	public void shouldBeAbleToDetermineIfRaceIsReadyToStart_lessThanTheAmountNeeded() {
-		enterHorses(Race.MIN_HORSES_ENTERED_TO_START_RACE - 1);
-
-		Assertions.assertThat(race.readyToStart()).isFalse();
 	}
 
 	@Test

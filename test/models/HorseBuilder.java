@@ -9,21 +9,23 @@ public class HorseBuilder {
 	private int training = DEFAULT_TRAINING;
 	private String name = "Jolly Jumper";
 	private long price = 28;
-	private Long randomFactorForScoring;
+	private Integer randomFactorForScoring;
+	private Long id;
 
 	public Horse build() {
 		Horse horse = createHorse();
 		horse.setFitness(fitness);
 		horse.setTraining(training);
+		horse.id = id;
 		return horse;
 	}
 
 	private Horse createHorse() {
 		Horse horse = null;
-		if(randomFactorForScoring != null) {
+		if (randomFactorForScoring != null) {
 			horse = new Horse(name, price) {
 				@Override
-				long getRandomFactorForScoring() {
+				int getRandomFactorForScoring() {
 					return randomFactorForScoring;
 				}
 			};
@@ -33,11 +35,11 @@ public class HorseBuilder {
 		return horse;
 	}
 
-	public HorseBuilder withRandomFactorForScoring(long randomFactorForScoring) {
+	public HorseBuilder withRandomFactorForScoring(int randomFactorForScoring) {
 		this.randomFactorForScoring = randomFactorForScoring;
 		return this;
 	}
-	
+
 	public HorseBuilder withFitness(int fitness) {
 		this.fitness = fitness;
 		return this;
@@ -55,6 +57,11 @@ public class HorseBuilder {
 
 	public HorseBuilder withPrice(long price) {
 		this.price = price;
+		return this;
+	}
+
+	public HorseBuilder withId(long id) {
+		this.id = id;
 		return this;
 	}
 

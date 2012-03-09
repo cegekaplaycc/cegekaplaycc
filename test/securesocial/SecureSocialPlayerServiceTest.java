@@ -13,7 +13,7 @@ import org.junit.Test;
 import play.db.jpa.JPA;
 import play.test.Fixtures;
 import play.test.UnitTest;
-import securesocial.SecureSocialPlayerService;
+import securesocial.CustomSecureSocialPlayerService;
 import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
@@ -21,12 +21,12 @@ import securesocial.provider.UserId;
 
 public class SecureSocialPlayerServiceTest extends UnitTest {
 
-	private SecureSocialPlayerService service;
+	private CustomSecureSocialPlayerService service;
 
 	@Before
 	public void setup() {
 		Fixtures.deleteAllModels();
-		service = new SecureSocialPlayerService();
+		service = new CustomSecureSocialPlayerService();
 	}
 
 	@Test

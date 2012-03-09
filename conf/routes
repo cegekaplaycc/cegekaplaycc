@@ -3,7 +3,7 @@
 # ~~~~
 
 # Authentication
-*       /auth       module:securesocial
+*       /auth       							module:securesocial
 
 # Home page
 GET     /                                       Application.index
@@ -17,6 +17,9 @@ GET		/races/new								Races.newRace
 POST	/races/new								Races.create
 GET		/races/{<[0-9]+>id}						Races.detail
 GET		/races/enter							Races.enter
+
+# Jobs page for development
+GET		/@jobs									Jobs.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

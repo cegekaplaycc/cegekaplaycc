@@ -1,0 +1,11 @@
+#{extends 'main.html' /} 
+#{set title:'Jobs' /}
+
+#{if flash.success}
+    <div class="alert alert-info">${flash.success}</div>
+#{/if}
+
+#{form @Jobs.run()}
+	#{select 'job', items:jobs /}
+	<input type="submit" value="Run" /> 
+#{/form}

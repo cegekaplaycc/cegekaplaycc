@@ -1,10 +1,14 @@
 package models;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static java.util.Collections.reverseOrder;
+import static java.util.Collections.sort;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Random;
+import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -17,13 +21,15 @@ import play.Play;
 import play.data.validation.Required;
 import play.db.jpa.Model;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 @Entity
 public class Race extends Model {
 
 	public static final int MAX_AVAILABLE_SLOTS = 8;
-	public static final int MIN_HORSES_ENTERED_TO_START_RACE = 2;
 	public static final String MAX_AVAILABLE_SLOTS_EXCEEDED = "Cannot enter more than the maximum available slots";
-	public static final String LESS_THAN_MIN_AMOUNT_HORSES_ENTERED_TO_START_RACE = "Less than minimum amount of horses entered to start race";
 
 	@ManyToMany
 	private Set<Horse> horses = new HashSet<Horse>();
@@ -65,14 +71,22 @@ public class Race extends Model {
 		return MAX_AVAILABLE_SLOTS - horses.size();
 	}
 
-	public void start() {
-		if (!readyToStart()) {
-			throw new IllegalStateException(LESS_THAN_MIN_AMOUNT_HORSES_ENTERED_TO_START_RACE);
+	public void calculateWinner() {
+		if (!horses.isEmpty()) {
+			Map<Double, Horse> scoresPerHorse = createHorseResultScoresMap();
+			ArrayList<Double> all = Lists.newArrayList(scoresPerHorse.keySet());
+			sort(all, reverseOrder());
+			winner = scoresPerHorse.get(all.get(0));
 		}
+		
+	}
 
-		Random random = new Random(new Date().getTime());
-		int randomIndex = random.nextInt(horses.size());
-		winner = new ArrayList<Horse>(horses).get(randomIndex);
+	private Map<Double, Horse> createHorseResultScoresMap() {
+		Map<Double, Horse> scoresPerHorse = Maps.newHashMap();
+		for (Horse horse : horses) {
+			scoresPerHorse.put(horse.calculateRaceScore(), horse);
+		}
+		return scoresPerHorse;
 	}
 
 	public boolean startTimeInFuture() {
@@ -81,10 +95,6 @@ public class Race extends Model {
 
 	public boolean hasRun() {
 		return winner != null;
-	}
-
-	public boolean readyToStart() {
-		return horses.size() >= MIN_HORSES_ENTERED_TO_START_RACE;
 	}
 
 	public Set<Horse> getEnteredHorses() {

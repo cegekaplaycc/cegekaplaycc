@@ -37,16 +37,17 @@ public class Race extends Model {
 	@Required
 	public Date startTime;
 
-	public Race() {
+	@Required
+	public Integer subscriptionFee;
+	
+	public Race(Date startTime, Integer subscriptionFee) {
 		super();
-		initializeStartTime();
+		this.startTime = startTime;
+		this.subscriptionFee = subscriptionFee;
 	}
 
-	private void initializeStartTime() {
-		Object o = Play.configuration.get("horse.race.starttime.offset.minutes");
-		System.out.println(o.getClass());
-		Integer startTimeOffset = Integer.parseInt(Play.configuration.getProperty("horse.race.starttime.offset.minutes"));
-		this.startTime = new DateTime().plusMinutes(startTimeOffset).toDate();
+	public Race() {
+		super();
 	}
 
 	public void enter(Horse horse) {
@@ -89,10 +90,6 @@ public class Race extends Model {
 
 	public Set<Horse> getEnteredHorses() {
 		return Collections.unmodifiableSet(horses);
-	}
-
-	public Date getStartTime() {
-		return startTime;
 	}
 
 }

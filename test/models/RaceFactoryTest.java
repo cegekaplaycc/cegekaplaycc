@@ -14,7 +14,9 @@ import org.junit.rules.ExpectedException;
 
 import play.test.UnitTest;
 
-public class RaceConstructorTest extends UnitTest {
+public class RaceFactoryTest extends UnitTest {
+	
+	private RaceFactory raceFactory = new RaceFactory();
 	
 	@Before
 	public void setSystemTime() {
@@ -28,11 +30,16 @@ public class RaceConstructorTest extends UnitTest {
 	
 	@Test
 	public void shouldHaveAStartTimeWhenCreated() {
-		Race race =  new Race();
+		Race race = raceFactory.create();
 		
-		System.out.println(race.getStartTime());
-
-		Assertions.assertThat(race.getStartTime()).isEqualTo(new DateTime("2012-03-09T10:10:00").toDate());
+		Assertions.assertThat(race.startTime).isEqualTo(new DateTime("2012-03-09T10:10:00").toDate());
+	}
+	
+	@Test
+	public void shouldHaveACorrectSubscriptionFeeWhenCreated() {
+		Race race = raceFactory.create();
+		
+		Assertions.assertThat(RaceFactory.SUBSCRIPTION_FEES).contains(race.subscriptionFee);
 	}
 	
 }

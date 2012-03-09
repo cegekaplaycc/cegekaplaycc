@@ -14,3 +14,6 @@ tmp
 test-result
 eclipse
 modules
+/secure
+/crud
+/secure

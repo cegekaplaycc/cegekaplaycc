@@ -11,7 +11,7 @@ public class RaceRunningJob extends Job<Void> {
 	public void doJob() throws Exception {
 		List<Race> allRaces = Race.findAll();
 		for (Race race : allRaces) {
-			if (!race.hasRun()) {
+			if (!race.hasRun() && !race.startTimeInFuture()) {
 				race.start();
 			}
 		}

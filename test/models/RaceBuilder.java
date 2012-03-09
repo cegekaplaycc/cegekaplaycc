@@ -18,8 +18,10 @@ public class RaceBuilder {
 	public Race build() {
 		Race race = new Race();
 		race.name = name;
-		race.startTime = startTime;
-		
+		if (startTime != null) {
+			race.startTime = startTime;
+		}
+
 		enterHorsesCreateDefaultIfNeeded(race);
 		if (withStarted) {
 			race.start();
@@ -65,11 +67,11 @@ public class RaceBuilder {
 		this.startTime = startTime;
 		return this;
 	}
-	
+
 	public RaceBuilder withStartTimeInPast() {
-		return withStartTime(new DateTime().plusMinutes(15).toDate());
+		return withStartTime(new DateTime().minusMinutes(15).toDate());
 	}
-	
+
 	private void enterHorsesCreateDefaultIfNeeded(Race race) {
 		if (horses.isEmpty()) {
 			for (int i = 0; i < Race.MIN_HORSES_ENTERED_TO_START_RACE; i++) {

@@ -1,0 +1,9 @@
+#{field _field}
+<div class="control-group #{ifError field.name}error#{/ifError}">
+	<label class="control-label" for="${field.id}">&{field.name}</label>
+	<div class="controls">
+		<input type="${_type}" name="${field.name}" id="${field.id}" value="${field.flash}" />
+		<span class="help-inline">${field.error}</span>
+	</div>
+</div>
+#{/field}

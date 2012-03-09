@@ -1,15 +1,20 @@
 package models;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
+import static org.joda.time.DateTimeUtils.setCurrentMillisFixed;
+import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
 
-import org.fest.assertions.Assertions;
+import java.util.Date;
+
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import play.test.UnitTest;
+import assertion.PlayAssertions;
 
 public class RaceTest extends UnitTest {
 	
@@ -21,6 +26,39 @@ public class RaceTest extends UnitTest {
 	@Before
 	public void setup() {
 		race =  new Race();
+		setCurrentMillisFixed(new Date().getTime());
+	}
+	
+	@After
+	public void resetTime() {
+		setCurrentMillisSystem();
+	}
+	
+	@Test
+	public void startTimeInFuture_TrueInFuture() {
+		Race race = new RaceBuilder()
+			.withStartTime(new DateTime().plus(100).toDate())
+			.build();
+		
+		PlayAssertions.assertThat(race.startTimeInFuture()).isTrue();
+	}
+	
+	@Test
+	public void startTimeInFuture_FalseInPresent() {
+		Race race = new RaceBuilder()
+			.withStartTime(new DateTime().toDate())
+			.build();
+	
+		PlayAssertions.assertThat(race.startTimeInFuture()).isFalse();
+	}
+	
+	@Test
+	public void startTimeInFuture_FalseInPast() {
+		Race race = new RaceBuilder()
+			.withStartTime(new DateTime().minus(100).toDate())
+			.build();
+
+		PlayAssertions.assertThat(race.startTimeInFuture()).isFalse();
 	}
 	
 	@Test

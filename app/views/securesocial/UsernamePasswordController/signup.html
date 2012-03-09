@@ -1,0 +1,30 @@
+#{extends 'main.html' /} 
+#{set title: messages.get('securesocial.signUpTitle') /}
+
+<div class="page-header">
+	<h1>&{'securesocial.signUpTitle'}</h1>
+</div>
+
+<div class="row">
+	<div class="span12">
+		#{ifErrors}
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">&times;</a>
+			<strong>Error!</strong> Please fix the errors below.
+		</div>
+		#{/ifErrors}
+
+		#{form @securesocial.UsernamePasswordController.createAccount(), autocomplete:'off', class:'form-horizontal'}
+		#{formItem type:'text', field:'userName' /}
+		#{formItem type:'text', field:'displayName' /}
+		#{formItem type:'text', field:'email' /}
+		#{formItem type:'password', field:'password' /}
+		#{formItem type:'password', field:'password2' /}
+
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">Create account</button> 
+			<a href="@{securesocial.SecureSocial.login()}" class="btn">&{'securesocial.cancel'}</a>
+		</div>
+		#{/form}
+	</div>
+</div>

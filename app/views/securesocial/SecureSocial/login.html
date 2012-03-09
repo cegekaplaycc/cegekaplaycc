@@ -1,0 +1,52 @@
+#{extends 'main.html' /}
+#{set title: messages.get('securesocial.loginTitle') /}
+
+<div class="page-header">
+	<h1>&{'securesocial.login'}</h1>
+</div>
+
+<div class="row">
+	<div class="span12">
+		#{ifErrors}
+		<div class="alert alert-error">
+			<a class="close" data-dismiss="alert" href="#">&times;</a>
+			<strong>Error!</strong> Please fix the errors below.
+		</div>
+		#{/ifErrors}
+		<p>&{'securesocial.clickOnYourAccount'}</p>
+
+		<p>
+			#{list items: providers, as: 'provider'} 
+				#{if provider.type != securesocial.provider.ProviderType.userpass} 
+					#{if (provider.authMethod == securesocial.provider.AuthenticationMethod.OPENID || provider.authMethod == securesocial.provider.AuthenticationMethod.OPENID_OAUTH_HYBRID) && provider.needsUsername() }
+						<a href="javascript:openid('${provider.type}')">
+							<img src="@{'/public/images/providers/'}/${provider.type.toString().toLowerCase()}.png" title="${provider.type}" />
+						</a>
+					#{/if} 
+					#{else} 
+						<a href="@{securesocial.SecureSocial.authenticate(provider.type.toString().toLowerCase())}">
+							<img src="@{'/public/images/providers/'}/${provider.type.toString().toLowerCase()}.png" title="${provider.type}" />
+						</a> 
+					#{/else} 
+				#{/if} 
+			#{/list} 
+		</p>
+
+		#{if userPassEnabled }
+		<p>&{'securesocial.useEmailAndPassword'}</p>
+		#{form @securesocial.SecureSocial.authenticate(securesocial.provider.ProviderType.userpass), autocomplete:'off', class:'form-horizontal'}
+
+			#{formItem type:'text', field:'userName' /}
+			#{formItem type:'password', field:'password' /}
+
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">&{'securesocial.login'}</button>
+				<button type="reset" class="btn">Cancel</button>
+			</div>
+		#{/form}
+
+		<p>&{'securesocial.signUp'} #{a @securesocial.UsernamePasswordController.signUp()}&{'securesocial.here'}#{/a}</p>
+		#{/if}
+	</div>
+</div>
+

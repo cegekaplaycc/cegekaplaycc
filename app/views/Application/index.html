@@ -1,21 +1,33 @@
-#{extends 'template.html' /}
+#{extends 'main.html' /} 
 #{set title:'Home' /}
-
-<div class="row">
-	<div class="threecol">
-		<ul id="horses">
-		#{list horses, as:'horse'}
-    		<li>Horse: ${horse.name}</li>
-		#{/list}
-		</ul>
-	</div>
-	<div class="threecol">
-		Col 2
-	</div>
-	<div class="threecol">
-		Col 3
-	</div>
-	<div class="threecol last">
-		Col 4
-	</div>
-</div>
+			<div class="hero-unit">
+				<h1>Hold your Horses</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec lacus sed felis commodo tincidunt. Donec pretium enim interdum lorem
+				malesuada a ornare orci rhoncus. Nullam aliquam porttitor mi, a convallis eros cursus iaculis. Cras eu urna eu augue malesuada pharetra. Duis
+				a vehicula tortor. Duis adipiscing vestibulum sem ut hendrerit.</p>
+				<p><a href="@{securesocial.UsernamePasswordController.signUp}" class="btn btn-primary btn-large">Sign up now &raquo;</a></p>
+			</div>
+			
+			<div class="row">
+				<div class="span4">
+					<h2>Buy horses</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec lacus sed felis commodo tincidunt. Donec pretium enim interdum lorem
+					malesuada a ornare orci rhoncus. Nullam aliquam porttitor mi, a convallis eros cursus iaculis. Cras eu urna eu augue malesuada pharetra. Duis
+					a vehicula tortor. Duis adipiscing vestibulum sem ut hendrerit.</p>
+					<p><a class="btn">Details</a></p>
+				</div>
+				<div class="span4">
+					<h2>Enter races</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec lacus sed felis commodo tincidunt. Donec pretium enim interdum lorem
+					malesuada a ornare orci rhoncus. Nullam aliquam porttitor mi, a convallis eros cursus iaculis. Cras eu urna eu augue malesuada pharetra. Duis
+					a vehicula tortor. Duis adipiscing vestibulum sem ut hendrerit.</p>
+					<p><a class="btn">Details</a></p>
+				</div>
+				<div class="span4">
+					<h2>Manage jockeys</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nec lacus sed felis commodo tincidunt. Donec pretium enim interdum lorem
+					malesuada a ornare orci rhoncus. Nullam aliquam porttitor mi, a convallis eros cursus iaculis. Cras eu urna eu augue malesuada pharetra. Duis
+					a vehicula tortor. Duis adipiscing vestibulum sem ut hendrerit.</p>
+					<p><a class="btn">Details</a></p>
+				</div>
+			</div>

@@ -3,7 +3,7 @@ package models;
 public class HorseBuilder {
 
 	public Horse build() {
-		return new Horse();
+		return new Horse("Black Booby");
 	}
 
 }

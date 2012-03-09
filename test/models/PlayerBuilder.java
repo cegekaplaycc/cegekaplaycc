@@ -8,7 +8,7 @@ import com.google.common.collect.Sets;
 
 public class PlayerBuilder {
 
-	private Set<Horse> horses;
+	private Set<Horse> horses = Sets.newHashSet();
 
 	public Player build() {
 		Player player = new Player("joske");

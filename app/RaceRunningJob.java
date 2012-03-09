@@ -1,11 +1,18 @@
-import models.Race;
-import play.jobs.Job;
+import java.util.List;
 
+import models.Race;
+import play.db.jpa.JPABase;
+import play.jobs.Job;
 
 public class RaceRunningJob extends Job<Void> {
 
-	 @Override
+	@Override
 	public void doJob() throws Exception {
-		super.doJob();
+		List<Race> allRaces = Race.findAll();
+		for (Race race : allRaces) {
+			if (!race.hasRun()) {
+				race.start();
+			}
+		}
 	}
 }

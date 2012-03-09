@@ -125,6 +125,23 @@ public class RaceTest extends UnitTest {
 		Assertions.assertThat(race.canEnterHorse()).isFalse();
 	}
 
+	@Test
+	public void getHorseOfPlayer_ReturnsNullWhenNoHorseOfPlayerParticipatedInRace() {
+		Horse horse = new HorseBuilder().build();
+		Race race = new RaceBuilder().withHorses(horse).build();
+
+		Assertions.assertThat(race.getHorseOfPlayer(new PlayerBuilder().build())).isNull();
+	}
+
+	@Test
+	public void getHorseOfPlayer_ReturnsHorseOfPlayerThatParticipatedInTheRace() {
+		Horse horse = new HorseBuilder().build();
+		Player player = new PlayerBuilder().withHorses(horse).build();
+		Race race = new RaceBuilder().withHorses(horse).build();
+
+		Assertions.assertThat(race.getHorseOfPlayer(player)).isEqualTo(horse);
+	}
+
 	private void enterHorses(int count) {
 		for (int i = 0; i < count; i++) {
 			race.enter(new Horse("horse " + i + 1));

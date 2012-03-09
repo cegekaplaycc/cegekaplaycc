@@ -2,10 +2,10 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.powermock.reflect.Whitebox;
 
 public class RaceBuilder {
 
@@ -13,11 +13,15 @@ public class RaceBuilder {
 	private List<Horse> horses = new ArrayList<Horse>();
 	private Horse winningHorse;
 	private String name = "race name";
-	private DateTime startTime;
+	private Date startTime;
 
 	public Race build() {
 		Race race = new Race();
 		race.name = name;
+		if (startTime != null) {
+			race.startTime = startTime;
+		}
+
 		enterHorsesCreateDefaultIfNeeded(race);
 		if (withStarted) {
 			race.start();
@@ -25,7 +29,6 @@ public class RaceBuilder {
 		if (winningHorse != null) {
 			race.winner = winningHorse;
 		}
-		Whitebox.setInternalState(race, "startTime", startTime);
 		return race;
 	}
 
@@ -60,9 +63,13 @@ public class RaceBuilder {
 		return this;
 	}
 
-	public RaceBuilder withStartTime(DateTime startTime) {
+	public RaceBuilder withStartTime(Date startTime) {
 		this.startTime = startTime;
 		return this;
+	}
+
+	public RaceBuilder withStartTimeInPast() {
+		return withStartTime(new DateTime().minusMinutes(15).toDate());
 	}
 
 	private void enterHorsesCreateDefaultIfNeeded(Race race) {

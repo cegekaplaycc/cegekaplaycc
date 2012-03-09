@@ -72,6 +72,10 @@ public class Race extends Model {
 		winner = new ArrayList<Horse>(horses).get(randomIndex);
 	}
 
+	public boolean startTimeInFuture() {
+		return startTime.after(new Date());
+	}
+	
 	public boolean hasRun() {
 		return winner != null;
 	}

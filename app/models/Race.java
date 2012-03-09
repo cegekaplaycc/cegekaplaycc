@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import org.apache.commons.lang.NotImplementedException;
+import org.joda.time.DateTime;
 
 import play.data.validation.Required;
 import play.db.jpa.Model;
@@ -28,10 +29,24 @@ public class Race extends Model {
 
 	@OneToMany
 	private Set<Horse> horses = new HashSet<Horse>();
+	
 	public Horse winner;
+	
 	@Required
 	public String name;
 	
+	@Required
+	public Date startTime;
+	
+	public Race() {
+		super();
+		initializeStartTime();
+	}
+
+	private void initializeStartTime() {
+		this.startTime = new DateTime().plusMinutes(15).toDate();
+	}
+
 	public void enter(Horse horse) {
 		if (!canEnterHorse()) {
 			throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
@@ -64,6 +79,10 @@ public class Race extends Model {
 	
 	public Set<Horse> getEnteredHorses() {
 		return Collections.unmodifiableSet(horses);
+	}
+
+	public Date getStartTime() {
+		return startTime;
 	}
 
 }

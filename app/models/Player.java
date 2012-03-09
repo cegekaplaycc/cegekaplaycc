@@ -1,14 +1,12 @@
 package models;
 
 import java.util.Date;
+import java.util.Set;
 
-import javax.persistence.Embedded;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
-import org.apache.commons.lang.NotImplementedException;
+import javax.persistence.OneToMany;
 
 import play.data.validation.Email;
 import play.data.validation.Required;
@@ -17,6 +15,8 @@ import securesocial.provider.AuthenticationMethod;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
+
+import com.google.common.collect.Sets;
 
 @Entity
 public class Player extends Model {
@@ -27,6 +27,9 @@ public class Player extends Model {
 	@Required
 	@Enumerated(EnumType.STRING)
 	public ProviderType providerType;
+
+	@OneToMany
+	public Set<Horse> horses = Sets.newHashSet();
 
 	@Required
 	public String displayName;
@@ -57,9 +60,13 @@ public class Player extends Model {
 		return find("byUserIdAndProviderType", userId.id, userId.provider)
 				.first();
 	}
-	
+
 	public static void deletePendingActivations() {
 		Player.delete("UUID != null");
+	}
+
+	private Set<Horse> getHorses() {
+		return horses;
 	}
 
 	public static Player create(SocialUser user) {
@@ -79,6 +86,14 @@ public class Player extends Model {
 		player.isEmailVerified = user.isEmailVerified;
 
 		return player;
+	}
+
+	public Set<Race> getPastEnteredRaces() {
+		Set<Race> races = Sets.newHashSet();
+		for (Horse horse : getHorses()) {
+			races.addAll(horse.getPastEnteredRaces());
+		}
+		return races;
 	}
 
 }

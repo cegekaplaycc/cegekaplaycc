@@ -1,6 +1,5 @@
 package models;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -9,11 +8,9 @@ import java.util.Random;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
-import org.apache.commons.lang.NotImplementedException;
 import org.joda.time.DateTime;
 
 import play.Play;
@@ -28,18 +25,18 @@ public class Race extends Model {
 	public static final String MAX_AVAILABLE_SLOTS_EXCEEDED = "Cannot enter more than the maximum available slots";
 	public static final String LESS_THAN_MIN_AMOUNT_HORSES_ENTERED_TO_START_RACE = "Less than minimum amount of horses entered to start race";
 
-	@OneToMany
+	@ManyToMany
 	private Set<Horse> horses = new HashSet<Horse>();
-	
+
 	@OneToOne
 	public Horse winner;
-	
+
 	@Required
 	public String name;
 
 	@Required
 	public Date startTime;
-	
+
 	public Race() {
 		super();
 		initializeStartTime();
@@ -81,7 +78,7 @@ public class Race extends Model {
 	public boolean startTimeInFuture() {
 		return startTime.after(new Date());
 	}
-	
+
 	public boolean hasRun() {
 		return winner != null;
 	}

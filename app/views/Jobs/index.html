@@ -1,11 +1,16 @@
-#{extends 'main.html' /} 
-#{set title:'Jobs' /}
+#{extends 'main.html' /} #{set title:'Jobs' /}
 
-#{if flash.success}
-    <div class="alert alert-info">${flash.success}</div>
-#{/if}
-
-#{form @Jobs.run()}
-	#{select 'job', items:jobs /}
-	<input type="submit" value="Run" /> 
-#{/form}
+<div class="page-header">
+	<h2>Start a job</h2>
+</div>
+<div class="row">
+	<div class="span12">
+		#{if flash.success}
+		<div class="alert alert-info">${flash.success}</div>
+		#{/if} 
+		#{form @Jobs.run(), class:'form-inline'} 
+			#{select 'job', items:jobs, id:'jobs' /}
+			<input type="submit" value="Start job" class="btn btn-primary" /> 
+		#{/form}
+	</div>
+</div>

@@ -1,19 +1,19 @@
 package models;
 
-import static org.fest.assertions.Assertions.assertThat;
 import static org.joda.time.DateTimeUtils.setCurrentMillisFixed;
 import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
 
 import java.util.Date;
 
+import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeUtils;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import play.test.UnitTest;
 import assertion.PlayAssertions;
 
 public class RaceTest extends UnitTest {

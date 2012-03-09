@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class RaceBuilder  {
+import org.joda.time.DateTime;
+import org.powermock.reflect.Whitebox;
+
+public class RaceBuilder {
 
 	private boolean withStarted;
 	private List<Horse> horses = new ArrayList<Horse>();
 	private Horse winningHorse;
 	private String name = "race name";
+	private DateTime startTime;
 
 	public Race build() {
 		Race race = new Race();
@@ -21,13 +25,14 @@ public class RaceBuilder  {
 		if (winningHorse != null) {
 			race.winner = winningHorse;
 		}
+		Whitebox.setInternalState(race, "startTime", startTime);
 		return race;
 	}
-	
+
 	public Race persist() {
 		Race race = build();
-		for(Horse enteredHorses : race.getEnteredHorses()) {
-			if(enteredHorses.getId() == null) {
+		for (Horse enteredHorses : race.getEnteredHorses()) {
+			if (enteredHorses.getId() == null) {
 				enteredHorses.save();
 			}
 		}
@@ -52,6 +57,11 @@ public class RaceBuilder  {
 
 	public RaceBuilder withWinner(Horse winningHorse) {
 		this.winningHorse = winningHorse;
+		return this;
+	}
+
+	public RaceBuilder withStartTime(DateTime startTime) {
+		this.startTime = startTime;
 		return this;
 	}
 

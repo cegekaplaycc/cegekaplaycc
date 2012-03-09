@@ -1,8 +1,10 @@
 package models;
 
-import javax.persistence.Column;
+import java.util.Set;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import org.apache.commons.lang.NotImplementedException;
 
 import play.db.jpa.Model;
 
@@ -43,5 +45,9 @@ public class Horse extends Model {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public Set<Race> getPastEnteredRaces() {
+		throw new NotImplementedException();
 	}
 }

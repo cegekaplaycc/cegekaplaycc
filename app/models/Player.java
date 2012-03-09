@@ -1,36 +1,35 @@
 package models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-
-import play.data.validation.Required;
-import play.data.validation.Unique;
-import play.db.jpa.Model;
-
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+import play.db.jpa.Model;
+
+import com.google.common.collect.Sets;
 
 @Entity
 public class Player extends Model {
 
 	private String name;
 
-    @Column(unique = true)
+	@Column(unique = true)
 	private final String userId;
 
 	@OneToMany
 	public Set<Horse> horses = new HashSet<Horse>();
 
-    private String avatarUrl;
+	private String avatarUrl;
 
-    private String email;
+	private String email;
 
-    private String authMethod;
+	private String authMethod;
 
-    private Date lastAccess;
+	private Date lastAccess;
 
 	public Player(String userId) {
 		this.userId = userId;
@@ -62,35 +61,43 @@ public class Player extends Model {
 		this.save();
 	}
 
-    public String getAvatarUrl() {
-        return avatarUrl;
-    }
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
-    }
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getAuthMethod() {
-        return authMethod;
-    }
+	public String getAuthMethod() {
+		return authMethod;
+	}
 
-    public void setAuthMethod(String authMethod) {
-        this.authMethod = authMethod;
-    }
+	public void setAuthMethod(String authMethod) {
+		this.authMethod = authMethod;
+	}
 
-    public Date getLastAccess() {
-        return lastAccess;
-    }
+	public Date getLastAccess() {
+		return lastAccess;
+	}
 
-    public void setLastAccess(Date lastAccess) {
-        this.lastAccess = lastAccess;
-    }
+	public void setLastAccess(Date lastAccess) {
+		this.lastAccess = lastAccess;
+	}
+
+	public Set<Race> getPastEnteredRaces() {
+		Set<Race> races = Sets.newHashSet();
+		for (Horse horse : getHorses()) {
+			races.addAll(horse.getPastEnteredRaces());
+		}
+		return races;
+	}
 }

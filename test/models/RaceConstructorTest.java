@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -16,8 +17,13 @@ import play.test.UnitTest;
 public class RaceConstructorTest {
 	
 	@Before
-	public void setup() {
+	public void setSystemTime() {
 		DateTimeUtils.setCurrentMillisFixed(new DateTime("2012-03-09T10:00:00").getMillis());
+	}
+	
+	@After
+	public void resetSystemTime() {
+		DateTimeUtils.setCurrentMillisSystem();
 	}
 	
 	@Test

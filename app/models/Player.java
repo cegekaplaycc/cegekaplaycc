@@ -1,7 +1,6 @@
 package models;
 
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -17,6 +16,8 @@ import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
+import com.google.common.collect.Sets;
+
 @Entity
 public class Player extends Model {
 
@@ -26,6 +27,9 @@ public class Player extends Model {
 	@Required
 	@Enumerated(EnumType.STRING)
 	public ProviderType providerType;
+
+	@OneToMany
+	public Set<Horse> horses = Sets.newHashSet();
 
 	@Required
 	public String displayName;
@@ -52,13 +56,6 @@ public class Player extends Model {
 
 	public String UUID;
 
-	@OneToMany
-	private Set<Horse> horses = new HashSet<Horse>();
-
-	public Player() {
-		// horses.add(Horse.find)
-	}
-
 	public static Player findByUserId(UserId userId) {
 		return find("byUserIdAndProviderType", userId.id, userId.provider)
 				.first();
@@ -66,6 +63,10 @@ public class Player extends Model {
 
 	public static void deletePendingActivations() {
 		Player.delete("UUID != null");
+	}
+
+	private Set<Horse> getHorses() {
+		return horses;
 	}
 
 	public static Player create(SocialUser user) {
@@ -87,8 +88,12 @@ public class Player extends Model {
 		return player;
 	}
 
-	public Set<Horse> getHorses() {
-		return horses;
+	public Set<Race> getPastEnteredRaces() {
+		Set<Race> races = Sets.newHashSet();
+		for (Horse horse : getHorses()) {
+			races.addAll(horse.getPastEnteredRaces());
+		}
+		return races;
 	}
 
 }

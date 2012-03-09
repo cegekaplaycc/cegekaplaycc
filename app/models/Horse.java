@@ -1,10 +1,14 @@
 package models;
 
-import javax.persistence.Column;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 import play.db.jpa.Model;
+
+import com.google.common.collect.Sets;
 
 @Entity
 public class Horse extends Model {
@@ -29,11 +33,24 @@ public class Horse extends Model {
 	long getRandomFactorForScoring() {
 		return 0;
 	}
-	
+
 	public double calculateRaceScore() {
-		throw new UnsupportedOperationException();
+		return fitnessScore() + trainingScore() + randomScore();
 	}
-	
+
+	private double randomScore() {
+		return getRandomFactorForScoring()
+				* RaceWeights.get().getRandomFactorMod();
+	}
+
+	private double trainingScore() {
+		return training * RaceWeights.get().getTrainingLevelMod();
+	}
+
+	private double fitnessScore() {
+		return fitness * RaceWeights.get().getFitnessLevelMod();
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -55,6 +72,11 @@ public class Horse extends Model {
 		return name;
 	}
 
+	public Set<Race> getPastEnteredRaces() {
+		List<Race> races = Race.find("select race from Race race join race.horses horse where horse = ? and startTime < ?", this, new Date()).<Race> fetch();
+		return Sets.newHashSet(races);
+	}
+
 	public int getFitness() {
 		return fitness;
 	}
@@ -70,5 +92,5 @@ public class Horse extends Model {
 	public void setTraining(int training) {
 		this.training = training;
 	}
-	
+
 }

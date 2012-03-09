@@ -24,6 +24,21 @@ public class RaceTest {
 	}
 	
 	@Test
+	public void hasRunShouldReturnTrueIfWinnerDetermined() {
+		Race race = new RaceBuilder()
+			.withStarted()
+			.build();
+		
+		assertThat(race.hasRun()).isTrue();
+	}
+	
+	@Test
+	public void hasRunShouldReturnFalseIfNoWinnerYet() {
+		Race race = new RaceBuilder().build();
+		assertThat(race.hasRun()).isFalse();
+	}
+	
+	@Test
 	public void shouldBeAbleToDetermineAvailableSlots_whenNoHorsesEnteredTheRace() {
 		int availableSlots = race.getAvailableSlots();
 		

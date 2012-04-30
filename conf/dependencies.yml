@@ -2,7 +2,15 @@
 
 require:
     - play
+    - play -> securesocial 0.2.4
+    - litmus -> litmus
     - org.easytesting -> fest-assert 1.4
-    - play -> securesocial 0.2.4    
     - com.google.guava -> guava 11.0.2
     - org.powermock -> powermock-module-junit4 1.4.11
+
+
+repositories:
+    - bverbeken.github.com:
+        type:       http
+        artifact:   "http://bverbeken.github.com/modules/[module].zip"
+        contains:   litmus

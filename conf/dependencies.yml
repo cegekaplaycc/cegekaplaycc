@@ -1,16 +1,16 @@
-# Application dependencies
-
 require:
     - play
     - play -> securesocial 0.2.4
-    - litmus -> litmus
+    - be.ostia -> litmus 0.1
     - org.easytesting -> fest-assert 1.4
     - com.google.guava -> guava 11.0.2
     - org.powermock -> powermock-module-junit4 1.4.11
 
 
 repositories:
-    - bverbeken.github.com:
+
+    - bverbeken:
         type:       http
-        artifact:   "http://bverbeken.github.com/modules/[module].zip"
-        contains:   litmus
+        artifact:   "http://bverbeken.github.com/modules/[module]-[revision].zip"
+        contains:   
+            - be.ostia -> *

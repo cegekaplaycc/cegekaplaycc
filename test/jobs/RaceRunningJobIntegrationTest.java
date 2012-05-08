@@ -1,23 +1,17 @@
 package jobs;
 
-import static org.joda.time.DateTimeUtils.setCurrentMillisFixed;
-import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
+import assertion.PlayAssertions;
+import models.*;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import play.db.jpa.JPA;
 
 import java.util.Date;
 import java.util.List;
 
-import models.Horse;
-import models.HorseBuilder;
-import models.IntegrationTestCase;
-import models.Race;
-import models.RaceBuilder;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import play.db.jpa.JPA;
-import assertion.PlayAssertions;
+import static org.joda.time.DateTimeUtils.setCurrentMillisFixed;
+import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
 
 public class RaceRunningJobIntegrationTest extends IntegrationTestCase {
 
@@ -54,7 +48,7 @@ public class RaceRunningJobIntegrationTest extends IntegrationTestCase {
 
 	@Test
 	public void doJobDoesNotStartFutureRaces() {
-		Race race = new RaceBuilder().persist();
+		Race race = new RaceBuilder().withStartTimeInFuture().persist();
 		doJob();
 		Race refreshedRace = Race.findById(race.getId());
 		PlayAssertions.assertThat(refreshedRace).hasNotBeenStarted();

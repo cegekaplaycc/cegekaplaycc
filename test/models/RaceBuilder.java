@@ -1,12 +1,11 @@
 package models;
 
-import java.util.Date;
-import java.util.Set;
-
+import com.google.common.collect.Sets;
 import org.joda.time.DateTime;
 import org.powermock.reflect.Whitebox;
 
-import com.google.common.collect.Sets;
+import java.util.Date;
+import java.util.Set;
 
 public class RaceBuilder {
 
@@ -70,8 +69,12 @@ public class RaceBuilder {
 		return this;
 	}
 
-	public RaceBuilder withStartTimeInPast() {
-		return withStartTime(new DateTime().minusMinutes(15).toDate());
-	}
+    public RaceBuilder withStartTimeInPast() {
+        return withStartTime(new DateTime().minusMinutes(15).toDate());
+    }
+
+    public RaceBuilder withStartTimeInFuture() {
+        return withStartTime(new DateTime().plusMinutes(15).toDate());
+    }
 
 }

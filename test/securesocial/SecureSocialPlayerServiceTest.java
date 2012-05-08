@@ -1,23 +1,23 @@
 package securesocial;
 
-import static models.PlayerTestBuilder.aPlayer;
-import static securesocial.provider.ProviderType.facebook;
-
-import java.util.List;
-
+import models.HorseNamePrefix;
+import models.HorseNameSuffix;
 import models.Player;
-
+import models.PlayerTestBuilder;
+import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-
 import play.db.jpa.JPA;
 import play.test.Fixtures;
 import play.test.UnitTest;
-import securesocial.CustomSecureSocialPlayerService;
-import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
+
+import java.util.List;
+
+import static models.PlayerTestBuilder.aPlayer;
+import static securesocial.provider.ProviderType.facebook;
 
 public class SecureSocialPlayerServiceTest extends UnitTest {
 
@@ -67,21 +67,20 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void save_PlayerDoesNotExist_PlayerSaved() {
-		Player player = aPlayer().build();
+        new HorseNamePrefix("Windy").save();
+        new HorseNameSuffix("Winder").save();
+		Player player = new PlayerTestBuilder().build();
 		SocialUser socialUser = SocialUserFactory.create(player);
 		UserId userId = socialUser.id;
 
-		List<Player> players = Player.find("byUserIdAndProviderType",
-				userId.id, userId.provider).fetch();
-		assertTrue(players.isEmpty());
+        Assertions.assertThat(Player.findAll()).isEmpty();
 
 		service.save(socialUser);
 
 		JPA.em().flush();
 		JPA.em().clear();
 
-		players = Player.find("byUserIdAndProviderType", userId.id,
-				userId.provider).fetch();
+		List<Player> players = Player.find("byUserIdAndProviderType", userId.id, userId.provider).fetch();
 		assertEquals(1, players.size());
 	}
 

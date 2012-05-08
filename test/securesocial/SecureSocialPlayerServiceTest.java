@@ -3,7 +3,7 @@ package securesocial;
 import models.HorseNamePrefix;
 import models.HorseNameSuffix;
 import models.Player;
-import models.PlayerTestBuilder;
+import models.PlayerBuilder;
 import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import securesocial.provider.UserId;
 
 import java.util.List;
 
-import static models.PlayerTestBuilder.aPlayer;
+import static models.PlayerBuilder.aPlayer;
 import static securesocial.provider.ProviderType.facebook;
 
 public class SecureSocialPlayerServiceTest extends UnitTest {
@@ -33,8 +33,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void find_PlayerFound_ReturnPlayer() {
 		String id = "myUserId";
 		ProviderType providerType = facebook;
-		aPlayer().withUserId(id).withProviderType(providerType)
-				.buildAndPersist();
+		aPlayer().withUserId(id).withProviderType(providerType).build().save();
 
 		UserId userId = new UserId();
 		userId.id = id;
@@ -50,8 +49,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void find_PlayerNotFound_ReturnNull() {
-		aPlayer().withUserId("myUserId").withProviderType(facebook)
-				.buildAndPersist();
+		aPlayer().withUserId("myUserId").withProviderType(facebook).build().save();
 
 		UserId userId = new UserId();
 		userId.id = "myOtherUserId";
@@ -69,7 +67,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void save_PlayerDoesNotExist_PlayerSaved() {
         new HorseNamePrefix("Windy").save();
         new HorseNameSuffix("Winder").save();
-		Player player = new PlayerTestBuilder().build();
+		Player player = new PlayerBuilder().build();
 		SocialUser socialUser = SocialUserFactory.create(player);
 		UserId userId = socialUser.id;
 
@@ -86,7 +84,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void save_PlayerDoesExist_PlayerNotSavedAgain() {
-		Player player = aPlayer().buildAndPersist();
+		Player player = aPlayer().build().save();
 		SocialUser socialUser = SocialUserFactory.create(player);
 		UserId userId = socialUser.id;
 
@@ -106,7 +104,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void createActivation_FindsPlayerAndAddsUUID_ReturnsUUID() {
-		Player player = aPlayer().buildAndPersist();
+		Player player = aPlayer().build().save();
 		SocialUser socialUser = SocialUserFactory.create(player);
 
 		String UUID = service.createActivation(socialUser);
@@ -124,7 +122,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void activate_FindsPlayerWithUUIDSetsEmailVerifiedTrue_ReturnsTrue() {
 		String uuid = "myUUID";
 		Player player = aPlayer().withEmailVerified(false).withUUID(uuid)
-				.buildAndPersist();
+				.build().save();
 
 		assertFalse(player.isEmailVerified);
 		assertTrue(service.activate(uuid));
@@ -145,11 +143,11 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void deletePendingActivations_DeletesAllPlayersWhereUUIDNotIsNull() {
-		aPlayer().withUUID("UUID").buildAndPersist();
-		aPlayer().withUUID("UUID").buildAndPersist();
-		aPlayer().withUUID("UUID").buildAndPersist();
-		aPlayer().withUUID("UUID").buildAndPersist();
-		aPlayer().withUUID("UUID").buildAndPersist();
+		aPlayer().withUUID("UUID1").build().save();
+		aPlayer().withUUID("UUID2").build().save();
+		aPlayer().withUUID("UUID3").build().save();
+		aPlayer().withUUID("UUID4").build().save();
+		aPlayer().withUUID("UUID5").build().save();
 
 		service.deletePendingActivations();
 

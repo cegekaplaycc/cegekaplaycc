@@ -1,27 +1,14 @@
 package models;
 
-import static models.PlayerTestBuilder.PLAYER_ACCESS_TOKEN;
-import static models.PlayerTestBuilder.PLAYER_AUTH_METHOD;
-import static models.PlayerTestBuilder.PLAYER_AVATAR_URL;
-import static models.PlayerTestBuilder.PLAYER_DISPLAY_NAME;
-import static models.PlayerTestBuilder.PLAYER_EMAIL;
-import static models.PlayerTestBuilder.PLAYER_EMAIL_VERIFIED;
-import static models.PlayerTestBuilder.PLAYER_LAST_ACCESS;
-import static models.PlayerTestBuilder.PLAYER_PASSWORD;
-import static models.PlayerTestBuilder.PLAYER_SECRET;
-import static models.PlayerTestBuilder.PLAYER_TOKEN;
-import static models.PlayerTestBuilder.PLAYER_USER_ID;
-import static models.PlayerTestBuilder.PLAYER_USER_PROVIDER_TYPE;
-import static models.PlayerTestBuilder.aPlayer;
-
 import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
-
 import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
+
+import static models.PlayerBuilder.*;
 
 public class PlayerTest extends IntegrationTestCase {
 
@@ -35,7 +22,7 @@ public class PlayerTest extends IntegrationTestCase {
 	public void createANewPlayer_DisplayNameAndUserIdAndProviderTypeRequired() {
 		String expectedDisplayName = "myPlayersDisplayName";
 
-		aPlayer().withDisplayName(expectedDisplayName).buildAndPersist();
+		aPlayer().withDisplayName(expectedDisplayName).build().validateAndSave();
 
 		Player actualPlayer = Player.find("byDisplayName", expectedDisplayName)
 				.first();
@@ -84,8 +71,7 @@ public class PlayerTest extends IntegrationTestCase {
 		String id = "myUserId";
 		ProviderType providerType = ProviderType.twitter;
 
-		aPlayer().withUserId(id).withProviderType(providerType)
-				.buildAndPersist();
+		aPlayer().withUserId(id).withProviderType(providerType).build().validateAndSave();
 
 		UserId userId = new UserId();
 		userId.id = id;
@@ -103,8 +89,7 @@ public class PlayerTest extends IntegrationTestCase {
 	public void findByUserId_UserIdNotFound_ReturnsNull() {
 		ProviderType providerType = ProviderType.twitter;
 
-		aPlayer().withUserId("myUserId").withProviderType(providerType)
-				.buildAndPersist();
+		aPlayer().withUserId("myUserId").withProviderType(providerType).build().validateAndSave();
 
 		UserId userId = new UserId();
 		userId.id = "myOtherUserId";
@@ -118,8 +103,7 @@ public class PlayerTest extends IntegrationTestCase {
 	@Test
 	public void findByUserId_ProviderTypeNotFound_ReturnsNull() {
 		String id = "myUserId";
-		aPlayer().withUserId(id).withProviderType(ProviderType.twitter)
-				.buildAndPersist();
+		aPlayer().withUserId(id).withProviderType(ProviderType.twitter).build().validateAndSave();
 
 		UserId userId = new UserId();
 		userId.id = id;
@@ -132,8 +116,7 @@ public class PlayerTest extends IntegrationTestCase {
 
 	@Test
 	public void findByUserId_UserIdAndProviderTypeNotFound_ReturnsNull() {
-		aPlayer().withUserId("myUserId").withProviderType(ProviderType.twitter)
-				.buildAndPersist();
+		aPlayer().withUserId("myUserId").withProviderType(ProviderType.twitter).build().validateAndSave();
 
 		UserId userId = new UserId();
 		userId.id = "myOtherUserId";

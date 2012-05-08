@@ -5,7 +5,6 @@ import org.junit.Test;
 
 public class HomePageTest extends FunctionalTest {
 
-
     @Test
     public void homepageIsAccessible(){
         assertThat(get("/")).isHtml().isOk();

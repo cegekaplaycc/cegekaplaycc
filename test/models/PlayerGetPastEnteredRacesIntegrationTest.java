@@ -1,7 +1,5 @@
 package models;
 
-import java.util.Set;
-
 import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.junit.Test;

@@ -1,21 +1,18 @@
 package models;
 
-import static org.apache.commons.lang.builder.ToStringStyle.SIMPLE_STYLE;
-
-import java.util.List;
+import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import java.util.List;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-
-import play.db.jpa.JPABase;
-import play.db.jpa.Model;
+import static org.apache.commons.lang.builder.EqualsBuilder.reflectionEquals;
+import static org.apache.commons.lang.builder.HashCodeBuilder.reflectionHashCode;
+import static org.apache.commons.lang.builder.ToStringBuilder.reflectionToString;
+import static org.apache.commons.lang.builder.ToStringStyle.SIMPLE_STYLE;
 
 @Entity
 public class RaceWeights extends Model {
+
 	private final double trainingLevelMod;
 	private final double fitnessLevelMod;
 	private final double randomFactorMod;
@@ -50,17 +47,17 @@ public class RaceWeights extends Model {
 
 	@Override
 	public boolean equals(Object other) {
-		return EqualsBuilder.reflectionEquals(this, other);
+		return reflectionEquals(this, other);
 	}
 
 	@Override
 	public int hashCode() {
-		return HashCodeBuilder.reflectionHashCode(this);
+		return reflectionHashCode(this);
 	}
 
 	@Override
 	public String toString() {
-		return ReflectionToStringBuilder.toString(this, SIMPLE_STYLE);
+		return reflectionToString(this, SIMPLE_STYLE);
 	}
 
 	public double getTrainingLevelMod() {

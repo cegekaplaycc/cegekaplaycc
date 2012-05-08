@@ -16,11 +16,9 @@ public class RandomHorsesBreeder {
 		List<HorseNameSuffix> horseSuffixes = HorseNameSuffix.findAll();
 
 		Random random = new Random(new Date().getTime());
-        System.out.println("horsePrefixes = " + horsePrefixes);
 		int randomPrefix = random.nextInt(horsePrefixes.size());
 		int randomSuffix = random.nextInt(horseSuffixes.size());
-		Horse horse = new Horse(horsePrefixes.get(randomPrefix).prefix + " "
-				+ horseSuffixes.get(randomSuffix).suffix, random.nextInt(2000));
+		Horse horse = new Horse(horsePrefixes.get(randomPrefix).prefix + " " + horseSuffixes.get(randomSuffix).suffix, random.nextInt(2000));
 
 		long horseCount = Horse.count("byName", horse.getName());
 		if (horseCount > 0) {

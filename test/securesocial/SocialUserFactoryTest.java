@@ -1,18 +1,18 @@
 package securesocial;
 
-import static models.PlayerTestBuilder.PLAYER_ACCESS_TOKEN;
-import static models.PlayerTestBuilder.PLAYER_AUTH_METHOD;
-import static models.PlayerTestBuilder.PLAYER_AVATAR_URL;
-import static models.PlayerTestBuilder.PLAYER_DISPLAY_NAME;
-import static models.PlayerTestBuilder.PLAYER_EMAIL;
-import static models.PlayerTestBuilder.PLAYER_EMAIL_VERIFIED;
-import static models.PlayerTestBuilder.PLAYER_LAST_ACCESS;
-import static models.PlayerTestBuilder.PLAYER_PASSWORD;
-import static models.PlayerTestBuilder.PLAYER_SECRET;
-import static models.PlayerTestBuilder.PLAYER_TOKEN;
-import static models.PlayerTestBuilder.PLAYER_USER_ID;
-import static models.PlayerTestBuilder.PLAYER_USER_PROVIDER_TYPE;
-import static models.PlayerTestBuilder.aPlayer;
+import static models.PlayerBuilder.PLAYER_ACCESS_TOKEN;
+import static models.PlayerBuilder.PLAYER_AUTH_METHOD;
+import static models.PlayerBuilder.PLAYER_AVATAR_URL;
+import static models.PlayerBuilder.PLAYER_DISPLAY_NAME;
+import static models.PlayerBuilder.PLAYER_EMAIL;
+import static models.PlayerBuilder.PLAYER_EMAIL_VERIFIED;
+import static models.PlayerBuilder.PLAYER_LAST_ACCESS;
+import static models.PlayerBuilder.PLAYER_PASSWORD;
+import static models.PlayerBuilder.PLAYER_SECRET;
+import static models.PlayerBuilder.PLAYER_TOKEN;
+import static models.PlayerBuilder.PLAYER_USER_ID;
+import static models.PlayerBuilder.PLAYER_USER_PROVIDER_TYPE;
+import static models.PlayerBuilder.aPlayer;
 import static org.junit.Assert.assertEquals;
 import static securesocial.SocialUserFactory.create;
 

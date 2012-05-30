@@ -1,0 +1,116 @@
+#{extends 'main.html'/}
+
+<div class="page-header">
+    <h1>
+        Welcome, Horserider 485
+        <small>You have 2600 $ cash</small>
+    </h1>
+
+</div>
+
+
+<div class="row">
+    <div class="span6">
+        <h2>My Stable</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Box</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>Alberton Star</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jack The Jumper</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Empty! <a href="@{Mockups.showMockup('horseMarket')}">Buy a horse</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="#">Build a new box</a>
+    </div>
+
+    <div class="span6">
+        <h2>Supplies in Stock</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Power biscuits</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>Hay</td>
+                <td>10</td>
+            </tr>
+            </tbody>
+        </table>
+        <a href="@{Mockups.showMockup('buySupplies')}">Buy more supplies</a>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="span6">
+        <h2>Recent Races</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Horse</th>
+                <th>Result</th>
+                <th>Money Won</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>03/02/2012</td>
+                <td>Jack The Jumper</td>
+                <td>2nd</td>
+                <td>100 $</td>
+            </tr>
+            <tr>
+                <td>02/02/2012</td>
+                <td>Jack The Jumper</td>
+                <td>1st</td>
+                <td>300 $</td>
+            </tr>
+            <tr>
+                <td>01/02/2012</td>
+                <td>Alberton Star</td>
+                <td>9th</td>
+                <td>-</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="span6">
+        <h2>Upcoming Races</h2>
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Horse</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>22/03/2012</td>
+                <td>Jack The Jumper</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

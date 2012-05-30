@@ -6,6 +6,9 @@
 *       /auth       							module:securesocial
 *       /                                       module:litmus
 
+# mockups
+GET     /mockups/{mockup}                       Mockups.showMockup(mockup)
+
 # Home page
 GET     /                                       Application.index
 GET     /horse                                  Horses.blank

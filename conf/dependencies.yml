@@ -1,10 +1,14 @@
 require:
     - play
-    - play -> securesocial 0.2.4
-    - be.ostia -> litmus 0.1
-    - org.easytesting -> fest-assert 1.4
-    - com.google.guava -> guava 11.0.2
-    - org.powermock -> powermock-module-junit4 1.4.11
+    - play                      -> securesocial 0.2.4
+    - litmus                    -> litmus 0.2-SNAPSHOT
+    - org.powermock             -> powermock-module-junit4 1.4.11
+    # transitive dependencies for litmus (see https://play.lighthouseapp.com/projects/57987-play-framework/tickets/1108-transitive-dependencies-not-work-with-modules-from-non-default-repository)
+    - org.easytesting           -> fest-assert     1.4
+    - org.jsoup                 -> jsoup           1.6.1
+    - org.seleniumhq.selenium   -> selenium-java   2.21.0
+    - com.google.guava          -> guava 11.0.2
+
 
 
 repositories:
@@ -13,4 +17,4 @@ repositories:
         type:       http
         artifact:   "http://bverbeken.github.com/modules/[module]-[revision].zip"
         contains:   
-            - be.ostia -> *
+            - litmus -> *

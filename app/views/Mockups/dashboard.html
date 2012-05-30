@@ -34,7 +34,7 @@
             </tr>
             </tbody>
         </table>
-        <a href="#">Build a new box</a>
+        <a data-toggle="modal" href="#buildANewBoxModal" >Build a new box</a>
     </div>
 
     <div class="span6">
@@ -112,5 +112,23 @@
             </tr>
             </tbody>
         </table>
+    </div>
+</div>
+
+
+<div class="modal hide fade" id="buildANewBoxModal">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal">×</button>
+        <h3>Build a new box?</h3>
+    </div>
+    <div class="modal-body">
+        <p>
+            Are you sure you want to build a new box? <br/>
+            This will cost you 300 $ to build and 30 $ maintenance costs per week!
+        </p>
+    </div>
+    <div class="modal-footer">
+        <a class="btn" data-dismiss="modal">No, thanks ...</a>
+        <a href="@{Mockups.showMockup('dashboard')}" class="btn btn-primary">Yes, build me a box!</a>
     </div>
 </div>

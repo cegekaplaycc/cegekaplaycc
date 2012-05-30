@@ -1,5 +1,6 @@
 package securesocial;
 
+import litmus.unit.UnitTest;
 import models.HorseNamePrefix;
 import models.HorseNameSuffix;
 import models.Player;
@@ -9,7 +10,6 @@ import org.junit.Before;
 import org.junit.Test;
 import play.db.jpa.JPA;
 import play.test.Fixtures;
-import play.test.UnitTest;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;

@@ -3,7 +3,7 @@ package models;
 import org.fest.assertions.Assertions;
 import org.junit.Test;
 
-public class JockeyIntegrationTest extends IntegrationTestCase {
+public class JockeyIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void jockeyCanBePersisted() {

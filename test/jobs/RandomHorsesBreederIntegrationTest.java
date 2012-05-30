@@ -1,16 +1,13 @@
 package jobs;
 
-import models.Horse;
-import models.HorseBuilder;
-import models.HorseNamePrefix;
-import models.HorseNameSuffix;
-import models.IntegrationTestCase;
+import models.*;
+import models.IntegrationTest;
 
 import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-public class RandomHorsesBreederIntegrationTest extends IntegrationTestCase {
+public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 
 	@Before
 	public void setUp() {

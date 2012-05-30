@@ -1,13 +1,9 @@
 package models;
 
-import java.util.List;
-
 import org.fest.assertions.Assertions;
 import org.junit.Test;
 
-import play.db.jpa.JPA;
-
-public class HorseIntegrationTest extends IntegrationTestCase {
+public class HorseIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void canBePersisted() {

@@ -13,7 +13,7 @@ import java.util.List;
 import static org.joda.time.DateTimeUtils.setCurrentMillisFixed;
 import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
 
-public class RaceRunningJobIntegrationTest extends IntegrationTestCase {
+public class RaceRunningJobIntegrationTest extends IntegrationTest {
 
 	@Before
 	public void freezeTime() {

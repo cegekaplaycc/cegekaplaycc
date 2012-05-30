@@ -1,18 +1,12 @@
 package models;
 
-import static org.fest.assertions.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-
+import litmus.unit.UnitTest;
 import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import play.test.UnitTest;
 
 public class RaceFactoryTest extends UnitTest {
 	

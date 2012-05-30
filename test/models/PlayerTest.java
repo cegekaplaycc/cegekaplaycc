@@ -10,7 +10,7 @@ import securesocial.provider.UserId;
 
 import static models.PlayerBuilder.*;
 
-public class PlayerTest extends IntegrationTestCase {
+public class PlayerTest extends IntegrationTest {
 
 	@Before
 	public void initHorseNames() {

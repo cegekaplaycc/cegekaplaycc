@@ -1,13 +1,10 @@
 package models;
 
-import org.junit.Test;
-
 import assertion.PlayAssertions;
-
+import org.junit.Test;
 import play.db.jpa.JPA;
-import play.test.UnitTest;
 
-public class RaceWeightsIntegrationTest extends UnitTest {
+public class RaceWeightsIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void getAutoSetsDefaultValuesInDB() {

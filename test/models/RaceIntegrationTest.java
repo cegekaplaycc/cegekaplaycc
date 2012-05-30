@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class RaceIntegrationTest extends IntegrationTestCase {
+public class RaceIntegrationTest extends IntegrationTest {
 
     @Test
     public void canBePersisted() {

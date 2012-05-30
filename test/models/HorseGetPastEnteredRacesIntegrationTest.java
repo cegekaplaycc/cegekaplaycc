@@ -4,7 +4,7 @@ import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
-public class HorseGetPastEnteredRacesIntegrationTest extends IntegrationTestCase {
+public class HorseGetPastEnteredRacesIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void getPastEnteredRaces_ReturnsEmptySetWhenNoRacesEntered() {

@@ -1,14 +1,10 @@
 package models;
 
-import static org.fest.assertions.Assertions.assertThat;
-
+import assertion.PlayAssertions;
+import litmus.unit.UnitTest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import assertion.PlayAssertions;
-
-import play.test.UnitTest;
 
 public class RacesCalculateWinnerTest extends UnitTest {
 

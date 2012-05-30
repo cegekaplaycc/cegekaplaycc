@@ -1,10 +1,9 @@
 package models;
 
+import litmus.unit.UnitTest;
 import org.fest.assertions.Assertions;
 import org.junit.After;
 import org.junit.Test;
-
-import play.test.UnitTest;
 
 public class HorseTest extends UnitTest {
 

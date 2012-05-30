@@ -4,6 +4,7 @@
 
 # Authentication
 *       /auth       							module:securesocial
+*       /                                       module:litmus
 
 # Home page
 GET     /                                       Application.index

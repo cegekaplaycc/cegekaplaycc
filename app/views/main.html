@@ -42,7 +42,7 @@
 		<div class="navbar navbar-fixed-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="#">Hold your Horses <sup><span class="label label-warning">beta</span></sup></a>
+					<a class="brand" href="@{Application.index()}">Hold your Horses <sup><span class="label label-warning">beta</span></sup></a>
 					<div class="nav-collapse">
 					#{if user != null }
 	                    <p class="navbar-text pull-right">Logged in as ${user.displayName}</p>
@@ -58,9 +58,9 @@
 		</div>
 		<div class="container">
 			#{doLayout /}
-			<hr />
 			<footer>
-			<p>&copy; Cegeka 2012</p>
+                <hr />
+                <p>&copy; Cegeka 2012</p>
 			</footer>
 		</div>
 	</body>

@@ -7,7 +7,7 @@
 *       /                                       module:litmus
 
 # mockups
-GET     /mockups/{mockup}                       Mockups.showMockup(mockup)
+GET     /mockups/{mockup}                       Mockups.showMockup
 
 # Home page
 GET     /                                       Application.index

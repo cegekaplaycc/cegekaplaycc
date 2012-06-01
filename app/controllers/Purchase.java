@@ -1,8 +1,10 @@
 package controllers;
 
+import models.stock.Food;
+
 public class Purchase {
 
-	public String foodId;
+	public Food foodId;
 	public String amount;
 	
 }

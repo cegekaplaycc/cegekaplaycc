@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
@@ -16,17 +17,17 @@ import play.db.jpa.Model;
 @Entity
 public class Stock extends Model {
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	public Collection<StockItem> items = new ArrayList<StockItem>();
 	
 	public void add(Food supply) {
 		add(supply, 1);
 	}
 
-	public void add(Food supply, int amount) {
-		StockItem stockItemForSupply = getStockItemForSupply(supply);
+	public void add(Food food, int amount) {
+		StockItem stockItemForSupply = getStockItemForSupply(food);
 		if(stockItemForSupply == null) {
-			items.add(new StockItem(supply, amount));
+			items.add(new StockItem(food, amount));
 		} else {
 			stockItemForSupply.amount += amount;
 		}
@@ -42,8 +43,10 @@ public class Stock extends Model {
 	}
 
 	public void buy(List<Purchase> purchases) {
-		for (Purchase purchase : purchases) {
-//			add(purchase.foodId, purchase.amount);
+		for(Purchase purchase : purchases) {
+			if(purchase != null) {
+				add(purchase.foodId, Integer.parseInt(purchase.amount));
+			}
 		}
 	}
 }

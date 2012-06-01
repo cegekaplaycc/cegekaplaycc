@@ -5,10 +5,10 @@ public enum Food {
 	CARROTS("Carrots", 6),
 	HAY("Hay", 0);
 
-	public long price;
+	public int price;
 	public String name;
 
-	private Food(String name, long price) {
+	private Food(String name, int price) {
 		this.name = name;
 		this.price = price;
 	}

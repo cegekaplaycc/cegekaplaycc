@@ -3,6 +3,8 @@ package models;
 import java.util.Arrays;
 import java.util.List;
 
+import models.stock.Food;
+
 import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
@@ -166,11 +168,22 @@ public class PlayerTest extends IntegrationTest {
     public void buyShouldAddItemsToTheStock() {
     	Player player = new Player();
     	List<Purchase> purchases = Arrays.asList(
-    			new PurchaseBuilder().withAmount("14").withFoodId("4").build());
+    			new PurchaseBuilder().withAmount("14").withFood(Food.CARROTS).build());
 		
 		player.buy(purchases);
 		
 		assertThat(player.stock.items).hasSize(1);
 		assertThat(player.stock.items.iterator().next().amount).isEqualTo(14);
+    }
+
+    @Test
+    public void buyShouldLowerCash() {
+    	Player player = new Player();
+    	List<Purchase> purchases = Arrays.asList(
+    			new PurchaseBuilder().withAmount("5").withFood(Food.CARROTS).build());
+    	
+    	player.buy(purchases);
+    	
+    	assertThat(player.cash).isEqualTo(70);
     }
 }

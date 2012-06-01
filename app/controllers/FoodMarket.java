@@ -13,14 +13,14 @@ import controllers.securesocial.SecureSocial;
 @With(SecureSocial.class)
 public class FoodMarket extends Controller {
 
-	public static void buyFood() {
+	public static void foodMarket() {
 		List<Food> food = Lists.newArrayList(Food.values());
-
 		render(food);
 	}
 
 	public static void buy(List<Purchase> purchases) {
-		
+		PlayerUtil.getCurrentPlayer(renderArgs).buy(purchases);
+		Dashboard.dashboard();
 	}
 
 }

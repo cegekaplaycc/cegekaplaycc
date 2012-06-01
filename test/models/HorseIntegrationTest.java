@@ -26,6 +26,6 @@ public class HorseIntegrationTest extends IntegrationTest {
 		Assertions.assertThat(refreshedHorse.getPrice()).isEqualTo(28);
 		Assertions.assertThat(refreshedHorse.getTraining()).isEqualTo(21);
 		Assertions.assertThat(refreshedHorse.food.name).isEqualTo("Power biscuits");
-		Assertions.assertThat(refreshedHorse.food.price).isEqualTo(12L);
+		Assertions.assertThat(refreshedHorse.food.price).isEqualTo(12);
 	}
 }

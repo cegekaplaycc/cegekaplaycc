@@ -112,5 +112,17 @@ public class Player extends Model {
     
     public void buy(List<Purchase> purchases) {
     	stock.buy(purchases);
+    	payPurchases(purchases);
+    	this.save();
     }
+
+	private void payPurchases(List<Purchase> purchases) {
+		int amountToBePaid = 0;
+    	for (Purchase purchase : purchases) {
+    		if(purchase != null) {
+    			amountToBePaid+= Integer.parseInt(purchase.amount)*purchase.foodId.price;
+    		}
+		}
+    	cash = cash - amountToBePaid;
+	}
 }

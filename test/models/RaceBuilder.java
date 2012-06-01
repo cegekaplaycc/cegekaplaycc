@@ -13,7 +13,7 @@ public class RaceBuilder {
 	private Set<Horse> horses = Sets.newHashSet();
 	private Horse winningHorse;
 	private String name = "race name";
-	private Date startTime;
+	private Date startTime = new Date();
 
 	public Race build() {
 		Race race = new Race();

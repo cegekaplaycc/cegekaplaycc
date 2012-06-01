@@ -17,6 +17,7 @@ public class FoodMarket extends Controller {
 	}
 	
 	public static void buy(List<Purchase> purchases) {
+		
 	}
 	
 }

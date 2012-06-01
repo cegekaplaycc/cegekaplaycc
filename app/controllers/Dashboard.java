@@ -15,7 +15,7 @@ import static models.Race.findUpcomingRaces;
 public class Dashboard extends Controller {
 
 	public static void dashboard() {
-        Player player = Player.findByUserId(((SocialUser) renderArgs.get("user")).id);
+        Player player = PlayerUtil.getCurrentPlayer(renderArgs);
         List<Race> upcomingRaces = findUpcomingRaces(3);
 		render(player, upcomingRaces);
 	}

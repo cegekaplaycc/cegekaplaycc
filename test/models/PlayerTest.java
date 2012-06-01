@@ -1,8 +1,14 @@
 package models;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+
+import controllers.Purchase;
+import controllers.PurchaseBuilder;
 import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
@@ -154,5 +160,17 @@ public class PlayerTest extends IntegrationTest {
         Player actualPlayer = Player.create(socialUser);
 
         Assertions.assertThat(actualPlayer.getHorses()).hasSize(1);
+    }
+    
+    @Test
+    public void buyShouldAddItemsToTheStock() {
+    	Player player = new Player();
+    	List<Purchase> purchases = Arrays.asList(
+    			new PurchaseBuilder().withAmount("14").withFoodId("4").build());
+		
+		player.buy(purchases);
+		
+		assertThat(player.stock.items).hasSize(1);
+		assertThat(player.stock.items.iterator().next().amount).isEqualTo(14);
     }
 }

@@ -1,0 +1,30 @@
+package jobs;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import models.HorseNamePrefix;
+import models.HorseNameSuffix;
+import models.stock.Food;
+import play.jobs.Job;
+import play.jobs.OnApplicationStart;
+
+@OnApplicationStart
+public class SuppliesBootstrapper extends Job {
+
+	@Override
+	public void doJob() {
+<<<<<<< HEAD
+		Supply.deleteAll();
+		new Supply("Power biscuits", 12).save();
+		new Supply("Hay", 5).save();
+		new Supply("Carrots", 6).save();
+=======
+		new Food("Power biscuits", 12).save();
+		new Food("Hay", 5).save();
+		new Food("Carrots", 6).save();
+>>>>>>> 5d2488555b5090ae5c80a8ae33a37c4dead7a58a
+	}
+
+}

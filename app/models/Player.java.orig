@@ -1,5 +1,22 @@
 package models;
 
+<<<<<<< HEAD
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import models.stock.Stock;
+
+=======
+import com.google.common.collect.Sets;
+>>>>>>> 5d2488555b5090ae5c80a8ae33a37c4dead7a58a
+import jobs.RandomHorsesBreeder;
 import models.stock.Stock;
 import play.data.validation.Email;
 import play.data.validation.Required;
@@ -10,18 +27,8 @@ import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
 import javax.persistence.*;
-
-import org.apache.commons.lang.NotImplementedException;
-
-import com.google.common.collect.Sets;
-
-import controllers.Purchase;
-
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
-
-import jobs.RandomHorsesBreeder;
 
 @Entity
 public class Player extends Model {
@@ -59,13 +66,21 @@ public class Player extends Model {
 
     public boolean isEmailVerified;
 
+    public String UUID;
 
     public int cash = 100;
 
-    @OneToOne(cascade=CascadeType.PERSIST)
-	public Stock stock = new Stock();
-
+<<<<<<< HEAD
 	public String UUID;
+	
+	public int cash = 100;
+	
+	@OneToOne(cascade=CascadeType.PERSIST)
+	public Stock stock = new Stock();
+=======
+    @OneToOne
+    public Stock stock;
+>>>>>>> 5d2488555b5090ae5c80a8ae33a37c4dead7a58a
 
     public static Player findByUserId(UserId userId) {
         return find("byUserIdAndProviderType", userId.id, userId.provider)
@@ -109,8 +124,5 @@ public class Player extends Model {
         }
         return races;
     }
-    
-    public void buy(List<Purchase> purchases) {
-    	stock.buy(purchases);
-    }
+
 }

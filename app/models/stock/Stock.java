@@ -2,11 +2,14 @@ package models.stock;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import org.apache.commons.lang.NotImplementedException;
+
+import controllers.Purchase;
 
 import play.db.jpa.Model;
 
@@ -36,5 +39,11 @@ public class Stock extends Model {
 			}
 		}
 		return null;
+	}
+
+	public void buy(List<Purchase> purchases) {
+		for (Purchase purchase : purchases) {
+//			add(purchase.foodId, purchase.amount);
+		}
 	}
 }

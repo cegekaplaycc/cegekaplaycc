@@ -56,6 +56,8 @@ public class Player extends Model {
 	public boolean isEmailVerified;
 
 	public String UUID;
+	
+	public int cash = 100;
 
 	public static Player findByUserId(UserId userId) {
 		return find("byUserIdAndProviderType", userId.id, userId.provider)

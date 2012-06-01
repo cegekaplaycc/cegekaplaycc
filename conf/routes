@@ -12,6 +12,7 @@ GET     /mockups/{mockup}                       Mockups.showMockup
 # Home page
 GET     /                                       Application.index
 GET		/dashboard								Dashboard.dashboard
+GET		/buySupplies							Supplies.index
 
 
 GET     /old/horse                                  Horses.blank

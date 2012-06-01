@@ -13,6 +13,15 @@ public class Supply extends Model {
 	public String name;
 	public long price;
 	
+	public Supply() {
+		super();
+	}
+	
+	public Supply(String name, long price) {
+		this.name = name;
+		this.price = price;
+	}
+
 	@Override
 	public boolean equals(Object other) {
 		return new EqualsBuilder()

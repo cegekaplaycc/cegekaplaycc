@@ -6,7 +6,7 @@ import java.util.List;
 
 import models.HorseNamePrefix;
 import models.HorseNameSuffix;
-import models.stock.Supply;
+import models.stock.Food;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 
@@ -15,9 +15,9 @@ public class SuppliesBootstrapper extends Job {
 
 	@Override
 	public void doJob() {
-		new Supply("Power biscuits", 12).save();
-		new Supply("Hay", 5).save();
-		new Supply("Carrots", 6).save();
+		new Food("Power biscuits", 12).save();
+		new Food("Hay", 5).save();
+		new Food("Carrots", 6).save();
 	}
 
 }

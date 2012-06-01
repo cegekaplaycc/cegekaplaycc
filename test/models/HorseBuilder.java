@@ -1,8 +1,10 @@
 package models;
 
 import models.randomizer.RandomizerProvider;
+import models.stock.Food;
+import util.AbstractBuilder;
 
-public class HorseBuilder {
+public class HorseBuilder extends AbstractBuilder<Horse> {
 
 	private static final int DEFAULT_TRAINING = 20;
 	private static final int DEFAULT_FITNESS = 20;
@@ -13,12 +15,14 @@ public class HorseBuilder {
 	private long price = 28;
 	private Integer randomFactorForScoring;
 	private Long id;
+	private Food food;
 
 	public Horse build() {
 		Horse horse = createHorse();
 		horse.setFitness(fitness);
 		horse.setTraining(training);
 		horse.id = id;
+		horse.food = food;
 		return horse;
 	}
 
@@ -31,7 +35,7 @@ public class HorseBuilder {
 	private void setRandomFactorForScoringIfNeeded(Horse horse) {
 		if (randomFactorForScoring != null) {
 			horse.randomizerProvider = new RandomizerProvider() {
-				
+
 				@Override
 				public int get(int max) {
 					return randomFactorForScoring;
@@ -67,6 +71,11 @@ public class HorseBuilder {
 
 	public HorseBuilder withId(long id) {
 		this.id = id;
+		return this;
+	}
+
+	public HorseBuilder withFood(Food food) {
+		this.food = food;
 		return this;
 	}
 

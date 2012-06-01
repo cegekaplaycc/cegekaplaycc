@@ -13,7 +13,7 @@ public class StockTest extends UnitTest{
 	@Test
 	public void add() {
 		Stock stock = new Stock();
-		Supply supply = new Supply();
+		Food supply = new Food();
 		
 		stock.add(supply);
 		
@@ -24,7 +24,7 @@ public class StockTest extends UnitTest{
 	
 	@Test
 	public void addItemAlreadyInStock() {
-		Supply supply = new Supply();
+		Food supply = new Food();
 		Stock stock = new StockBuilder().withSupply(supply, 2).build();
 
 		Assertions.assertThat(stock.items).hasSize(1);
@@ -38,7 +38,7 @@ public class StockTest extends UnitTest{
 
 	@Test
 	public void addItemWithAmount() {
-		Supply supply = new Supply();
+		Food supply = new Food();
 		Stock stock = new StockBuilder().withSupply(supply, 2).build();
 		
 		stock.add(supply, 12);
@@ -51,7 +51,7 @@ public class StockTest extends UnitTest{
 	public void addItemWithAmountNotYetInList() {
 		Stock stock = new StockBuilder().build();
 		
-		stock.add(new Supply(), 7);
+		stock.add(new Food(), 7);
 		
 		Assertions.assertThat(stock.items).hasSize(1);
 		Assertions.assertThat(stock.items.iterator().next().amount).isEqualTo(7);

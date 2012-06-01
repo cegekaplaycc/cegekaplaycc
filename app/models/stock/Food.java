@@ -8,16 +8,16 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import play.db.jpa.Model;
 
 @Entity
-public class Supply extends Model {
+public class Food extends Model {
 
 	public String name;
 	public long price;
 
-	public Supply() {
+	public Food() {
 		super();
 	}
 	
-	public Supply(String name, long price) {
+	public Food(String name, long price) {
 		this.name = name;
 		this.price = price;
 	}
@@ -25,7 +25,7 @@ public class Supply extends Model {
 	@Override
 	public boolean equals(Object other) {
 		return new EqualsBuilder()
-				.append(this.name, ((Supply) other).name)
+				.append(this.name, ((Food) other).name)
 				.isEquals();
 	}
 

@@ -1,0 +1,43 @@
+#{extends 'main.html'/}
+
+<div class="page-header">
+    <h1>
+        ${horse.name}
+    </h1>
+</div>
+
+<div class="row">
+
+    <div class="span6">
+        <h2>Stats</h2>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>Overall Fitness</td>
+                <td>${horse.fitness} / 100</td>
+            </tr>
+            <tr>
+                <td>Training Level</td>
+                <td>${horse.training} / 100</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="span6">
+        <h2>&nbsp;</h2>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>Food</td>
+                <td>${horse.food} <i class="icon-pencil pull-right"></i></td>
+            </tr>
+            <tr>
+                <td>Trainer</td>
+                <td>30 $ per week <i class="icon-pencil pull-right"></i></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

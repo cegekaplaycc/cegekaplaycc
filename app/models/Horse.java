@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Transient;
 
 import models.randomizer.RandomizerProvider;
@@ -22,7 +23,7 @@ public class Horse extends Model {
 	private long price;
 	private int fitness;
 	private int training;
-	@ManyToOne
+	@Enumerated(EnumType.STRING)
 	public Food food;
 
 	@Transient

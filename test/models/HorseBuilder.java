@@ -15,7 +15,7 @@ public class HorseBuilder extends AbstractBuilder<Horse> {
 	private long price = 28;
 	private Integer randomFactorForScoring;
 	private Long id;
-	private Food food;
+	private Food food = Food.HAY;
 
 	public Horse build() {
 		Horse horse = createHorse();

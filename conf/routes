@@ -25,6 +25,7 @@ POST	/old/races/new								Races.create
 GET		/old/races/{<[0-9]+>id}						Races.detail
 GET		/old/races/enter							Races.enter
 GET		/horseDetail								HorseDetail.show
+POST	/horseDetail/changeFood						HorseDetail.changeFood
 
 # Jobs page for development
 GET		/@jobs									Jobs.index

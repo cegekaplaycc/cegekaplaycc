@@ -1,5 +1,7 @@
 package models;
 
+import static models.stock.Food.HAY;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -24,7 +26,7 @@ public class Horse extends Model {
 	private int fitness;
 	private int training;
 	@Enumerated(EnumType.STRING)
-	public Food food;
+	public Food food = HAY;
 
 	@Transient
 	RandomizerProvider randomizerProvider;

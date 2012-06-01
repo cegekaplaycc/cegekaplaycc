@@ -8,6 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 
+import models.stock.Stock;
+
 import jobs.RandomHorsesBreeder;
 import play.data.validation.Email;
 import play.data.validation.Required;
@@ -58,6 +60,8 @@ public class Player extends Model {
 	public String UUID;
 	
 	public int cash = 100;
+	
+	public Stock stock = new Stock();
 
 	public static Player findByUserId(UserId userId) {
 		return find("byUserIdAndProviderType", userId.id, userId.provider)

@@ -45,6 +45,11 @@
 					<a class="brand" href="@{Application.index()}">Hold your Horses <sup><span class="label label-warning">beta</span></sup></a>
 					<div class="nav-collapse">
 					#{if user != null }
+                        <ul class="nav">
+                            <li class="${page == 'dashboard' ? 'active' : ''}">
+                                <a href="@{Dashboard.dashboard()}">&{'dashboard'}</a>
+                            </li>
+                        </ul>
 	                    <p class="navbar-text pull-right">Logged in as ${user.displayName}</p>
 	                #{/if}
 	                #{elseif user == null}

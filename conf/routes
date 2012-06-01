@@ -12,15 +12,17 @@ GET     /mockups/{mockup}                       Mockups.showMockup
 # Home page
 GET     /                                       Application.index
 GET		/dashboard								Dashboard.dashboard
-GET     /horse                                  Horses.blank
-GET     /horses                                 Horses.list
-GET		/horses/buy/{id}						Horses.buy
 
-GET		/races									Races.list
-GET		/races/new								Races.newRace
-POST	/races/new								Races.create
-GET		/races/{<[0-9]+>id}						Races.detail
-GET		/races/enter							Races.enter
+
+GET     /old/horse                                  Horses.blank
+GET     /old/horses                                 Horses.list
+GET		/old/horses/buy/{id}						Horses.buy
+
+GET		/old/races									Races.list
+GET		/old/races/new								Races.newRace
+POST	/old/races/new								Races.create
+GET		/old/races/{<[0-9]+>id}						Races.detail
+GET		/old/races/enter							Races.enter
 
 # Jobs page for development
 GET		/@jobs									Jobs.index

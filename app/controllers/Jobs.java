@@ -1,24 +1,17 @@
 package controllers;
 
+import play.jobs.Job;
+import play.mvc.Controller;
+import play.mvc.With;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import jobs.RaceRunningJob;
-import play.Play;
-import play.jobs.Job;
-import play.mvc.Before;
-import play.mvc.Controller;
-
+@With(OnlyInDevMode.class)
 public class Jobs extends Controller {
-	
-	@Before
-    static void checkAuthentification() {
-        if (Play.mode.isProd()) {
-        	//throw new RuntimeException("Can't manually trigger jobs in PROD mode!");
-        }
-    }
+
 	
 	public static void index() {
 		File jobsDir = new File("app/jobs");

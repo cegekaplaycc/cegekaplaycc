@@ -2,15 +2,15 @@ package models;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import models.randomizer.RandomizerProvider;
 import models.randomizer.RandomizerProviderImpl;
-
+import models.stock.Food;
 import play.db.jpa.Model;
 
 import com.google.common.collect.Sets;
@@ -22,7 +22,9 @@ public class Horse extends Model {
 	private long price;
 	private int fitness;
 	private int training;
-	
+	@ManyToOne
+	public Food food;
+
 	@Transient
 	RandomizerProvider randomizerProvider;
 

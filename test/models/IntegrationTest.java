@@ -1,10 +1,10 @@
 package models;
 
 import litmus.Category;
+import litmus.unit.UnitTest;
 import org.junit.Before;
 import play.db.jpa.JPA;
 import play.test.Fixtures;
-import play.test.UnitTest;
 
 @Category(value = "Integration Tests", priority = 10001)
 public abstract class IntegrationTest extends UnitTest {

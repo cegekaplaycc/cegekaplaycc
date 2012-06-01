@@ -3,7 +3,7 @@ package controllers;
 import java.util.Collection;
 import java.util.List;
 
-import models.stock.Supply;
+import models.stock.Food;
 import play.mvc.Controller;
 import play.mvc.With;
 import controllers.securesocial.SecureSocial;
@@ -12,7 +12,7 @@ import controllers.securesocial.SecureSocial;
 public class FoodMarket extends Controller {
 
 	public static void buyFood() {
-		List<Supply> food = Supply.findAll();
+		List<Food> food = Food.findAll();
 		render(food);
 	}
 	

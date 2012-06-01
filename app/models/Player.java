@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import models.stock.Stock;
 
@@ -61,7 +62,8 @@ public class Player extends Model {
 	
 	public int cash = 100;
 	
-	public Stock stock = new Stock();
+	@OneToOne
+	public Stock stock;
 
 	public static Player findByUserId(UserId userId) {
 		return find("byUserIdAndProviderType", userId.id, userId.provider)

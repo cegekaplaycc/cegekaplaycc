@@ -1,0 +1,42 @@
+package models.stock;
+
+import javax.persistence.Entity;
+
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
+import play.db.jpa.Model;
+
+@Entity
+public class Supply extends Model {
+
+	public String name;
+	public long price;
+<<<<<<< HEAD
+	
+	public Supply() {
+		super();
+	}
+	
+	public Supply(String name, long price) {
+		this.name = name;
+		this.price = price;
+	}
+=======
+>>>>>>> 2c0e47fc76a99dbdaa69647b13855b30f5166089
+
+	@Override
+	public boolean equals(Object other) {
+		return new EqualsBuilder()
+				.append(this.name, ((Supply) other).name)
+				.isEquals();
+	}
+
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+				.append(name)
+				.hashCode();
+	}
+
+}

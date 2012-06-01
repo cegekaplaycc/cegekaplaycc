@@ -15,6 +15,7 @@ public class SuppliesBootstrapper extends Job {
 
 	@Override
 	public void doJob() {
+		Supply.deleteAll();
 		new Supply("Power biscuits", 12).save();
 		new Supply("Hay", 5).save();
 		new Supply("Carrots", 6).save();

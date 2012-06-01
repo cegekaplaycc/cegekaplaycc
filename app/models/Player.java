@@ -3,6 +3,7 @@ package models;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -62,8 +63,8 @@ public class Player extends Model {
 	
 	public int cash = 100;
 	
-	@OneToOne
-	public Stock stock;
+	@OneToOne(cascade=CascadeType.PERSIST)
+	public Stock stock = new Stock();
 
 	public static Player findByUserId(UserId userId) {
 		return find("byUserIdAndProviderType", userId.id, userId.provider)

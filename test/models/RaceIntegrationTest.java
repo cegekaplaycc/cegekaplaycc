@@ -1,6 +1,5 @@
 package models;
 
-import org.fest.assertions.Assertions;
 import org.junit.Test;
 
 import java.util.List;
@@ -23,11 +22,12 @@ public class RaceIntegrationTest extends IntegrationTest {
 
         List<Race> races = Race.findAll();
 
-        Assertions.assertThat(races).hasSize(1);
+        assertThat(races).hasSize(1);
         Race savedRace = races.iterator().next();
 
-        Assertions.assertThat(race.winner).isNotNull();
-        Assertions.assertThat(savedRace.getEnteredHorses()).contains(horse1, horse2);
+        assertThat(race.winner).isNotNull();
+        assertThat(savedRace.getEnteredHorses()).contains(horse1, horse2);
     }
+
 
 }

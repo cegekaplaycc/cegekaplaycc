@@ -1,29 +1,17 @@
 package models;
 
-import static com.google.common.collect.Lists.newArrayList;
-import static java.util.Collections.reverseOrder;
-import static java.util.Collections.sort;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import play.data.validation.Required;
+import play.db.jpa.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import java.util.*;
 
-import org.joda.time.DateTime;
-
-import play.Play;
-import play.data.validation.Required;
-import play.db.jpa.Model;
-
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
+import static java.util.Collections.reverseOrder;
+import static java.util.Collections.sort;
 
 @Entity
 public class Race extends Model {
@@ -114,4 +102,7 @@ public class Race extends Model {
 		return Collections.unmodifiableSet(horses);
 	}
 
+    public static List<Race> findUpcomingRaces(int limit) {
+        return Race.all().fetch(limit);
+    }
 }

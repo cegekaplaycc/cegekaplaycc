@@ -23,7 +23,7 @@ public class SocialUserFactoryTest extends UnitTest {
 		assertEquals(PLAYER_TOKEN, socialUser.token);
 		assertEquals(PLAYER_SECRET, socialUser.secret);
 		assertEquals(PLAYER_ACCESS_TOKEN, socialUser.accessToken);
-		assertEquals(PLAYER_PASSWORD, socialUser.password);
+		assertEquals(PLAYER_PASSWORD_HASHED, socialUser.password);
 		assertEquals(PLAYER_EMAIL_VERIFIED, socialUser.isEmailVerified);
 	}
 

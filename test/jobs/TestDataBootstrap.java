@@ -1,5 +1,8 @@
 package jobs;
 
+import static com.google.common.collect.Sets.newHashSet;
+import static org.powermock.reflect.Whitebox.setInternalState;
+import static play.Play.mode;
 import models.Horse;
 import models.HorseBuilder;
 import models.Player;
@@ -7,11 +10,11 @@ import models.RaceBuilder;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 import play.libs.Crypto;
-import securesocial.provider.*;
-
-import static com.google.common.collect.Sets.newHashSet;
-import static org.powermock.reflect.Whitebox.setInternalState;
-import static play.Play.mode;
+import securesocial.provider.AuthenticationMethod;
+import securesocial.provider.ProviderType;
+import securesocial.provider.SocialUser;
+import securesocial.provider.UserId;
+import securesocial.provider.UserService;
 
 @OnApplicationStart
 public class TestDataBootstrap extends Job {
@@ -20,7 +23,7 @@ public class TestDataBootstrap extends Job {
 	public void doJob() throws Exception {
 		if (mode.isDev()) {
 			Player player = createUser();
-			Horse horse1 = new HorseBuilder().withName("Tom").build().save();
+			Horse horse1 = new HorseBuilder().withName("Tom").withFitness(20).withTraining(30).build().save();
 			Horse horse2 = new HorseBuilder().withName("Matti").build().save();
 			setInternalState(player, "horses", newHashSet(horse1, horse2));
 			player.save();

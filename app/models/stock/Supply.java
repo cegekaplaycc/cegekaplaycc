@@ -12,20 +12,19 @@ public class Supply extends Model {
 
 	public String name;
 	public long price;
-	
+
 	@Override
 	public boolean equals(Object other) {
 		return new EqualsBuilder()
-			.append(this.name, ((Supply)other).name)
-			.isEquals();
+				.append(this.name, ((Supply) other).name)
+				.isEquals();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return new HashCodeBuilder()
-			.append(name)
-			.hashCode();
+				.append(name)
+				.hashCode();
 	}
 
-	
 }

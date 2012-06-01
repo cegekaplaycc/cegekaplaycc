@@ -50,11 +50,11 @@
                                 <a href="@{Dashboard.dashboard()}">&{'dashboard'}</a>
                             </li>
                         </ul>
-	                    <p class="navbar-text pull-right">Logged in as ${user.displayName}</p>
+	                    <p class="navbar-text pull-right">Logged in as ${user.displayName} (<a href="@{securesocial.SecureSocial.logout()}">&{'logout'}</a>)</p>
 	                #{/if}
 	                #{elseif user == null}
 						<ul class="nav pull-right">
-							<li><a href="@{Players.index}">Login</a></li>
+							<li><a href="@{Dashboard.dashboard}">Login</a></li>
 						</ul>
 	                #{/elseif}
 					</div>

@@ -6,10 +6,10 @@ public enum Food {
 	HAY("Hay", 0);
 
 	public long price;
-	public String name;
+	public String label;
 
-	private Food(String name, long price) {
-		this.name = name;
+	private Food(String label, long price) {
+		this.label = label;
 		this.price = price;
 	}
 

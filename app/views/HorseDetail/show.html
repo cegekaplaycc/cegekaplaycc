@@ -30,7 +30,7 @@
             <tbody>
             <tr>
                 <td>Food</td>
-                <td id="food">${horse.food.name} <i class="icon-pencil pull-right"></i></td>
+                <td id="food">#{select 'foods', id:'foods', items:foods, valueProperty:'name()', labelProperty:'label', value:horse.food.name() /}</td>
             </tr>
             <tr>
                 <td>Trainer</td>
@@ -41,3 +41,12 @@
     </div>
 
 </div>
+
+<script>
+$(function() {
+	$('#foods').change(function() {
+		var selectedValue = $(this).val();
+		$.post('/horseDetail/changeFood', { horseId: ${horse.id}, food: selectedValue});
+	});
+});
+</script>

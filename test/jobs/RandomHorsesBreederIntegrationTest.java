@@ -1,14 +1,18 @@
 package jobs;
 
 import models.*;
-import models.IntegrationTest;
 
 import org.fest.assertions.Assertions;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
+	
 	@Before
 	public void setUp() {
 		new HorseNameSuffix("Zorro").save();
@@ -26,9 +30,19 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 	}
 
 	@Test
-	public void getRandomHorse_() {
+	public void getRandomHorse() {
 		Horse randomHorse = RandomHorsesBreeder.createRandomHorse();
 		Assertions.assertThat(randomHorse.getName()).isEqualTo("Cloudy Zorro");
+	}
+
+	@Test
+	public void getRandomHorse_WhenAllHorsesAreExhausted_RandomHorseBreederThrowsException() {
+		new HorseBuilder().withName("Cloudy Zorro").build().save();
+		
+		expectedException.expect(RuntimeException.class);
+		expectedException.expectMessage("All horses exhausted. Couldn't breed new horse!");
+		
+		RandomHorsesBreeder.createRandomHorse();
 	}
 
 }

@@ -11,6 +11,9 @@ import java.util.Random;
 public class RandomHorsesBreeder {
 
 	public static Horse createRandomHorse() {
+		if (allRandomHorsesAreExhausted()) {
+			throw new RuntimeException("All horses exhausted. Couldn't breed new horse!");
+		}
 
 		List<HorseNamePrefix> horsePrefixes = HorseNamePrefix.findAll();
 		List<HorseNameSuffix> horseSuffixes = HorseNameSuffix.findAll();
@@ -26,6 +29,13 @@ public class RandomHorsesBreeder {
 		}
 
 		return horse;
+	}
+
+	private static boolean allRandomHorsesAreExhausted() {
+		long totalAmountOfPossibleRandomHorses = HorseNamePrefix.count() * HorseNameSuffix.count();
+		long amountOfHorsesInDatabase = Horse.count();
+
+		return totalAmountOfPossibleRandomHorses == amountOfHorsesInDatabase;
 	}
 
 }

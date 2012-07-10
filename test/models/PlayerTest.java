@@ -9,8 +9,6 @@ import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Test;
 
-import controllers.Purchase;
-import controllers.PurchaseBuilder;
 import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;

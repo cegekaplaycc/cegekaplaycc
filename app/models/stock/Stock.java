@@ -8,9 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-import org.apache.commons.lang.NotImplementedException;
-
-import controllers.Purchase;
+import models.Purchase;
 
 import play.db.jpa.Model;
 

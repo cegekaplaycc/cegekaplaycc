@@ -1,6 +1,6 @@
 package models;
 
-import assertion.PlayAssertions;
+import assertion.HoldYourHorseAssertions;
 import litmus.unit.UnitTest;
 import org.junit.After;
 import org.junit.Before;
@@ -23,7 +23,7 @@ public class RacesCalculateWinnerTest extends UnitTest {
 		Race race = new RaceBuilder().build();
 		race.calculateWinner();
 		
-		PlayAssertions.assertThat(race.winner).isNull();
+		HoldYourHorseAssertions.assertThat(race.winner).isNull();
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class RacesCalculateWinnerTest extends UnitTest {
 		Race race = new RaceBuilder().withHorses(horse).build();
 		race.calculateWinner();
 		
-		PlayAssertions.assertThat(race.winner).isSameAs(horse);
+		HoldYourHorseAssertions.assertThat(race.winner).isSameAs(horse);
 	}
 	
 	@Test
@@ -64,7 +64,7 @@ public class RacesCalculateWinnerTest extends UnitTest {
 			.build();
 		race.calculateWinner();
 		
-		PlayAssertions.assertThat(race.winner).isEqualTo(winningHorse);
+		HoldYourHorseAssertions.assertThat(race.winner).isEqualTo(winningHorse);
 	}
 
 }

@@ -2,19 +2,20 @@ package controllers;
 
 import java.util.List;
 
+import models.Purchase;
 import models.stock.Food;
 import play.mvc.Controller;
 import play.mvc.With;
 
-import com.google.common.collect.Lists;
-
 import controllers.securesocial.SecureSocial;
+
+import static com.google.common.collect.Lists.newArrayList;
 
 @With(SecureSocial.class)
 public class FoodMarket extends Controller {
 
 	public static void foodMarket() {
-		List<Food> food = Lists.newArrayList(Food.values());
+		List<Food> food = newArrayList(Food.values());
 		render(food);
 	}
 

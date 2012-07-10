@@ -1,6 +1,6 @@
 package models;
 
-import assertion.PlayAssertions;
+import assertion.HoldYourHorseAssertions;
 import litmus.unit.UnitTest;
 import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
@@ -37,21 +37,21 @@ public class RaceTest extends UnitTest {
 	public void startTimeInFuture_TrueInFuture() {
 		Race race = new RaceBuilder().withStartTime(new DateTime().plus(100).toDate()).build();
 
-		PlayAssertions.assertThat(race.startTimeInFuture()).isTrue();
+		HoldYourHorseAssertions.assertThat(race.startTimeInFuture()).isTrue();
 	}
 
 	@Test
 	public void startTimeInFuture_FalseInPresent() {
 		Race race = new RaceBuilder().withStartTime(new DateTime().toDate()).build();
 
-		PlayAssertions.assertThat(race.startTimeInFuture()).isFalse();
+		HoldYourHorseAssertions.assertThat(race.startTimeInFuture()).isFalse();
 	}
 
 	@Test
 	public void startTimeInFuture_FalseInPast() {
 		Race race = new RaceBuilder().withStartTime(new DateTime().minus(100).toDate()).build();
 
-		PlayAssertions.assertThat(race.startTimeInFuture()).isFalse();
+		HoldYourHorseAssertions.assertThat(race.startTimeInFuture()).isFalse();
 	}
 
 	@Test

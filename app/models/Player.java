@@ -11,11 +11,7 @@ import securesocial.provider.UserId;
 
 import javax.persistence.*;
 
-import org.apache.commons.lang.NotImplementedException;
-
 import com.google.common.collect.Sets;
-
-import controllers.Purchase;
 
 import java.util.Date;
 import java.util.List;

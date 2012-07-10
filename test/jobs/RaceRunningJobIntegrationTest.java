@@ -1,6 +1,6 @@
 package jobs;
 
-import assertion.PlayAssertions;
+import assertion.HoldYourHorseAssertions;
 import models.*;
 import org.junit.After;
 import org.junit.Before;
@@ -41,7 +41,7 @@ public class RaceRunningJobIntegrationTest extends IntegrationTest {
 		doJob();
 		List<Race> allRaces = Race.findAll();
 		for (Race race : allRaces) {
-			PlayAssertions.assertThat(race).hasBeenStarted();
+			HoldYourHorseAssertions.assertThat(race).hasBeenStarted();
 			assertNotNull(race.winner);
 		}
 	}
@@ -51,7 +51,7 @@ public class RaceRunningJobIntegrationTest extends IntegrationTest {
 		Race race = new RaceBuilder().withStartTimeInFuture().persist();
 		doJob();
 		Race refreshedRace = Race.findById(race.getId());
-		PlayAssertions.assertThat(refreshedRace).hasNotBeenStarted();
+		HoldYourHorseAssertions.assertThat(refreshedRace).hasNotBeenStarted();
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class RaceRunningJobIntegrationTest extends IntegrationTest {
 
 		doJob();
 		Race refreshedRace = Race.findById(race.getId());
-		PlayAssertions.assertThat(refreshedRace.winner.getName()).isEqualTo(winningHorse.getName());
+		HoldYourHorseAssertions.assertThat(refreshedRace.winner.getName()).isEqualTo(winningHorse.getName());
 	}
 
 	private void doJob() {

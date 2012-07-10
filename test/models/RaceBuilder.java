@@ -3,11 +3,12 @@ package models;
 import com.google.common.collect.Sets;
 import org.joda.time.DateTime;
 import org.powermock.reflect.Whitebox;
+import util.AbstractBuilder;
 
 import java.util.Date;
 import java.util.Set;
 
-public class RaceBuilder {
+public class RaceBuilder extends AbstractBuilder<Race> {
 
 	private boolean withStarted;
 	private Set<Horse> horses = Sets.newHashSet();

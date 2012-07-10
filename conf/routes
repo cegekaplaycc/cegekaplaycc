@@ -1,20 +1,16 @@
-# Routes
-# This file defines all application routes (Higher priority routes first)
-# ~~~~
-
-# Authentication
 *       /auth       							module:securesocial
 *       /                                       module:litmus
 
-# mockups
 GET     /mockups/{mockup}                       Mockups.showMockup
 
-# Home page
 GET     /                                       Application.index
 GET		/dashboard								Dashboard.dashboard
 GET		/foodMarket								FoodMarket.foodMarket
 
+GET		/horseDetail								HorseDetail.show
+POST	/horseDetail/changeFood						HorseDetail.changeFood
 
+# Old routes, to be removed..
 GET     /old/horse                                  Horses.blank
 GET     /old/horses                                 Horses.list
 GET		/old/horses/buy/{id}						Horses.buy
@@ -24,8 +20,6 @@ GET		/old/races/new								Races.newRace
 POST	/old/races/new								Races.create
 GET		/old/races/{<[0-9]+>id}						Races.detail
 GET		/old/races/enter							Races.enter
-GET		/horseDetail								HorseDetail.show
-POST	/horseDetail/changeFood						HorseDetail.changeFood
 
 # Jobs page for development
 GET		/@jobs									Jobs.index

@@ -24,7 +24,7 @@
 	            #{list player.horses, as:'horse'}
 					<tr>
 						<td>${horse_index}</td>
-						<td><a href="#">${horse.name}</a></td>
+						<td><a href="@{HorseDetail.show(horse.id)}">${horse.name}</a></td>
 					</tr>
 				#{/list}
             </tbody>

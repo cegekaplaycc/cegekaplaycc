@@ -1,7 +1,7 @@
 require:
     - play
     - play                      -> securesocial 0.2.4
-    - litmus                    -> litmus 0.2
+    - litmus                    -> litmus 0.2.3
     - org.powermock             -> powermock-module-junit4 1.4.11
     # transitive dependencies for litmus (see https://play.lighthouseapp.com/projects/57987-play-framework/tickets/1108-transitive-dependencies-not-work-with-modules-from-non-default-repository)
     - org.easytesting           -> fest-assert     1.4

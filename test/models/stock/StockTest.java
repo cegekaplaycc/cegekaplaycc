@@ -1,9 +1,9 @@
 package models.stock;
 
+import litmus.unit.UnitTest;
 import org.fest.assertions.Assertions;
 import org.junit.Test;
 
-import play.test.UnitTest;
 
 public class StockTest extends UnitTest {
 

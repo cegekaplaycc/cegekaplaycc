@@ -1,7 +1,6 @@
 package models.stock;
 
 import litmus.unit.UnitTest;
-import org.fest.assertions.Assertions;
 import org.junit.Test;
 
 
@@ -14,9 +13,9 @@ public class StockTest extends UnitTest {
 
 		stock.add(supply);
 
-		Assertions.assertThat(stock.items).hasSize(1);
-		Assertions.assertThat(stock.items.iterator().next().supply).isEqualTo(supply);
-		Assertions.assertThat(stock.items.iterator().next().amount).isEqualTo(1);
+		assertThat(stock.items).hasSize(1);
+		assertThat(stock.items.iterator().next().supply).isEqualTo(supply);
+		assertThat(stock.items.iterator().next().amount).isEqualTo(1);
 	}
 
 	@Test
@@ -24,13 +23,13 @@ public class StockTest extends UnitTest {
 		Food supply = Food.HAY;
 		Stock stock = new StockBuilder().withSupply(supply, 2).build();
 
-		Assertions.assertThat(stock.items).hasSize(1);
-		Assertions.assertThat(stock.items.iterator().next().amount).isEqualTo(2);
+		assertThat(stock.items).hasSize(1);
+		assertThat(stock.items.iterator().next().amount).isEqualTo(2);
 
 		stock.add(supply);
 
-		Assertions.assertThat(stock.items).hasSize(1);
-		Assertions.assertThat(stock.items.iterator().next().amount).isEqualTo(3);
+		assertThat(stock.items).hasSize(1);
+		assertThat(stock.items.iterator().next().amount).isEqualTo(3);
 	}
 
 	@Test
@@ -40,8 +39,8 @@ public class StockTest extends UnitTest {
 
 		stock.add(supply, 12);
 
-		Assertions.assertThat(stock.items).hasSize(1);
-		Assertions.assertThat(stock.items.iterator().next().amount).isEqualTo(14);
+		assertThat(stock.items).hasSize(1);
+		assertThat(stock.items.iterator().next().amount).isEqualTo(14);
 	}
 
 	@Test
@@ -50,8 +49,8 @@ public class StockTest extends UnitTest {
 
 		stock.add(Food.HAY, 7);
 
-		Assertions.assertThat(stock.items).hasSize(1);
-		Assertions.assertThat(stock.items.iterator().next().amount).isEqualTo(7);
+		assertThat(stock.items).hasSize(1);
+		assertThat(stock.items.iterator().next().amount).isEqualTo(7);
 	}
 
 }

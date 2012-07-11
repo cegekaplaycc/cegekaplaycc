@@ -113,4 +113,16 @@ public class Race extends Model {
 	public static List<Race> findUpcomingRaces(int limit) {
 		return Race.all().fetch(limit);
 	}
+
+    public static List<Race> findRacesThatHorseEntered(Horse horse) {
+        return null;
+    }
+
+    public boolean horseEnteredRace(Horse horse) {
+        return horses.contains(horse);
+    }
+
+    public boolean hasWon(Horse horse) {
+        return winner != null && winner.equals(horse);
+    }
 }

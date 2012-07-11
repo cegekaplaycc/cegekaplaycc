@@ -1,22 +1,21 @@
 package models;
 
-import static models.stock.Food.HAY;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Transient;
-
+import com.google.common.collect.Sets;
 import models.randomizer.RandomizerProvider;
 import models.randomizer.RandomizerProviderImpl;
 import models.stock.Food;
 import play.db.jpa.Model;
 
-import com.google.common.collect.Sets;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Transient;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import static com.google.common.collect.Lists.newArrayList;
+import static models.stock.Food.HAY;
 
 @Entity
 public class Horse extends Model {
@@ -109,4 +108,13 @@ public class Horse extends Model {
 		this.training = training;
 	}
 
+    public List<Race> getEnteredRaces() {
+        List<Race> enteredRaces = newArrayList();
+        for(Race race: Race.all().<Race>fetch()) {
+            if(race.horseEnteredRace(this)) {
+                enteredRaces.add(race);
+            }
+        }
+        return enteredRaces;
+    }
 }

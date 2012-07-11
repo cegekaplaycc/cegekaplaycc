@@ -27,8 +27,8 @@ public class TestDataBootstrap extends Job {
 			PlayerBuilder.aPlayer().withDisplayName("matti").withPassword("matti")
 					.withUserId("matti").withBoxes(box1, box2).persist();
 
-			new RaceBuilder().withHorses(horse1).withStartTimeInPast().build()
-					.save();
+			new RaceBuilder().withHorses(horse1).withStartTimeInPast().withWinner(horse1).build().save();
+			new RaceBuilder().withHorses(horse1, horse2).withStartTimeInPast().withWinner(horse2).build().save();
 			new RaceBuilder().withHorses(horse2).withStartTimeInPast().build()
 					.save();
 		}

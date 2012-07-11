@@ -41,10 +41,23 @@
                 <td>
                     <input id="moneyForTrainerId" type="range" value="${horse.moneyForTrainer}" max="100" min="0" step="1"  />
                     <span id="rangeValue">${horse.moneyForTrainer}$ per week</span>
-
                 </td>
             </tr>
             </tbody>
+        </table>
+    </div>
+
+    <div class="span8">
+        <h2>Races</h2>
+        <table class="table table-bordered">
+            #{list horse.enteredRaces}
+                <tr>
+                    <td>${_.startTime.format("dd-mm-yyyy hh:mm")}</td>
+                    <td>${_.name}</td>
+                    <td>#{if _.hasWon(horse)}winner#{/if}</td>
+
+                </tr>
+            #{/list}
         </table>
     </div>
 
@@ -58,7 +71,7 @@ $(function() {
 	});
 
     function updateMoneyForTrainer() {
-        $.post('/horseDetail/changeMoneyForTrainer', { moneyForTrainer: $(this).val(), horseId: ${horse.id} });
+        $.post('@{HorseDetail.changeMoneyForTrainer}', { moneyForTrainer: $(this).val(), horseId: ${horse.id} });
     };
     $('#moneyForTrainerId').focusout(updateMoneyForTrainer);
     $('#moneyForTrainerId').mouseout(updateMoneyForTrainer);

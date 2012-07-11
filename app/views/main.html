@@ -48,7 +48,10 @@
 					#{if user != null }
                         <ul class="nav">
                             <li class="${page == 'dashboard' ? 'active' : ''}">
-                                <a href="@{Dashboard.dashboard()}">&{'dashboard'}</a>
+                                <a href="@{Dashboard.dashboard()}" id="menuDashboardLink">&{'dashboard'}</a>
+                            </li>
+                            <li class="${page == 'foodmarket' ? 'active' : ''}">
+                                <a href="@{FoodMarket.foodMarket()}" id="menuFoodmarketLink">&{'foodmarket'}</a>
                             </li>
                         </ul>
 	                    <p class="navbar-text pull-right">Logged in as ${user.displayName} (<a href="@{securesocial.SecureSocial.logout()}">&{'logout'}</a>)</p>

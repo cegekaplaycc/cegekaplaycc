@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.List;
 
+import models.Player;
 import models.Purchase;
 import models.stock.Food;
 import play.mvc.Controller;
@@ -15,8 +16,9 @@ import static com.google.common.collect.Lists.newArrayList;
 public class FoodMarket extends Controller {
 
 	public static void foodMarket() {
+		Player player = PlayerUtil.getCurrentPlayer(renderArgs);
 		List<Food> food = newArrayList(Food.values());
-		render(food);
+		render(player, food);
 	}
 
 	public static void buy(List<Purchase> purchases) {

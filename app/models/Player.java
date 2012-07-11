@@ -120,9 +120,8 @@ public class Player extends Model {
 		int amountToBePaid = 0;
 		for (Purchase purchase : purchases) {
 			if (purchase != null) {
-				amountToBePaid += Integer.parseInt(purchase.amount)
-						* purchase.foodId.price;
-			}
+    			amountToBePaid+= purchase.getPrice();
+    		}
 		}
 		cash = cash - amountToBePaid;
 	}

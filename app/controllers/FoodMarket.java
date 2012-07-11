@@ -22,8 +22,24 @@ public class FoodMarket extends Controller {
 	}
 
 	public static void buy(List<Purchase> purchases) {
-		PlayerUtil.getCurrentPlayer(renderArgs).buy(purchases);
+		Player player = PlayerUtil.getCurrentPlayer(renderArgs);
+		validate(player, purchases);
+		player.buy(purchases);
 		Dashboard.dashboard();
+	}
+
+	private static void validate(Player player, List<Purchase> purchases) {
+		int purchaseTotal = 0;
+		for (Purchase purchase : purchases) {
+			if (purchase != null)
+				purchaseTotal += purchase.getPrice();
+		}
+		
+		if (player.cash < purchaseTotal) {
+			flash.error("The purchases could not be bought: insufficient cash amount");
+			params.flash();
+			foodMarket();
+		}
 	}
 
 }

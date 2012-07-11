@@ -22,7 +22,7 @@ public class RandomHorsesBreeder {
 		int randomPrefix = random.nextInt(horsePrefixes.size());
 		int randomSuffix = random.nextInt(horseSuffixes.size());
 		Horse horse = new Horse(horsePrefixes.get(randomPrefix).prefix + " " + horseSuffixes.get(randomSuffix).suffix, random.nextInt(2000));
-		horse.setMoneyForTrainer(20);
+		horse.moneyForTrainer = 20;
 		
 		long horseCount = Horse.count("byName", horse.getName());
 		if (horseCount > 0) {

@@ -1,14 +1,13 @@
 package models;
 
 import static org.apache.commons.lang.time.DateUtils.addDays;
-import static org.mockito.internal.util.reflection.Whitebox.setInternalState;
 import static securesocial.provider.AuthenticationMethod.USER_PASSWORD;
 import static securesocial.provider.ProviderType.userpass;
 
 import java.util.Date;
 import java.util.Set;
 
-import org.mockito.internal.util.reflection.Whitebox;
+import models.stable.Box;
 
 import org.mockito.internal.util.reflection.Whitebox;
 
@@ -32,7 +31,8 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 	public static final String PLAYER_SECRET = "aPlayersSecret";
 	public static final String PLAYER_ACCESS_TOKEN = "aPlayersAccessToken";
 	public static final String PLAYER_PASSWORD = "aPlayersPassword";
-	public static final String PLAYER_PASSWORD_HASHED = Crypto.passwordHash(PLAYER_PASSWORD);
+	public static final String PLAYER_PASSWORD_HASHED = Crypto
+			.passwordHash(PLAYER_PASSWORD);
 	public static final boolean PLAYER_EMAIL_VERIFIED = true;
 
 	private String userId = PLAYER_USER_ID;
@@ -49,8 +49,13 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 	private boolean isEmailVerified = PLAYER_EMAIL_VERIFIED;
 	private String uuid;
 
-	private Set<Horse> horses = Sets.newHashSet();
+	private Set<Box> boxes = Sets.newHashSet();
 
+	private PlayerBuilder() {
+
+	}
+
+	@Override
 	public Player build() {
 		Player player = new Player();
 
@@ -68,7 +73,7 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 		player.isEmailVerified = isEmailVerified;
 		player.UUID = uuid;
 
-		Whitebox.setInternalState(player, "horses", horses);
+		Whitebox.setInternalState(player, "boxes", boxes);
 		return player;
 	}
 
@@ -76,8 +81,8 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 		return new PlayerBuilder();
 	}
 
-	public PlayerBuilder withHorses(Horse... horses) {
-		this.horses = Sets.newHashSet(horses);
+	public PlayerBuilder withBoxes(Box... boxes) {
+		this.boxes = Sets.newHashSet(boxes);
 		return this;
 	}
 

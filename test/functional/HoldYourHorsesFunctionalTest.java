@@ -14,7 +14,7 @@ public abstract class HoldYourHorsesFunctionalTest extends FunctionalTest {
     }
 
 	protected PlayerBuilder createPlayerBuilder(String userId, String password) {
-		return new PlayerBuilder()
+		return PlayerBuilder.aPlayer()
 	            .withUserId(userId)
 	            .withPassword(password);
 	}

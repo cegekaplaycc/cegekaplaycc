@@ -120,8 +120,8 @@ public class Player extends Model {
 		int amountToBePaid = 0;
 		for (Purchase purchase : purchases) {
 			if (purchase != null) {
-    			amountToBePaid+= purchase.getPrice();
-    		}
+				amountToBePaid += purchase.getPrice();
+			}
 		}
 		cash = cash - amountToBePaid;
 	}
@@ -153,6 +153,11 @@ public class Player extends Model {
 
 	public void buildNewBox() {
 		boxes.add(Box.createBox());
+		cash -= 10;
 		this.save();
+	}
+
+	public boolean hasEnoughCash(int amount) {
+		return cash >= amount;
 	}
 }

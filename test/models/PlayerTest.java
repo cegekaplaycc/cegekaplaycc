@@ -88,4 +88,18 @@ public class PlayerTest extends UnitTest {
 		assertThat(player.getHorses()).containsOnly(horse1, horse2);
 	}
 
+	@Test
+	public void hasEnoughCash_true() {
+		Player player = aPlayer().withCash(10).build();
+
+		assertThat(player.hasEnoughCash(10)).isTrue();
+	}
+
+	@Test
+	public void hasEnoughCash_false() {
+		Player player = aPlayer().withCash(9).build();
+
+		assertThat(player.hasEnoughCash(10)).isFalse();
+	}
+
 }

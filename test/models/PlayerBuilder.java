@@ -34,6 +34,7 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 	public static final String PLAYER_PASSWORD_HASHED = Crypto
 			.passwordHash(PLAYER_PASSWORD);
 	public static final boolean PLAYER_EMAIL_VERIFIED = true;
+	public static final int PLAYER_CASH = 100;
 
 	private String userId = PLAYER_USER_ID;
 	private ProviderType providerType = PLAYER_USER_PROVIDER_TYPE;
@@ -50,6 +51,7 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 	private String uuid;
 
 	private Set<Box> boxes = Sets.newHashSet();
+	private int cash = PLAYER_CASH;
 
 	private PlayerBuilder() {
 
@@ -72,6 +74,7 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 		player.password = Crypto.passwordHash(password);
 		player.isEmailVerified = isEmailVerified;
 		player.UUID = uuid;
+		player.cash = cash;
 
 		Whitebox.setInternalState(player, "boxes", boxes);
 		return player;
@@ -113,6 +116,11 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 
 	public PlayerBuilder withPassword(String password) {
 		this.password = password;
+		return this;
+	}
+
+	public PlayerBuilder withCash(int cash) {
+		this.cash = cash;
 		return this;
 	}
 

@@ -22,7 +22,7 @@ public class HorseDetailsFunctionalTest extends HoldYourHorsesFunctionalTest {
 
 		login("joske", "vermeulen");
 
-        Html html = getHtml("/horse/" + horse.id);
+		Html html = getHtml("/horse/" + horse.id);
 		assertThat(html.selectSingle("#fitness")).containsText("12");
 		assertThat(html.selectSingle("#training")).containsText("34");
 	}
@@ -35,7 +35,9 @@ public class HorseDetailsFunctionalTest extends HoldYourHorsesFunctionalTest {
 
 		createPlayerBuilder("joske", "vermeulen").withBoxes(box).persist();
 
-        Html html = getHtml("/horse/" + horse.id);
+		login("joske", "vermeulen");
+
+		Html html = getHtml("/horse/" + horse.id);
 		assertThat(html.selectSingle("#food")).containsText("Hay");
 	}
 }

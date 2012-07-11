@@ -167,11 +167,13 @@ public class PlayerIntegrationTest extends IntegrationTest {
 		Box box2 = BoxBuilder.aBox().persist();
 		Box box3 = BoxBuilder.aBox().persist();
 
-		Player player = aPlayer().withBoxes(box1, box2, box3).persist();
+		Player player = aPlayer().withCash(100).withBoxes(box1, box2, box3)
+				.persist();
 
 		player.buildNewBox();
 
 		assertThat(player.boxes).hasSize(4);
+		assertThat(player.cash).isEqualTo(90);
 
 	}
 

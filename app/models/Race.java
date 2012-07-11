@@ -1,17 +1,25 @@
 package models;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import play.data.validation.Required;
-import play.db.jpa.Model;
+import static java.util.Collections.reverseOrder;
+import static java.util.Collections.sort;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import java.util.*;
 
-import static java.util.Collections.reverseOrder;
-import static java.util.Collections.sort;
+import play.data.validation.Required;
+import play.db.jpa.Model;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 @Entity
 public class Race extends Model {
@@ -33,7 +41,7 @@ public class Race extends Model {
 
 	@Required
 	public Integer subscriptionFee;
-	
+
 	public Race(Date startTime, Integer subscriptionFee) {
 		super();
 		this.startTime = startTime;
@@ -79,7 +87,7 @@ public class Race extends Model {
 			sort(all, reverseOrder());
 			winner = scoresPerHorse.get(all.get(0));
 		}
-		
+
 	}
 
 	private Map<Double, Horse> createHorseResultScoresMap() {
@@ -102,7 +110,7 @@ public class Race extends Model {
 		return Collections.unmodifiableSet(horses);
 	}
 
-    public static List<Race> findUpcomingRaces(int limit) {
-        return Race.all().fetch(limit);
-    }
+	public static List<Race> findUpcomingRaces(int limit) {
+		return Race.all().fetch(limit);
+	}
 }

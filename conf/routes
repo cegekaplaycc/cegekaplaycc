@@ -11,10 +11,6 @@ GET		/horseDetail								HorseDetail.show
 POST	/horseDetail/changeFood						HorseDetail.changeFood
 
 # Old routes, to be removed..
-GET     /old/horse                                  Horses.blank
-GET     /old/horses                                 Horses.list
-GET		/old/horses/buy/{id}						Horses.buy
-
 GET		/old/races									Races.list
 GET		/old/races/new								Races.newRace
 POST	/old/races/new								Races.create

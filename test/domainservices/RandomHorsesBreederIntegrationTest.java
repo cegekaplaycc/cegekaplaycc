@@ -24,11 +24,11 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 		new HorseNamePrefix("Cloudy").save();
 		new HorseNamePrefix("Stormy").save();
 
-		new HorseBuilder().withName("Windy Zorro").build().save();
-		new HorseBuilder().withName("Stormy Zorro").build().save();
-		new HorseBuilder().withName("Windy Jumper").build().save();
-		new HorseBuilder().withName("Cloudy Jumper").build().save();
-		new HorseBuilder().withName("Stormy Jumper").build().save();
+		HorseBuilder.aHorse().withName("Windy Zorro").persist();
+		HorseBuilder.aHorse().withName("Stormy Zorro").persist();
+		HorseBuilder.aHorse().withName("Windy Jumper").persist();
+		HorseBuilder.aHorse().withName("Cloudy Jumper").persist();
+		HorseBuilder.aHorse().withName("Stormy Jumper").persist();
 	}
 
 	@Test
@@ -39,7 +39,7 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void getRandomHorse_WhenAllHorsesAreExhausted_RandomHorseBreederThrowsException() {
-		new HorseBuilder().withName("Cloudy Zorro").build().save();
+		HorseBuilder.aHorse().withName("Cloudy Zorro").persist();
 		
 		expectedException.expect(RuntimeException.class);
 		expectedException.expectMessage("All horses exhausted. Couldn't breed new horse!");

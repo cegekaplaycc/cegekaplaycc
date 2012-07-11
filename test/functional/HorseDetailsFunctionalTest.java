@@ -3,6 +3,8 @@ package functional;
 import litmus.functional.Html;
 import models.Horse;
 import models.HorseBuilder;
+import models.stable.Box;
+import models.stable.BoxBuilder;
 import models.stock.Food;
 
 import org.junit.Test;
@@ -11,15 +13,12 @@ public class HorseDetailsFunctionalTest extends HoldYourHorsesFunctionalTest {
 
 	@Test
 	public void statsAreShown() {
-		Horse horse = new HorseBuilder()
-				.withFitness(12)
-				.withTraining(34)
-				.withFood(Food.HAY)
-				.persist();
+		Horse horse = HorseBuilder.aHorse().withFitness(12).withTraining(34)
+				.withFood(Food.HAY).persist();
 
-		createPlayerBuilder("joske", "vermeulen")
-				.withHorses(horse)
-				.persist();
+		Box box = BoxBuilder.aBox().withHorse(horse).persist();
+
+		createPlayerBuilder("joske", "vermeulen").withBoxes(box).persist();
 
 		login("joske", "vermeulen");
 
@@ -30,13 +29,11 @@ public class HorseDetailsFunctionalTest extends HoldYourHorsesFunctionalTest {
 
 	@Test
 	public void foodAndTrainingAreShown() {
-		Horse horse = new HorseBuilder()
-				.withFood(Food.HAY)
-				.persist();
+		Horse horse = HorseBuilder.aHorse().withFood(Food.HAY).persist();
 
-		createPlayerBuilder("joske", "vermeulen")
-				.withHorses(horse)
-				.persist();
+		Box box = BoxBuilder.aBox().withHorse(horse).persist();
+
+		createPlayerBuilder("joske", "vermeulen").withBoxes(box).persist();
 
 		Html html = getHtml("/horseDetail?id=" + horse.id);
 		assertThat(html.selectSingle("#food")).containsText("Hay");

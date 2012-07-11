@@ -6,3 +6,5 @@ password=Password
 displayName=Display Name
 email: E-mail
 password2:Confirm Password
+
+change.food.ok=Food changed to %s

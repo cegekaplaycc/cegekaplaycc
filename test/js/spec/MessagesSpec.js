@@ -1,15 +1,19 @@
+describe("Messages", function() {
 
-describe("FoodMarket", function() {
-	
+    /*         TODO (ben & wouter)
 	beforeEach(function() {
-		loadFixtures("foodMarket.html");
+		loadFixtures("messages.html");
 	});
+
+    beforeEach(function(){
+        jQuery.fx.off = true;
+    });
 	
-	it("TotalPrice should be updated with sum of individual amounts", function() {
-		$('#totalPrice_1').html(5);
-		$('#totalPrice_2').html(7);
-		Horses.FoodMarket.updateTotalPrice();
-		expect($('#totalPrice')).toHaveHtml(12);
+	it("SuccessMessage gets displayed and hides after 5 seconds", function() {
+        Horses.Messages.showSuccess("blabla");
+        expect($('#successMsg')).toBeVisible();
+        expect($('#successMsg')).toHaveHtml("blabla");
 	});
+	*/
 	
 });

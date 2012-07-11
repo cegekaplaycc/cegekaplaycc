@@ -13,6 +13,7 @@ import controllers.securesocial.SecureSocial;
 import java.util.EnumSet;
 import java.util.Set;
 
+@With(SecureSocial.class)
 public class HorseDetail extends Controller {
 
     public static void changeMoneyForTrainer(@Required Long horseId, @Required int moneyForTrainer) {

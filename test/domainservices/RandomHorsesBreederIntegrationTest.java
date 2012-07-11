@@ -1,4 +1,4 @@
-package jobs;
+package domainservices;
 
 import models.*;
 
@@ -7,6 +7,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import domainservices.RandomHorsesBreeder;
 
 public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 
@@ -31,7 +33,7 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void getRandomHorse() {
-		Horse randomHorse = RandomHorsesBreeder.createRandomHorse();
+		Horse randomHorse = new RandomHorsesBreeder().createRandomHorse();
 		Assertions.assertThat(randomHorse.getName()).isEqualTo("Cloudy Zorro");
 	}
 
@@ -42,7 +44,7 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 		expectedException.expect(RuntimeException.class);
 		expectedException.expectMessage("All horses exhausted. Couldn't breed new horse!");
 		
-		RandomHorsesBreeder.createRandomHorse();
+		new RandomHorsesBreeder().createRandomHorse();
 	}
 
 }

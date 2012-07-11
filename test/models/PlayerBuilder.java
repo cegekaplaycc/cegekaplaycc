@@ -10,6 +10,8 @@ import java.util.Set;
 
 import org.mockito.internal.util.reflection.Whitebox;
 
+import org.mockito.internal.util.reflection.Whitebox;
+
 import play.libs.Crypto;
 import securesocial.provider.AuthenticationMethod;
 import securesocial.provider.ProviderType;
@@ -66,7 +68,7 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 		player.isEmailVerified = isEmailVerified;
 		player.UUID = uuid;
 
-		setInternalState(player, "horses", horses);
+		Whitebox.setInternalState(player, "horses", horses);
 		return player;
 	}
 

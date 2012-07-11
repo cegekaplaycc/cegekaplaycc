@@ -40,13 +40,13 @@ import securesocial.provider.UserId;
 public class PlayerTest extends UnitTest {
 
 	@Rule
-	public ServiceMocker serviceLocatorStubber = ServiceMocker.create();
+	public ServiceMocker serviceMocker = ServiceMocker.create();
 	
 	private Horse horse = new HorseBuilder().build();
 	
 	@Before
 	public void setUp() {
-		serviceLocatorStubber.mockRandomHorseBreeder();
+		serviceMocker.mockRandomHorseBreeder();
 
 		when(randomHorsesBreeder.createRandomHorse()).thenReturn(horse);
 	}

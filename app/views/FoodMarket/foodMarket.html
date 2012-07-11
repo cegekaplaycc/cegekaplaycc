@@ -26,16 +26,27 @@
 	                <td>&euro;${foodItem.price}</td>
 	                <td><label>
 	                    <input type="hidden" value="${foodItem}" name="purchases[${foodItem_index}].foodId"/>
-	                    <input type="text" value="1" name="purchases[${foodItem_index}].amount"/>
+	                    <input type="number" min="0" value="0" id="purchases_${foodItem_index}" name="purchases[${foodItem_index}].amount"/>
 	                </label></td>
-	                <td>TODO</td>
+	                <td id="totalPrice_${foodItem_index}" class="totalPriceForItem">0</td>
 	            </tr>
+	            
+	            <script type="text/javascript">
+		            $(function(){
+		            	$('#purchases_${foodItem_index}').change(function() {
+		            		var totalPriceForItem = ${foodItem.price} * $('#purchases_${foodItem_index}').val();
+		            		$('#totalPrice_${foodItem_index}').html(totalPriceForItem);
+		            		
+		            		Horses.FoodMarket.updateTotalPrice();
+		            	});
+		            });
+	            </script>
 	            #{/list}
             </tbody>
             <tfoot>
             <tr>
                 <td colspan="4"><span class="pull-right">Total price:</span></td>
-                <td>TODO</td>
+                <td id="totalPrice">0</td>
             </tr>
             </tfoot>
         </table>

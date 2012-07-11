@@ -6,6 +6,8 @@ import java.util.Set;
 import models.Horse;
 import models.stock.Food;
 import play.data.validation.Required;
+import play.data.validation.Validation;
+import play.i18n.Messages;
 import play.mvc.Controller;
 import results.BadRequest;
 
@@ -19,12 +21,12 @@ public class HorseDetail extends Controller {
         ok();
     }
 
-	public static void changeFood(@Required Long horseId, @Required Food food) {
+	public static void changeFood(@Required Long id, @Required Food food) {
 		validate();
-		Horse horse = Horse.<Horse> findById(horseId);
+		Horse horse = Horse.<Horse> findById(id);
 		horse.food = food;
 		horse.save();
-		ok();
+        renderText(Messages.get("change.food.ok", food));
 	}
 
 	public static void show(@Required Long id) {
@@ -35,7 +37,7 @@ public class HorseDetail extends Controller {
 	}
 
 	private static void validate() {
-		if (validation.hasErrors()) {
+		if (Validation.hasErrors()) {
 			throw new BadRequest();
 		}
 	}

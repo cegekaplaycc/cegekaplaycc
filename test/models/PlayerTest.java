@@ -31,13 +31,13 @@ import domainservices.ServiceMocker;
 public class PlayerTest extends UnitTest {
 
 	@Rule
-	public ServiceMocker serviceLocatorStubber = ServiceMocker.create();
+	public ServiceMocker serviceMocker = ServiceMocker.create();
 
 	private Horse horse = HorseBuilder.aHorse().build();
 
 	@Before
 	public void setUp() {
-		serviceLocatorStubber.mockRandomHorseBreeder();
+		serviceMocker.mockRandomHorseBreeder();
 
 		when(randomHorsesBreeder.createRandomHorse()).thenReturn(horse);
 	}

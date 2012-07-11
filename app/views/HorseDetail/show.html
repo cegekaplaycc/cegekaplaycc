@@ -66,13 +66,14 @@
 <script>
 $(function() {
 	$('#foods').change(function() {
-		var selectedValue = $(this).val();
-		$.post('/horseDetail/changeFood', { horseId: ${horse.id}, food: selectedValue});
+        var action = #{jsAction @changeFood(":id", ":food") /}
+        var selectedValue = $(this).val();
+        $.post(action({id: ${horse.id}, food: selectedValue}), Horses.Messages.showSuccess);
 	});
 
     function updateMoneyForTrainer() {
         $.post('@{HorseDetail.changeMoneyForTrainer}', { moneyForTrainer: $(this).val(), horseId: ${horse.id} });
-    };
+    }
     $('#moneyForTrainerId').focusout(updateMoneyForTrainer);
     $('#moneyForTrainerId').mouseout(updateMoneyForTrainer);
 

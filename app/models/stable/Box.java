@@ -14,12 +14,12 @@ public class Box extends Model {
 	@OneToOne
 	public Horse horse;
 
-	public static Box buildNewBox() {
+	public static Box createBox() {
 		return new Box().save();
 	}
 
-	public static Box buildNewBoxWithRandomHorse() {
-		Box box = buildNewBox();
+	public static Box createBoxWithRandomHorse() {
+		Box box = createBox();
 		box.horse = randomHorsesBreeder.createRandomHorse().save();
 		box.save();
 		return box;

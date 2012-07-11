@@ -88,4 +88,18 @@ public class PlayerTest extends UnitTest {
 		assertThat(player.getHorses()).containsOnly(horse1, horse2);
 	}
 
+	@Test
+	public void buildNewBox() {
+		Box box1 = BoxBuilder.aBox().build();
+		Box box2 = BoxBuilder.aBox().build();
+		Box box3 = BoxBuilder.aBox().build();
+
+		Player player = aPlayer().withBoxes(box1, box2, box3).build();
+
+		player.buildNewBox();
+
+		assertThat(player.boxes).hasSize(4);
+
+	}
+
 }

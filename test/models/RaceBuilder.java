@@ -10,10 +10,12 @@ import util.AbstractBuilder;
 
 import com.google.common.collect.Sets;
 
+import static com.google.common.collect.Sets.newHashSet;
+
 public class RaceBuilder extends AbstractBuilder<Race> {
 
 	private boolean withStarted;
-	private Set<Horse> horses = Sets.newHashSet();
+	private Set<Horse> horses = newHashSet();
 	private Horse winningHorse;
 	private String name = "race name";
 	private Date startTime = new Date();
@@ -58,7 +60,7 @@ public class RaceBuilder extends AbstractBuilder<Race> {
 	}
 
 	public RaceBuilder withHorses(Horse... horses) {
-		this.horses = Sets.newHashSet(horses);
+		this.horses = newHashSet(horses);
 		return this;
 	}
 
@@ -80,4 +82,8 @@ public class RaceBuilder extends AbstractBuilder<Race> {
         return withStartTime(new DateTime().plusMinutes(15).toDate());
     }
 
+    public RaceBuilder withoutHorses() {
+        this.horses = newHashSet();
+        return this;
+    }
 }

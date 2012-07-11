@@ -4,12 +4,14 @@ import org.junit.Test;
 
 import java.util.List;
 
+import static models.HorseBuilder.aHorse;
+
 public class RaceIntegrationTest extends IntegrationTest {
 
     @Test
     public void canBePersisted() {
-        Horse horse1 = HorseBuilder.aHorse().withName("Horse 1").persist();
-        Horse horse2 = HorseBuilder.aHorse().withName("Horse 2").persist();
+        Horse horse1 = aHorse().withName("Horse 1").persist();
+        Horse horse2 = aHorse().withName("Horse 2").persist();
 
         Race race = new RaceBuilder()
                 .withName("race")
@@ -28,6 +30,5 @@ public class RaceIntegrationTest extends IntegrationTest {
         assertThat(race.winner).isNotNull();
         assertThat(savedRace.getEnteredHorses()).contains(horse1, horse2);
     }
-
 
 }

@@ -1,138 +1,56 @@
 package models;
 
+import static domainservices.ServiceLocator.randomHorsesBreeder;
+import static models.PlayerBuilder.PLAYER_ACCESS_TOKEN;
+import static models.PlayerBuilder.PLAYER_AUTH_METHOD;
+import static models.PlayerBuilder.PLAYER_AVATAR_URL;
+import static models.PlayerBuilder.PLAYER_DISPLAY_NAME;
+import static models.PlayerBuilder.PLAYER_EMAIL;
+import static models.PlayerBuilder.PLAYER_EMAIL_VERIFIED;
+import static models.PlayerBuilder.PLAYER_LAST_ACCESS;
+import static models.PlayerBuilder.PLAYER_PASSWORD_HASHED;
+import static models.PlayerBuilder.PLAYER_SECRET;
+import static models.PlayerBuilder.PLAYER_TOKEN;
+import static models.PlayerBuilder.PLAYER_USER_ID;
+import static models.PlayerBuilder.PLAYER_USER_PROVIDER_TYPE;
+import static models.PlayerBuilder.aPlayer;
+import static org.mockito.Mockito.when;
+
 import java.util.Arrays;
 import java.util.List;
 
+import litmus.unit.UnitTest;
 import models.stock.Food;
 
 import org.fest.assertions.Assertions;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+
+import domainservices.ServiceLocator;
+import domainservices.ServiceMocker;
 
 import securesocial.SocialUserFactory;
 import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
-import static models.PlayerBuilder.*;
+public class PlayerTest extends UnitTest {
 
-public class PlayerTest extends IntegrationTest {
+	@Rule
+	public ServiceMocker serviceLocatorStubber = ServiceMocker.create();
+	
+	private Horse horse = new HorseBuilder().build();
+	
+	@Before
+	public void setUp() {
+		serviceLocatorStubber.mockRandomHorseBreeder();
 
-    @Before
-    public void initHorseNames() {
-        new HorseNamePrefix("Windy").save();
-        new HorseNameSuffix("City").save();
-    }
-
-    @Test
-    public void createANewPlayer_DisplayNameAndUserIdAndProviderTypeRequired() {
-        String expectedDisplayName = "myPlayersDisplayName";
-
-        aPlayer().withDisplayName(expectedDisplayName).build().validateAndSave();
-
-        Player actualPlayer = Player.find("byDisplayName", expectedDisplayName)
-                .first();
-
-        Assertions.assertThat(actualPlayer.displayName).isEqualTo(
-                expectedDisplayName);
-    }
-
-    @Test
-    public void createANewPlayer_DisplayNameNull_ReturnsFalse() {
-        Player player = aPlayer().withDisplayName(null).build();
-
-        Assertions.assertThat(player.validateAndSave()).isFalse();
-    }
-
-    @Test
-    public void createANewPlayer_DisplayNameEmpty_ReturnsFalse() {
-        Player player = aPlayer().withDisplayName("").build();
-
-        Assertions.assertThat(player.validateAndSave()).isFalse();
-    }
-
-    @Test
-    public void createANewPlayer_UserIdNull_ReturnsFalse() {
-        Player player = aPlayer().withUserId(null).build();
-
-        Assertions.assertThat(player.validateAndSave()).isFalse();
-    }
-
-    @Test
-    public void createANewPlayer_UserIdEmpty_ReturnsFalse() {
-        Player player = aPlayer().withUserId("").build();
-
-        Assertions.assertThat(player.validateAndSave()).isFalse();
-    }
-
-    @Test
-    public void createANewPlayer_ProviderTypeNull_ReturnsFalse() {
-        Player player = aPlayer().withProviderType(null).build();
-
-        Assertions.assertThat(player.validateAndSave()).isFalse();
-    }
-
-    @Test
-    public void findByUserId() {
-        String id = "myUserId";
-        ProviderType providerType = ProviderType.twitter;
-
-        aPlayer().withUserId(id).withProviderType(providerType).build().validateAndSave();
-
-        UserId userId = new UserId();
-        userId.id = id;
-        userId.provider = providerType;
-
-        Player actualPlayer = Player.findByUserId(userId);
-
-        Assertions.assertThat(actualPlayer).isNotNull();
-        Assertions.assertThat(actualPlayer.userId).isEqualTo(id);
-        Assertions.assertThat(actualPlayer.providerType)
-                .isEqualTo(providerType);
-    }
-
-    @Test
-    public void findByUserId_UserIdNotFound_ReturnsNull() {
-        ProviderType providerType = ProviderType.twitter;
-
-        aPlayer().withUserId("myUserId").withProviderType(providerType).build().validateAndSave();
-
-        UserId userId = new UserId();
-        userId.id = "myOtherUserId";
-        userId.provider = providerType;
-
-        Player actualPlayer = Player.findByUserId(userId);
-
-        Assertions.assertThat(actualPlayer).isNull();
-    }
-
-    @Test
-    public void findByUserId_ProviderTypeNotFound_ReturnsNull() {
-        String id = "myUserId";
-        aPlayer().withUserId(id).withProviderType(ProviderType.twitter).build().validateAndSave();
-
-        UserId userId = new UserId();
-        userId.id = id;
-        userId.provider = ProviderType.facebook;
-
-        Player actualPlayer = Player.findByUserId(userId);
-
-        Assertions.assertThat(actualPlayer).isNull();
-    }
-
-    @Test
-    public void findByUserId_UserIdAndProviderTypeNotFound_ReturnsNull() {
-        aPlayer().withUserId("myUserId").withProviderType(ProviderType.twitter).build().validateAndSave();
-
-        UserId userId = new UserId();
-        userId.id = "myOtherUserId";
-        userId.provider = ProviderType.facebook;
-
-        Player actualPlayer = Player.findByUserId(userId);
-
-        Assertions.assertThat(actualPlayer).isNull();
-    }
-
+		when(randomHorsesBreeder.createRandomHorse()).thenReturn(horse);
+	}
+	
     @Test
     public void create_ReturnsPlayer() {
         SocialUser socialUser = SocialUserFactory.create(aPlayer().build());
@@ -159,29 +77,7 @@ public class PlayerTest extends IntegrationTest {
 
         Player actualPlayer = Player.create(socialUser);
 
-        Assertions.assertThat(actualPlayer.getHorses()).hasSize(1);
+        Assertions.assertThat(actualPlayer.getHorses()).containsOnly(horse);
     }
     
-    @Test
-    public void buyShouldAddItemsToTheStock() {
-    	Player player = new Player();
-    	List<Purchase> purchases = Arrays.asList(
-    			new PurchaseBuilder().withAmount("14").withFood(Food.CARROTS).build());
-		
-		player.buy(purchases);
-		
-		assertThat(player.stock.items).hasSize(1);
-		assertThat(player.stock.items.iterator().next().amount).isEqualTo(14);
-    }
-
-    @Test
-    public void buyShouldLowerCash() {
-    	Player player = new Player();
-    	List<Purchase> purchases = Arrays.asList(
-    			new PurchaseBuilder().withAmount("5").withFood(Food.CARROTS).build());
-    	
-    	player.buy(purchases);
-    	
-    	assertThat(player.cash).isEqualTo(70);
-    }
 }

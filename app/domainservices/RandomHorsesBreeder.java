@@ -1,4 +1,4 @@
-package jobs;
+package domainservices;
 
 import models.Horse;
 import models.HorseNamePrefix;
@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class RandomHorsesBreeder {
 
-	public static Horse createRandomHorse() {
+	public Horse createRandomHorse() {
 		if (allRandomHorsesAreExhausted()) {
 			throw new RuntimeException("All horses exhausted. Couldn't breed new horse!");
 		}

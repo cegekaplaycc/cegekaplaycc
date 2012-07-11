@@ -1,5 +1,6 @@
 package models;
 
+import static domainservices.ServiceLocator.randomHorsesBreeder;
 import models.stock.Stock;
 import play.data.validation.Email;
 import play.data.validation.Required;
@@ -13,11 +14,13 @@ import javax.persistence.*;
 
 import com.google.common.collect.Sets;
 
+import domainservices.RandomHorsesBreeder;
+import domainservices.ServiceLocator;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import jobs.RandomHorsesBreeder;
 
 @Entity
 public class Player extends Model {
@@ -92,7 +95,7 @@ public class Player extends Model {
         player.password = user.password;
         player.isEmailVerified = user.isEmailVerified;
 
-        Horse horse = RandomHorsesBreeder.createRandomHorse().save();
+        Horse horse = randomHorsesBreeder.createRandomHorse().save();
         player.horses.add(horse);
 
         return player;

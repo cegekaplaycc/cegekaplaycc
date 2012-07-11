@@ -1,12 +1,13 @@
 package models;
 
 import static org.apache.commons.lang.time.DateUtils.addDays;
-import static org.powermock.reflect.Whitebox.setInternalState;
 import static securesocial.provider.AuthenticationMethod.USER_PASSWORD;
 import static securesocial.provider.ProviderType.userpass;
 
 import java.util.Date;
 import java.util.Set;
+
+import org.mockito.internal.util.reflection.Whitebox;
 
 import play.libs.Crypto;
 import securesocial.provider.AuthenticationMethod;
@@ -64,7 +65,7 @@ public class PlayerBuilder extends AbstractBuilder<Player> {
 		player.isEmailVerified = isEmailVerified;
 		player.UUID = uuid;
 
-		setInternalState(player, "horses", horses);
+		Whitebox.setInternalState(player, "horses", horses);
 		return player;
 	}
 

@@ -1,3 +1,7 @@
+#{set 'moreScripts'}
+    #{script 'html5slider.js'/}
+#{/set}
+
 #{extends 'main.html'/}
 
 <div class="page-header">
@@ -34,7 +38,11 @@
             </tr>
             <tr>
                 <td>Trainer</td>
-                <td>30 $ per week <i class="icon-pencil pull-right"></i></td>
+                <td>
+                    <input id="moneyForTrainerId" type="range" value="${horse.moneyForTrainer}" max="100" min="0" step="1"  />
+                    <span id="rangeValue">${horse.moneyForTrainer}$ per week</span>
+
+                </td>
             </tr>
             </tbody>
         </table>
@@ -48,5 +56,13 @@ $(function() {
 		var selectedValue = $(this).val();
 		$.post('/horseDetail/changeFood', { horseId: ${horse.id}, food: selectedValue});
 	});
+
+    $('#editTrainer').click(function() {
+
+    });
+
+    $('#moneyForTrainerId').change(function() {
+        $('#rangeValue').html("$" + $(this).val() + " per week");
+    });
 });
 </script>

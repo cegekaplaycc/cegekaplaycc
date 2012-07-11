@@ -25,6 +25,7 @@ public class Horse extends Model {
 	private long price;
 	private int fitness;
 	private int training;
+    public int moneyForTrainer;
 	@Enumerated(EnumType.STRING)
 	public Food food = HAY;
 
@@ -108,4 +109,7 @@ public class Horse extends Model {
 		this.training = training;
 	}
 
+    public void setMoneyForTrainer(int moneyForTrainer) {
+        this.moneyForTrainer = moneyForTrainer;
+    }
 }

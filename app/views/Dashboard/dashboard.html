@@ -21,16 +21,37 @@
 	            </tr>
             </thead>
             <tbody>
-	            #{list player.horses, as:'horse'}
+	            #{list player.boxes, as:'box'}
 					<tr>
-						<td>${horse_index}</td>
-						<td><a href="@{HorseDetail.show(horse.id)}">${horse.name}</a></td>
+						<td>${box_index}</td>
+						<td>
+							#{if box.horse != null}
+								<a href="@{HorseDetail.show(box.horse.id)}">${box.horse.name}</a>
+							#{/if}
+							#{else}
+								Empty! <a href="#">Buy a new Horse</a>
+							#{/else}
+						</td>
 					</tr>
 				#{/list}
             </tbody>
         </table>
         <a data-toggle="modal" href="#buildANewBoxModal" >Build a new box</a>
     </div>
+</div>
+
+<div class="modal hide fade" id="buildANewBoxModal">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">x</button>
+		<h3>Build a new box?</h3>
+	</div>
+	<div class="modal-body">
+		<p>Are you sure you want to build a new box?<br/>This will cost you &lt;PRICE_OF_BOX&gt; to build and &lt;MAINTENANCE_OF_BOX_PER_WEEK&gt; maintenance costs per week!</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" class="btn" data-dismiss="modal">No, thanks...</a>
+		<a href="@{Dashboard.buildANewBox()}" class="btn btn-primary" >Yes, build me a box!</a>
+	</div>
 </div>
 
 <div class="row">

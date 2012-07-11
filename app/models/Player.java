@@ -3,7 +3,7 @@ package models;
 import static com.google.common.collect.Collections2.filter;
 import static com.google.common.collect.Collections2.transform;
 import static com.google.common.collect.Sets.newHashSet;
-import static models.stable.Box.buildNewBoxWithRandomHorse;
+import static models.stable.Box.createBoxWithRandomHorse;
 
 import java.util.Date;
 import java.util.List;
@@ -97,7 +97,7 @@ public class Player extends Model {
 		player.password = user.password;
 		player.isEmailVerified = user.isEmailVerified;
 
-		player.boxes.add(buildNewBoxWithRandomHorse());
+		player.boxes.add(createBoxWithRandomHorse());
 
 		return player;
 	}
@@ -127,7 +127,8 @@ public class Player extends Model {
 	}
 
 	public Set<Horse> getHorses() {
-		return newHashSet(transform(filter(boxes, emptyBoxesFilter()), fromBoxToHorse()));
+		return newHashSet(transform(filter(boxes, emptyBoxesFilter()),
+				fromBoxToHorse()));
 	}
 
 	private Predicate<Box> emptyBoxesFilter() {
@@ -148,5 +149,10 @@ public class Player extends Model {
 				return box.horse;
 			}
 		};
+	}
+
+	public void buildNewBox() {
+		boxes.add(Box.createBox());
+		this.save();
 	}
 }

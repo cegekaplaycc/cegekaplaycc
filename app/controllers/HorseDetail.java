@@ -11,6 +11,14 @@ import results.BadRequest;
 
 public class HorseDetail extends Controller {
 
+    public static void changeMoneyForTrainer(@Required Long horseId, @Required int moneyForTrainer) {
+        validate();
+        Horse horse = Horse.<Horse> findById(horseId);
+        horse.moneyForTrainer = moneyForTrainer;
+        horse.save();
+        ok();
+    }
+
 	public static void changeFood(@Required Long horseId, @Required Food food) {
 		validate();
 		Horse horse = Horse.<Horse> findById(horseId);

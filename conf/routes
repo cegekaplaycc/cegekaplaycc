@@ -9,6 +9,7 @@ GET		/foodMarket								FoodMarket.foodMarket
 
 GET		/horseDetail								HorseDetail.show
 POST	/horseDetail/changeFood						HorseDetail.changeFood
+POST	/horseDetail/changeMoneyForTrainer			HorseDetail.changeMoneyForTrainer
 
 # Old routes, to be removed..
 GET     /old/horse                                  Horses.blank

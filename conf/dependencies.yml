@@ -1,8 +1,8 @@
 require:
     - play
     - play                      -> securesocial 0.2.4
+    - play                      -> mockito 0.1
     - litmus                    -> litmus 0.2.3
-    - org.mockito               -> mockito-core 1.9.0
     # transitive dependencies for litmus (see https://play.lighthouseapp.com/projects/57987-play-framework/tickets/1108-transitive-dependencies-not-work-with-modules-from-non-default-repository)
     - org.easytesting           -> fest-assert     1.4
     - org.jsoup                 -> jsoup           1.6.1

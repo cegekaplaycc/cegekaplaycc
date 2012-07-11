@@ -33,7 +33,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void find_PlayerFound_ReturnPlayer() {
 		String id = "myUserId";
 		ProviderType providerType = facebook;
-		aPlayer().withUserId(id).withProviderType(providerType).build().save();
+		aPlayer().withUserId(id).withProviderType(providerType).persist();
 
 		UserId userId = new UserId();
 		userId.id = id;
@@ -49,7 +49,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void find_PlayerNotFound_ReturnNull() {
-		aPlayer().withUserId("myUserId").withProviderType(facebook).build().save();
+		aPlayer().withUserId("myUserId").withProviderType(facebook).persist();
 
 		UserId userId = new UserId();
 		userId.id = "myOtherUserId";
@@ -67,7 +67,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void save_PlayerDoesNotExist_PlayerSaved() {
         new HorseNamePrefix("Windy").save();
         new HorseNameSuffix("Winder").save();
-		Player player = new PlayerBuilder().build();
+		Player player = PlayerBuilder.aPlayer().build();
 		SocialUser socialUser = SocialUserFactory.create(player);
 		UserId userId = socialUser.id;
 
@@ -84,7 +84,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void save_PlayerDoesExist_PlayerNotSavedAgain() {
-		Player player = aPlayer().build().save();
+		Player player = aPlayer().persist();
 		SocialUser socialUser = SocialUserFactory.create(player);
 		UserId userId = socialUser.id;
 
@@ -104,7 +104,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void createActivation_FindsPlayerAndAddsUUID_ReturnsUUID() {
-		Player player = aPlayer().build().save();
+		Player player = aPlayer().persist();
 		SocialUser socialUser = SocialUserFactory.create(player);
 
 		String UUID = service.createActivation(socialUser);
@@ -122,7 +122,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void activate_FindsPlayerWithUUIDSetsEmailVerifiedTrue_ReturnsTrue() {
 		String uuid = "myUUID";
 		Player player = aPlayer().withEmailVerified(false).withUUID(uuid)
-				.build().save();
+				.persist();
 
 		assertFalse(player.isEmailVerified);
 		assertTrue(service.activate(uuid));
@@ -143,11 +143,11 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void deletePendingActivations_DeletesAllPlayersWhereUUIDNotIsNull() {
-		aPlayer().withUUID("UUID1").build().save();
-		aPlayer().withUUID("UUID2").build().save();
-		aPlayer().withUUID("UUID3").build().save();
-		aPlayer().withUUID("UUID4").build().save();
-		aPlayer().withUUID("UUID5").build().save();
+		aPlayer().withUUID("UUID1").persist();
+		aPlayer().withUUID("UUID2").persist();
+		aPlayer().withUUID("UUID3").persist();
+		aPlayer().withUUID("UUID4").persist();
+		aPlayer().withUUID("UUID5").persist();
 
 		service.deletePendingActivations();
 

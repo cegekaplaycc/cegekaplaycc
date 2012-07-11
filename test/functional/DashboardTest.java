@@ -1,8 +1,10 @@
 package functional;
 
+import static models.stable.BoxBuilder.aBox;
 import models.Horse;
 import models.HorseBuilder;
 import models.RaceBuilder;
+import models.stable.Box;
 
 import org.junit.Test;
 
@@ -15,15 +17,16 @@ public class DashboardTest extends HoldYourHorsesFunctionalTest {
 
 	@Test
 	public void iCanSeeTheNameOfSubscribedHorses() {
-		Horse paardje = new HorseBuilder().withName("mijnPaardje").persist();
+		Horse paardje = HorseBuilder.aHorse().withName("mijnPaardje").persist();
+		Box box = aBox().withHorse(paardje).persist();
+
 		new RaceBuilder().withHorses(paardje).persist();
-		createPlayerBuilder("ben", "matti")
-				.withHorses(paardje)
-				.persist();
+		createPlayerBuilder("ben", "matti").withBoxes(box).persist();
 
 		login("ben", "matti");
 
-		assertThat(getHtml("/dashboard").selectSingle("#upcomingRacesTable")).containsText("mijnPaardje");
+		assertThat(getHtml("/dashboard").selectSingle("#upcomingRacesTable"))
+				.containsText("mijnPaardje");
 	}
 
 }

@@ -15,7 +15,7 @@ public class HorseMarketTest extends WebdriverTest {
 	@Before
 	public void setupUser() {
 		Fixtures.deleteDatabase();
-		new PlayerBuilder()
+		PlayerBuilder.aPlayer()
 			.withDisplayName("matti")
 			.withPassword("matti")
 			.withUserId("matti")

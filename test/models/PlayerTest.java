@@ -15,69 +15,77 @@ import static models.PlayerBuilder.PLAYER_USER_ID;
 import static models.PlayerBuilder.PLAYER_USER_PROVIDER_TYPE;
 import static models.PlayerBuilder.aPlayer;
 import static org.mockito.Mockito.when;
-
-import java.util.Arrays;
-import java.util.List;
-
 import litmus.unit.UnitTest;
-import models.stock.Food;
+import models.stable.Box;
+import models.stable.BoxBuilder;
 
-import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import domainservices.ServiceLocator;
-import domainservices.ServiceMocker;
-
 import securesocial.SocialUserFactory;
-import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
-import securesocial.provider.UserId;
+import domainservices.ServiceMocker;
 
 public class PlayerTest extends UnitTest {
 
 	@Rule
-	public ServiceMocker serviceLocatorStubber = ServiceMocker.create();
-	
-	private Horse horse = new HorseBuilder().build();
-	
+	public ServiceMocker serviceMocker = ServiceMocker.create();
+
+	private Horse horse = HorseBuilder.aHorse().build();
+
 	@Before
 	public void setUp() {
-		serviceLocatorStubber.mockRandomHorseBreeder();
+		serviceMocker.mockRandomHorseBreeder();
 
 		when(randomHorsesBreeder.createRandomHorse()).thenReturn(horse);
 	}
-	
-    @Test
-    public void create_ReturnsPlayer() {
-        SocialUser socialUser = SocialUserFactory.create(aPlayer().build());
 
-        Player actualPlayer = Player.create(socialUser);
+	@Test
+	public void create_ReturnsPlayer() {
+		SocialUser socialUser = SocialUserFactory.create(aPlayer().build());
 
-        assertThat(actualPlayer.userId).isEqualTo(PLAYER_USER_ID);
-        assertThat(actualPlayer.providerType).isEqualTo(PLAYER_USER_PROVIDER_TYPE);
-        assertThat(actualPlayer.displayName).isEqualTo(PLAYER_DISPLAY_NAME);
-        assertThat(actualPlayer.email).isEqualTo(PLAYER_EMAIL);
-        assertThat(actualPlayer.avatarUrl).isEqualTo(PLAYER_AVATAR_URL);
-        assertThat(actualPlayer.lastAccess).isEqualTo(PLAYER_LAST_ACCESS);
-        assertThat(actualPlayer.authMethod).isEqualTo(PLAYER_AUTH_METHOD);
-        assertThat(actualPlayer.token).isEqualTo(PLAYER_TOKEN);
-        assertThat(actualPlayer.secret).isEqualTo(PLAYER_SECRET);
-        assertThat(actualPlayer.accessToken).isEqualTo(PLAYER_ACCESS_TOKEN);
-        assertThat(actualPlayer.password).isEqualTo(PLAYER_PASSWORD_HASHED);
-        assertThat(actualPlayer.isEmailVerified).isEqualTo(PLAYER_EMAIL_VERIFIED);
-    }
+		Player actualPlayer = Player.create(socialUser);
 
-    @Test
-    public void create_AddsOneHorseToSet() {
-        SocialUser socialUser = SocialUserFactory.create(aPlayer().build());
+		assertThat(actualPlayer.userId).isEqualTo(PLAYER_USER_ID);
+		assertThat(actualPlayer.providerType).isEqualTo(
+				PLAYER_USER_PROVIDER_TYPE);
+		assertThat(actualPlayer.displayName).isEqualTo(PLAYER_DISPLAY_NAME);
+		assertThat(actualPlayer.email).isEqualTo(PLAYER_EMAIL);
+		assertThat(actualPlayer.avatarUrl).isEqualTo(PLAYER_AVATAR_URL);
+		assertThat(actualPlayer.lastAccess).isEqualTo(PLAYER_LAST_ACCESS);
+		assertThat(actualPlayer.authMethod).isEqualTo(PLAYER_AUTH_METHOD);
+		assertThat(actualPlayer.token).isEqualTo(PLAYER_TOKEN);
+		assertThat(actualPlayer.secret).isEqualTo(PLAYER_SECRET);
+		assertThat(actualPlayer.accessToken).isEqualTo(PLAYER_ACCESS_TOKEN);
+		assertThat(actualPlayer.password).isEqualTo(PLAYER_PASSWORD_HASHED);
+		assertThat(actualPlayer.isEmailVerified).isEqualTo(
+				PLAYER_EMAIL_VERIFIED);
+	}
 
-        Player actualPlayer = Player.create(socialUser);
+	@Test
+	public void create_AddsOneBoxWithAHorseToSet() {
+		SocialUser socialUser = SocialUserFactory.create(aPlayer().build());
 
-        Assertions.assertThat(actualPlayer.getHorses()).containsOnly(horse);
-    }
-    
+		Player actualPlayer = Player.create(socialUser);
+
+		assertThat(actualPlayer.boxes).hasSize(1);
+		assertThat(actualPlayer.boxes.iterator().next().horse).isEqualTo(horse);
+	}
+
+	@Test
+	public void getHorses_returnsHorsesOfBoxes() {
+		Horse horse1 = Mockito.mock(Horse.class);
+		Horse horse2 = Mockito.mock(Horse.class);
+
+		Box box1 = BoxBuilder.aBox().withHorse(horse1).build();
+		Box box2 = BoxBuilder.aBox().withHorse(horse2).build();
+		Box box3 = BoxBuilder.aBox().build();
+
+		Player player = aPlayer().withBoxes(box1, box2, box3).build();
+
+		assertThat(player.getHorses()).containsOnly(horse1, horse2);
+	}
+
 }

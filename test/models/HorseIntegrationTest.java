@@ -9,7 +9,7 @@ public class HorseIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void canBePersisted() {
-		Horse horse = new HorseBuilder()
+		Horse horse = HorseBuilder.aHorse()
 				.withFood(Food.POWER_BISCUITS)
 				.withName("joske")
 				.withPrice(28)

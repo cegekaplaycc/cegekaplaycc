@@ -8,8 +8,8 @@ public class RaceIntegrationTest extends IntegrationTest {
 
     @Test
     public void canBePersisted() {
-        Horse horse1 = new HorseBuilder().withName("Horse 1").build().save();
-        Horse horse2 = new HorseBuilder().withName("Horse 2").build().save();
+        Horse horse1 = HorseBuilder.aHorse().withName("Horse 1").persist();
+        Horse horse2 = HorseBuilder.aHorse().withName("Horse 2").persist();
 
         Race race = new RaceBuilder()
                 .withName("race")

@@ -1,7 +1,14 @@
 package models;
 
-import assertion.HoldYourHorseAssertions;
+import static org.joda.time.DateTimeUtils.setCurrentMillisFixed;
+import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
+
+import java.util.Date;
+
 import litmus.unit.UnitTest;
+import models.stable.Box;
+import models.stable.BoxBuilder;
+
 import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.junit.After;
@@ -10,10 +17,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.Date;
-
-import static org.joda.time.DateTimeUtils.setCurrentMillisFixed;
-import static org.joda.time.DateTimeUtils.setCurrentMillisSystem;
+import assertion.HoldYourHorseAssertions;
 
 public class RaceTest extends UnitTest {
 
@@ -35,28 +39,32 @@ public class RaceTest extends UnitTest {
 
 	@Test
 	public void startTimeInFuture_TrueInFuture() {
-		Race race = new RaceBuilder().withStartTime(new DateTime().plus(100).toDate()).build();
+		Race race = new RaceBuilder().withStartTime(
+				new DateTime().plus(100).toDate()).build();
 
 		HoldYourHorseAssertions.assertThat(race.startTimeInFuture()).isTrue();
 	}
 
 	@Test
 	public void startTimeInFuture_FalseInPresent() {
-		Race race = new RaceBuilder().withStartTime(new DateTime().toDate()).build();
+		Race race = new RaceBuilder().withStartTime(new DateTime().toDate())
+				.build();
 
 		HoldYourHorseAssertions.assertThat(race.startTimeInFuture()).isFalse();
 	}
 
 	@Test
 	public void startTimeInFuture_FalseInPast() {
-		Race race = new RaceBuilder().withStartTime(new DateTime().minus(100).toDate()).build();
+		Race race = new RaceBuilder().withStartTime(
+				new DateTime().minus(100).toDate()).build();
 
 		HoldYourHorseAssertions.assertThat(race.startTimeInFuture()).isFalse();
 	}
 
 	@Test
 	public void hasRunShouldReturnTrueIfWinnerDetermined() {
-		Race race = new RaceBuilder().withStarted().withHorses(new HorseBuilder().build()).build();
+		Race race = new RaceBuilder().withStarted()
+				.withHorses(HorseBuilder.aHorse().build()).build();
 
 		Assertions.assertThat(race.hasRun()).isTrue();
 	}
@@ -71,7 +79,8 @@ public class RaceTest extends UnitTest {
 	public void shouldBeAbleToDetermineAvailableSlots_whenNoHorsesEnteredTheRace() {
 		int availableSlots = race.getAvailableSlots();
 
-		Assertions.assertThat(availableSlots).isEqualTo(Race.MAX_AVAILABLE_SLOTS);
+		Assertions.assertThat(availableSlots).isEqualTo(
+				Race.MAX_AVAILABLE_SLOTS);
 	}
 
 	@Test
@@ -126,16 +135,20 @@ public class RaceTest extends UnitTest {
 
 	@Test
 	public void getHorseOfPlayer_ReturnsNullWhenNoHorseOfPlayerParticipatedInRace() {
-		Horse horse = new HorseBuilder().build();
+		Horse horse = HorseBuilder.aHorse().build();
 		Race race = new RaceBuilder().withHorses(horse).build();
 
-		Assertions.assertThat(race.getHorseOfPlayer(new PlayerBuilder().build())).isNull();
+		Assertions.assertThat(
+				race.getHorseOfPlayer(PlayerBuilder.aPlayer().build()))
+				.isNull();
 	}
 
 	@Test
 	public void getHorseOfPlayer_ReturnsHorseOfPlayerThatParticipatedInTheRace() {
-		Horse horse = new HorseBuilder().build();
-		Player player = new PlayerBuilder().withHorses(horse).build();
+		Horse horse = HorseBuilder.aHorse().build();
+		Box box = BoxBuilder.aBox().withHorse(horse).build();
+
+		Player player = PlayerBuilder.aPlayer().withBoxes(box).build();
 		Race race = new RaceBuilder().withHorses(horse).build();
 
 		Assertions.assertThat(race.getHorseOfPlayer(player)).isEqualTo(horse);

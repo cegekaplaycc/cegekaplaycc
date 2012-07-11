@@ -28,7 +28,7 @@ public class RacesCalculateWinnerTest extends UnitTest {
 	
 	@Test
 	public void winnerIsOnlyHorseEnteringTheRace() {
-		Horse horse = new HorseBuilder().build();
+		Horse horse = HorseBuilder.aHorse().build();
 		Race race = new RaceBuilder().withHorses(horse).build();
 		race.calculateWinner();
 		
@@ -37,21 +37,21 @@ public class RacesCalculateWinnerTest extends UnitTest {
 	
 	@Test
 	public void winnerIsHorseWithHighestScore() {
-		Horse winningHorse = new HorseBuilder()
+		Horse winningHorse = HorseBuilder.aHorse()
 			.withFitness(10)
 			.withRandomFactorForScoring(10)
 			.withTraining(10)
 			.withName("winner")
 			.withId(1L)
 			.build();
-		Horse losingHorse1 = new HorseBuilder()
+		Horse losingHorse1 = HorseBuilder.aHorse()
 			.withFitness(5)
 			.withRandomFactorForScoring(10)
 			.withTraining(10)
 			.withName("loser1")
 			.withId(2L)
 			.build();
-		Horse losingHorse2 = new HorseBuilder()
+		Horse losingHorse2 = HorseBuilder.aHorse()
 			.withFitness(5)
 			.withRandomFactorForScoring(5)
 			.withTraining(5)

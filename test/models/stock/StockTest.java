@@ -52,5 +52,23 @@ public class StockTest extends UnitTest {
 		assertThat(stock.items).hasSize(1);
 		assertThat(stock.items.iterator().next().amount).isEqualTo(7);
 	}
+	
+	@Test
+	public void getAmountForFood_NullStockGeeft0() {
+		Stock stock = new StockBuilder()
+			.withoutSupplies()
+			.build();
+
+		assertThat(stock.getAmountForFood(Food.CARROTS)).isZero();
+	}
+
+	@Test
+	public void getAmountForFood_WelStockGeeftAmount() {
+		Stock stock = new StockBuilder()
+			.withSupply(Food.CARROTS, 5)
+			.build();
+
+		assertThat(stock.getAmountForFood(Food.CARROTS)).isEqualTo(5);
+	}
 
 }

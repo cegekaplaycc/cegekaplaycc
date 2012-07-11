@@ -15,7 +15,7 @@ public class HorseTest extends UnitTest {
 	@Test
 	public void calculateRaceScore_BasedOnTrainingAndFitness() {
 		RaceWeights.set(0.5, 0.5, 0.5);
-		Horse horse = new HorseBuilder()
+		Horse horse = HorseBuilder.aHorse()
 			.withFitness(2)
 			.withTraining(4)
 			.withRandomFactorForScoring(3)
@@ -27,7 +27,7 @@ public class HorseTest extends UnitTest {
 	@Test
 	public void calculateRaceScore_DifferentWeightsForEachParameter() {
 		RaceWeights.set(0.5, 1, 2);
-		Horse horse = new HorseBuilder()
+		Horse horse = HorseBuilder.aHorse()
 			.withFitness(2)
 			.withTraining(4)
 			.withRandomFactorForScoring(3)
@@ -39,7 +39,7 @@ public class HorseTest extends UnitTest {
 	@Test
 	public void calculateRaceScore_FitnessIsZero() {
 		RaceWeights.set(0.5, 1, 2);
-		Horse horse = new HorseBuilder()
+		Horse horse = HorseBuilder.aHorse()
 			.withFitness(0)
 			.withTraining(4)
 			.withRandomFactorForScoring(3)
@@ -51,7 +51,7 @@ public class HorseTest extends UnitTest {
 	@Test
 	public void calculateRaceScore_TrainingIsZero() {
 		RaceWeights.set(0.5, 1, 2);
-		Horse horse = new HorseBuilder()
+		Horse horse = HorseBuilder.aHorse()
 			.withFitness(2)
 			.withTraining(0)
 			.withRandomFactorForScoring(3)
@@ -63,7 +63,7 @@ public class HorseTest extends UnitTest {
 	@Test
 	public void calculateRaceScore_RandomFactorIsZero() {
 		RaceWeights.set(0.5, 1, 2);
-		Horse horse = new HorseBuilder()
+		Horse horse = HorseBuilder.aHorse()
 			.withFitness(2)
 			.withTraining(4)
 			.withRandomFactorForScoring(0)

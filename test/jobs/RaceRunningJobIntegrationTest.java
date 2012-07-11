@@ -30,12 +30,12 @@ public class RaceRunningJobIntegrationTest extends IntegrationTest {
 		new RaceBuilder()
 				.withName("race 1")
 				.withStartTimeInPast()
-				.withHorses(new HorseBuilder().build())
+				.withHorses(HorseBuilder.aHorse().build())
 				.persist();
 		new RaceBuilder()
 				.withName("race 2")
 				.withStartTimeInPast()
-				.withHorses(new HorseBuilder().build())
+				.withHorses(HorseBuilder.aHorse().build())
 				.persist();
 
 		doJob();

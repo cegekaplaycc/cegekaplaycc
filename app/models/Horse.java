@@ -109,7 +109,4 @@ public class Horse extends Model {
 		this.training = training;
 	}
 
-    public void setMoneyForTrainer(int moneyForTrainer) {
-        this.moneyForTrainer = moneyForTrainer;
-    }
 }

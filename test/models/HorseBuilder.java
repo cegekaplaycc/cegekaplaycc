@@ -17,6 +17,15 @@ public class HorseBuilder extends AbstractBuilder<Horse> {
 	private Long id;
 	private Food food = Food.HAY;
 
+	private HorseBuilder() {
+
+	}
+
+	public static HorseBuilder aHorse() {
+		return new HorseBuilder();
+	}
+
+	@Override
 	public Horse build() {
 		Horse horse = createHorse();
 		horse.setFitness(fitness);

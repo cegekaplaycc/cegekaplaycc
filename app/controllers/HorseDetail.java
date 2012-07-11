@@ -29,7 +29,7 @@ public class HorseDetail extends Controller {
 		Horse horse = Horse.<Horse> findById(id);
 		horse.food = food;
 		horse.save();
-        renderText(Messages.get("change.food.ok", food));
+        renderText(Messages.get("change.food.ok", food.label));
 	}
 
     public static void show(@Required Long id) {

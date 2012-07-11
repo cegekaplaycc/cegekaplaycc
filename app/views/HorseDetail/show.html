@@ -55,7 +55,9 @@ $(function() {
 	$('#foods').change(function() {
         var action = #{jsAction @changeFood(":id", ":food") /}
         var selectedValue = $(this).val();
-        $.post(action({id: ${horse.id}, food: selectedValue}), Horses.Messages.showSuccess);
+        $.post(action({id: ${horse.id}, food: selectedValue}))
+                .success(Horses.Messages.showSuccess)
+                .error(Horses.Messages.showError);
 	});
 
     function updateMoneyForTrainer() {

@@ -10,8 +10,9 @@ var Horses = (function($) {
 		$('#totalPrice').html(totalPrice);
 	}
 
-    function showSuccessMessage(data) {
-        $('#successMsg').html(data).fadeIn('fast', function(){
+    function showMessage(elementId, data) {
+        console.dir(data);
+        $(elementId).html(data).fadeIn('fast', function(){
             var me = $(this);
             setTimeout(function(){
                 me.fadeOut('fast');
@@ -24,7 +25,8 @@ var Horses = (function($) {
 			updateTotalPrice: updateTotalPrice
 		},
         Messages: {
-            showSuccess: showSuccessMessage
+            showSuccess: function(data){showMessage('#successMsg', data)},
+            showError: function(data){showMessage('#errorMsg', data.responseText)}
         }
 	};
 	

@@ -7,8 +7,8 @@ GET     /                                       Application.index
 GET		/dashboard								Dashboard.dashboard
 GET		/foodMarket								FoodMarket.foodMarket
 
-GET		/horseDetail								HorseDetail.show
-POST	/horseDetail/changeFood						HorseDetail.changeFood
+GET		/horse/{id}                             HorseDetail.show
+POST	/horseDetail/changeFood					HorseDetail.changeFood
 
 # Old routes, to be removed..
 GET     /old/horse                                  Horses.blank

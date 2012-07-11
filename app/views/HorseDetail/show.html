@@ -57,9 +57,11 @@ $(function() {
 		$.post('/horseDetail/changeFood', { horseId: ${horse.id}, food: selectedValue});
 	});
 
-    $('#editTrainer').click(function() {
-
-    });
+    function updateMoneyForTrainer() {
+        $.post('/horseDetail/changeMoneyForTrainer', { moneyForTrainer: $(this).val(), horseId: ${horse.id} });
+    };
+    $('#moneyForTrainerId').focusout(updateMoneyForTrainer);
+    $('#moneyForTrainerId').mouseout(updateMoneyForTrainer);
 
     $('#moneyForTrainerId').change(function() {
         $('#rangeValue').html("$" + $(this).val() + " per week");

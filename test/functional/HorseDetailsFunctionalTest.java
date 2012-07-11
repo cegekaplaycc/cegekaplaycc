@@ -3,7 +3,6 @@ package functional;
 import litmus.functional.Html;
 import models.Horse;
 import models.HorseBuilder;
-import models.stable.Box;
 import models.stable.BoxBuilder;
 import models.stock.Food;
 
@@ -31,9 +30,7 @@ public class HorseDetailsFunctionalTest extends HoldYourHorsesFunctionalTest {
 	public void foodAndTrainingAreShown() {
 		Horse horse = HorseBuilder.aHorse().withFood(Food.HAY).persist();
 
-		Box box = BoxBuilder.aBox().withHorse(horse).persist();
-
-		createPlayerBuilder("joske", "vermeulen").withBoxes(box).persist();
+		createPlayerBuilder("joske", "vermeulen").withHorses(horse).persist();
 
 		Html html = getHtml("/horseDetail?id=" + horse.id);
 		assertThat(html.selectSingle("#food")).containsText("Hay");

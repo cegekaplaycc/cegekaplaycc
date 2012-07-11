@@ -39,6 +39,14 @@ public class Stock extends Model {
 		}
 		return null;
 	}
+	
+	public int getAmountForFood(Food supply) {
+		StockItem stockItemForSupply = getStockItemForSupply(supply);
+		if(stockItemForSupply == null) {
+			return 0;
+		}
+		return stockItemForSupply.amount;
+	}
 
 	public void buy(List<Purchase> purchases) {
 		for(Purchase purchase : purchases) {

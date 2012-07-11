@@ -1,7 +1,13 @@
 #{extends 'main.html'/}
 
+#{set 'page'}foodmarket#{/set}
+#{set 'title'}Foodmarket#{/set}
+
 <div class="page-header">
-    <h1>Buy Food</h1>
+    <h1 id="foodmarketHeader">
+    	Buy Food
+    	<small>You have &euro;${player.cash} cash</small>
+    </h1>
 </div>
 
 <div class="row">
@@ -22,7 +28,7 @@
             	 #{list food, as: 'foodItem'}
 	            <tr>
 	                <td>${foodItem.label}</td>
-	                <td>TODO</td>
+	                <td id="amount_${foodItem_index}">${player.stock.getAmountForFood(foodItem)}</td>
 	                <td>&euro;${foodItem.price}</td>
 	                <td><label>
 	                    <input type="hidden" value="${foodItem}" name="purchases[${foodItem_index}].foodId"/>
@@ -51,7 +57,7 @@
             </tfoot>
         </table>
 
-        <input type="submit" value="Buy now!" class="btn btn-primary pull-right" />
+        <input id="buyButton" type="submit" value="Buy now!" class="btn btn-primary pull-right" />
 		</form>
     </div>
 </div>

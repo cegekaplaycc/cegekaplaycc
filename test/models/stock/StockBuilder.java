@@ -27,4 +27,9 @@ public class StockBuilder extends AbstractBuilder<Stock> {
 		return this;
 	}
 
+	public StockBuilder withoutSupplies() {
+		supplies.clear();
+		return this;
+	}
+
 }

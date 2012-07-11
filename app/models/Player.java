@@ -1,5 +1,6 @@
 package models;
 
+import static com.google.common.collect.Collections2.filter;
 import static com.google.common.collect.Collections2.transform;
 import static com.google.common.collect.Sets.newHashSet;
 import static models.stable.Box.buildNewBoxWithRandomHorse;
@@ -26,6 +27,7 @@ import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 
 @Entity
 public class Player extends Model {
@@ -126,7 +128,17 @@ public class Player extends Model {
 	}
 
 	public Set<Horse> getHorses() {
-		return newHashSet(transform(boxes, fromBoxToHorse()));
+		return newHashSet(transform(filter(boxes, emptyBoxesFilter()), fromBoxToHorse()));
+	}
+
+	private Predicate<Box> emptyBoxesFilter() {
+		return new Predicate<Box>() {
+
+			@Override
+			public boolean apply(Box box) {
+				return box.horse != null;
+			}
+		};
 	}
 
 	private Function<Box, Horse> fromBoxToHorse() {

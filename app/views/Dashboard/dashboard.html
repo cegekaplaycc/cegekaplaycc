@@ -72,7 +72,7 @@
             <tbody>
             #{list items:upcomingRaces, as: 'race'}
             <tr>
-                <td>${race.startTime}</td>
+                <td>${race.startTime.format()}</td>
                 <td>
                     #{if race.getHorseOfPlayer(player) != null}
                         ${race.getHorseOfPlayer(player)}

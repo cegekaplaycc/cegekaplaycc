@@ -47,17 +47,23 @@
         </table>
     </div>
 
-    <div class="span8">
+    <div class="span6">
         <h2>Races</h2>
-        <table class="table table-bordered">
-            #{list horse.enteredRaces}
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Result</th>
+            </tr>
+            </thead>
+            <tbody>
+                #{list horse.enteredRaces, as: 'race'}
                 <tr>
-                    <td>${_.startTime.format("dd-mm-yyyy hh:mm")}</td>
-                    <td>${_.name}</td>
-                    <td>#{if _.hasWon(horse)}winner#{/if}</td>
-
+                    <td>${race.startTime.format()}</td>
+                    <td>#{if race.hasWon(horse)}winner#{/if}</td>
                 </tr>
-            #{/list}
+                #{/list}
+            </tbody>
         </table>
     </div>
 

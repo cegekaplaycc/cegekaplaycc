@@ -9,7 +9,7 @@ GET		/foodMarket								FoodMarket.foodMarket
 
 GET		/horse/{id}                             HorseDetail.show
 POST	/horseDetail/changeFood					HorseDetail.changeFood
-POST	/horseDetail/changeMoneyForTrainer			HorseDetail.changeMoneyForTrainer
+POST	/horseDetail/changeMoneyForTrainer		HorseDetail.changeMoneyForTrainer
 
 # Jobs page for development
 GET		/@jobs									Jobs.index

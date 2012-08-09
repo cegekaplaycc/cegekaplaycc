@@ -18,15 +18,15 @@ public class HorseDetail extends Controller {
 
     public static void changeMoneyForTrainer(@Required Long horseId, @Required int moneyForTrainer) {
         validate();
-        Horse horse = Horse.<Horse> findById(horseId);
+        Horse horse = Horse.findById(horseId);
         horse.moneyForTrainer = moneyForTrainer;
         horse.save();
-        ok();
+        renderText(Messages.get("change.money.for.trainer.ok", moneyForTrainer));
     }
 
 	public static void changeFood(@Required Long id, @Required Food food) {
 		validate();
-		Horse horse = Horse.<Horse> findById(id);
+		Horse horse = Horse.findById(id);
 		horse.food = food;
 		horse.save();
         renderText(Messages.get("change.food.ok", food.label));

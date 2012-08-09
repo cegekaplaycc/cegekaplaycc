@@ -74,7 +74,9 @@ $(function() {
 	});
 
     function updateMoneyForTrainer() {
-        $.post('@{HorseDetail.changeMoneyForTrainer}', { moneyForTrainer: $(this).val(), horseId: ${horse.id} });
+        $.post('@{HorseDetail.changeMoneyForTrainer}', { moneyForTrainer: $(this).val(), horseId: ${horse.id} })
+                .success(Horses.Messages.showSuccess)
+                .error(Horses.Messages.showError);
     }
     $('#moneyForTrainerId').focusout(updateMoneyForTrainer);
     $('#moneyForTrainerId').mouseout(updateMoneyForTrainer);

@@ -14,7 +14,6 @@ public class RaceIntegrationTest extends IntegrationTest {
         Horse horse2 = aHorse().withName("Horse 2").persist();
 
         Race race = new RaceBuilder()
-                .withName("race")
                 .withHorses(horse1, horse2)
                 .withStarted()
                 .build()

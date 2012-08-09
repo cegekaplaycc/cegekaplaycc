@@ -13,12 +13,12 @@ public class RaceAssert extends GenericAssert<RaceAssert, Race> {
 	}
 
 	public RaceAssert hasNotBeenStarted() {
-		Assert.assertFalse("race " + actual.name + " should *NOT* have been run!", actual.hasRun());
+		Assert.assertFalse("race should *NOT* have been run!", actual.hasRun());
 		return this;
 	}
 	
 	public RaceAssert hasBeenStarted() {
-		Assert.assertTrue("race " + actual.name + " should have been run!", actual.hasRun());
+		Assert.assertTrue("race should have been run!", actual.hasRun());
 		return this;
 	}
 	

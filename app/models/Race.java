@@ -34,9 +34,6 @@ public class Race extends Model {
 	public Horse winner;
 
 	@Required
-	public String name;
-
-	@Required
 	public Date startTime;
 
 	@Required

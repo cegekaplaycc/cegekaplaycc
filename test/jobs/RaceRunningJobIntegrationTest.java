@@ -28,12 +28,10 @@ public class RaceRunningJobIntegrationTest extends IntegrationTest {
 	@Test
 	public void doJobStartsAllRacesFromPast() {
 		new RaceBuilder()
-				.withName("race 1")
 				.withStartTimeInPast()
 				.withHorses(HorseBuilder.aHorse().build())
 				.persist();
 		new RaceBuilder()
-				.withName("race 2")
 				.withStartTimeInPast()
 				.withHorses(HorseBuilder.aHorse().build())
 				.persist();

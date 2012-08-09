@@ -17,12 +17,10 @@ public class RaceBuilder extends AbstractBuilder<Race> {
 	private boolean withStarted;
 	private Set<Horse> horses = newHashSet();
 	private Horse winningHorse;
-	private String name = "race name";
 	private Date startTime = new Date();
 
 	public Race build() {
 		Race race = new Race();
-		race.name = name;
 		if (startTime != null) {
 			race.startTime = startTime;
 		}
@@ -51,11 +49,6 @@ public class RaceBuilder extends AbstractBuilder<Race> {
 
 	public RaceBuilder withStarted() {
 		this.withStarted = true;
-		return this;
-	}
-
-	public RaceBuilder withName(String name) {
-		this.name = name;
 		return this;
 	}
 

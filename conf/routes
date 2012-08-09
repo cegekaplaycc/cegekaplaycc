@@ -11,13 +11,6 @@ GET		/horse/{id}                             HorseDetail.show
 POST	/horseDetail/changeFood					HorseDetail.changeFood
 POST	/horseDetail/changeMoneyForTrainer			HorseDetail.changeMoneyForTrainer
 
-# Old routes, to be removed..
-GET		/old/races									Races.list
-GET		/old/races/new								Races.newRace
-POST	/old/races/new								Races.create
-GET		/old/races/{<[0-9]+>id}						Races.detail
-GET		/old/races/enter							Races.enter
-
 # Jobs page for development
 GET		/@jobs									Jobs.index
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import static controllers.PlayerUtil.*;
 import static models.Race.findUpcomingRaces;
 
 import java.util.List;
@@ -14,15 +15,14 @@ import controllers.securesocial.SecureSocial;
 public class Dashboard extends Controller {
 
 	public static void dashboard() {
-		Player player = PlayerUtil.getCurrentPlayer(renderArgs);
+		Player player = getCurrentPlayer(renderArgs);
 		List<Race> upcomingRaces = findUpcomingRaces(3);
 		render(player, upcomingRaces);
 	}
 
 	public static void buildANewBox() {
-		Player player = PlayerUtil.getCurrentPlayer(renderArgs);
+		Player player = getCurrentPlayer(renderArgs);
 		player.buildNewBox();
-
 		redirect("/dashboard");
 	}
 }

@@ -43,20 +43,17 @@ public class Race extends Model {
 	public Integer subscriptionFee;
 
 	public Race(Date startTime, Integer subscriptionFee) {
-		super();
 		this.startTime = startTime;
 		this.subscriptionFee = subscriptionFee;
 	}
 
 	public Race() {
-		super();
 	}
 
 	public void enter(Horse horse) {
 		if (!canEnterHorse()) {
 			throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
 		}
-
 		this.horses.add(horse);
 	}
 

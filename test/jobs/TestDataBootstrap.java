@@ -1,5 +1,6 @@
 package jobs;
 
+import static models.PlayerBuilder.aPlayer;
 import static play.Play.mode;
 import models.Horse;
 import models.HorseBuilder;
@@ -24,8 +25,10 @@ public class TestDataBootstrap extends Job {
 			Box box1 = BoxBuilder.aBox().withHorse(horse1).persist();
 			Box box2 = BoxBuilder.aBox().withHorse(horse2).persist();
 
-			PlayerBuilder.aPlayer().withDisplayName("matti").withPassword("matti")
-					.withUserId("matti").withBoxes(box1, box2).persist();
+			aPlayer().withDisplayName("matti")
+                    .withPassword("matti")
+					.withUserId("matti")
+                    .withBoxes(box1, box2).persist();
 
 			new RaceBuilder().withHorses(horse1).withStartTimeInPast().withWinner(horse1).build().save();
 			new RaceBuilder().withHorses(horse1, horse2).withStartTimeInPast().withWinner(horse2).build().save();

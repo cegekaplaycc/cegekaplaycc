@@ -1,63 +1,59 @@
 package webdriver.pages;
 
-import static org.fest.assertions.Assertions.assertThat;
-
-import org.fest.assertions.Assertions;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.internal.seleniumemulation.KeyEvent;
 import org.openqa.selenium.support.FindBy;
 
-import litmus.webdriver.Page;
+import static org.fest.assertions.Assertions.assertThat;
 
 public class FoodMarketPage extends AbstractHorsesPage<FoodMarketPage> {
 
-	@FindBy(id = "foodmarketHeader")
-	private WebElement header;
-	
-	@FindBy(id="purchases_1")
-	private WebElement purchasePowerBiscuitsInputField;
+    @FindBy(id = "foodmarketHeader")
+    private WebElement header;
 
-	@FindBy(id="totalPrice_1")
-	private WebElement totalPricePowerBiscuits;
+    @FindBy(id = "purchases_1")
+    private WebElement purchasePowerBiscuitsInputField;
 
-	@FindBy(id="amount_1")
-	private WebElement stockAmountOfPowerBiscuits;
+    @FindBy(id = "totalPrice_1")
+    private WebElement totalPricePowerBiscuits;
 
-	@FindBy(id="buyButton")
-	private WebElement buyButton;
+    @FindBy(id = "amount_1")
+    private WebElement stockAmountOfPowerBiscuits;
 
-	
-	public FoodMarketPage() {
-		super("/foodMarket");
-	}
+    @FindBy(id = "buyButton")
+    private WebElement buyButton;
 
-	@Override
-	protected boolean arrivedAt() {
-		waitForElementPresent("foodmarketHeader");
-		return header.isDisplayed();
-	}
-	
-	public FoodMarketPage fillInAmountOfPowerBiscuitsToBuy(String amount) {
-		purchasePowerBiscuitsInputField.clear();
-		purchasePowerBiscuitsInputField.sendKeys(amount);
-		purchasePowerBiscuitsInputField.sendKeys(Keys.TAB);
-		return this;
-	}
 
-	public FoodMarketPage isTotalPriceForPowerBiscuits(String price) {
-		assertThat(totalPricePowerBiscuits.getText()).isEqualTo(price);
-		return this;
-	}
+    public FoodMarketPage() {
+        super("/foodMarket");
+    }
 
-	public DashboardPage clickBuy() {
-		buyButton.click();
-		return new DashboardPage().assertArrivedAt();
-	}
-	
-	public FoodMarketPage isAmountOfPowerBiscuits(String amount) {
-		assertThat(stockAmountOfPowerBiscuits.getText()).isEqualTo(amount);
-		return this;
-	}
+    @Override
+    protected boolean arrivedAt() {
+        waitForElementPresent("foodmarketHeader");
+        return header.isDisplayed();
+    }
+
+    public FoodMarketPage fillInAmountOfPowerBiscuitsToBuy(String amount) {
+        purchasePowerBiscuitsInputField.clear();
+        purchasePowerBiscuitsInputField.sendKeys(amount);
+        purchasePowerBiscuitsInputField.sendKeys(Keys.TAB);
+        return this;
+    }
+
+    public FoodMarketPage isTotalPriceForPowerBiscuits(String price) {
+        assertThat(totalPricePowerBiscuits.getText()).isEqualTo(price);
+        return this;
+    }
+
+    public DashboardPage clickBuy() {
+        buyButton.click();
+        return new DashboardPage().assertArrivedAt();
+    }
+
+    public FoodMarketPage isAmountOfPowerBiscuits(String amount) {
+        assertThat(stockAmountOfPowerBiscuits.getText()).isEqualTo(amount);
+        return this;
+    }
 
 }

@@ -55,6 +55,9 @@
                             <li class="${page == 'foodmarket' ? 'active' : ''}">
                                 <a href="@{FoodMarket.foodMarket()}" id="menuFoodmarketLink">&{'foodmarket'}</a>
                             </li>
+                            <li class="${page == 'races' ? 'active' : ''}">
+                                <a href="@{Races.showAllUpcoming()}" id="menuRacesLink">&{'races'}</a>
+                            </li>
                         </ul>
 	                    <p class="navbar-text pull-right">Logged in as ${user.displayName} (<a href="@{securesocial.SecureSocial.logout()}">&{'logout'}</a>)</p>
 	                #{/if}

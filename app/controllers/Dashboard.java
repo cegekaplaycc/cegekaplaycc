@@ -25,4 +25,6 @@ public class Dashboard extends Controller {
 		player.buildNewBox();
 		redirect("/dashboard");
 	}
+
+
 }

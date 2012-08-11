@@ -11,6 +11,8 @@ GET		/horse/{id}                             HorseDetail.show
 POST	/horseDetail/changeFood					HorseDetail.changeFood
 POST	/horseDetail/changeMoneyForTrainer		HorseDetail.changeMoneyForTrainer
 
+GET     /races/upcoming                         Races.showAllUpcoming
+
 # Jobs page for development
 GET		/@jobs									Jobs.index
 

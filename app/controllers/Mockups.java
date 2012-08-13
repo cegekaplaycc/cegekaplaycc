@@ -16,6 +16,6 @@ public class Mockups extends Controller {
     }
 
     public static void showMockup(String mockup){
-        render("/Mockups/" + mockup);
+        render("/Mockups/" + mockup + ".html");
     }
 }

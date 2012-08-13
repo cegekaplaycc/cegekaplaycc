@@ -1,8 +1,6 @@
 *       /auth       							module:securesocial
 *       /                                       module:litmus
 
-GET     /mockups/{mockup}                       Mockups.showMockup
-
 GET     /                                       Application.index
 GET		/dashboard								Dashboard.dashboard
 GET		/foodMarket								FoodMarket.foodMarket
@@ -13,8 +11,10 @@ POST	/horseDetail/changeMoneyForTrainer		HorseDetail.changeMoneyForTrainer
 
 GET     /races/upcoming                         Races.showAllUpcoming
 
-# Jobs page for development
+# pages for development
 GET		/@jobs									Jobs.index
+GET     /@mockups/?                             Mockups.showList
+GET     /@mockups/{mockup}                      Mockups.showMockup
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

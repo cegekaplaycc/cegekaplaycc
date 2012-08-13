@@ -1,14 +1,11 @@
 package models;
 
-import java.util.Date;
-import java.util.Set;
-
 import org.joda.time.DateTime;
 import org.mockito.internal.util.reflection.Whitebox;
-
 import util.AbstractBuilder;
 
-import com.google.common.collect.Sets;
+import java.util.Date;
+import java.util.Set;
 
 import static com.google.common.collect.Sets.newHashSet;
 
@@ -18,6 +15,14 @@ public class RaceBuilder extends AbstractBuilder<Race> {
 	private Set<Horse> horses = newHashSet();
 	private Horse winningHorse;
 	private Date startTime = new Date();
+
+    private RaceBuilder(){
+
+    }
+
+    public static RaceBuilder aRace(){
+        return new RaceBuilder();
+    }
 
 	public Race build() {
 		Race race = new Race();
@@ -36,7 +41,7 @@ public class RaceBuilder extends AbstractBuilder<Race> {
 		return race;
 	}
 
-	public Race persist() {
+	public Race save() {
 		Race race = build();
 		for (Horse enteredHorses : race.getEnteredHorses()) {
 			if (enteredHorses.getId() == null) {

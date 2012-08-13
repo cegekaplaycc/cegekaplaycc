@@ -5,6 +5,7 @@ import org.fest.assertions.Assertions;
 import org.junit.Test;
 
 import static models.HorseBuilder.aHorse;
+import static models.RaceBuilder.aRace;
 
 public class HorseIntegrationTest extends IntegrationTest {
 
@@ -16,7 +17,7 @@ public class HorseIntegrationTest extends IntegrationTest {
                 .withPrice(28)
                 .withFitness(25)
                 .withTraining(21)
-                .persist();
+                .save();
 
         clearEntityContext();
 
@@ -32,8 +33,8 @@ public class HorseIntegrationTest extends IntegrationTest {
 
     @Test
     public void getEnteredRaces_ReturnsEmptyListWhenHorseEnteredNoRaces() {
-        new RaceBuilder().persist();
-        Horse horse = aHorse().persist();
+        aRace().save();
+        Horse horse = aHorse().save();
         clearEntityContext();
 
         Horse.findById(horse.id);
@@ -42,11 +43,11 @@ public class HorseIntegrationTest extends IntegrationTest {
 
     @Test
     public void getEnteredRaces_ReturnsListOfEnteredRaces() {
-        Horse horse = aHorse().persist();
-        Race race1 = new RaceBuilder().withHorses(horse).persist();
-        Race race2 = new RaceBuilder().withHorses(aHorse().build(), horse).persist();
-        new RaceBuilder().withoutHorses().persist();
-        new RaceBuilder().withHorses(aHorse().persist()).persist();
+        Horse horse = aHorse().save();
+        Race race1 = aRace().withHorses(horse).save();
+        Race race2 = aRace().withHorses(aHorse().build(), horse).save();
+        aRace().withoutHorses().save();
+        aRace().withHorses(aHorse().save()).save();
         clearEntityContext();
 
         Horse.findById(horse.id);

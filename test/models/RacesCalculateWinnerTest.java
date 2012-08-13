@@ -6,6 +6,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import static models.RaceBuilder.aRace;
+
 public class RacesCalculateWinnerTest extends UnitTest {
 
 	@Before
@@ -20,7 +22,7 @@ public class RacesCalculateWinnerTest extends UnitTest {
 	
 	@Test
 	public void winnerIsEmptyWhenNoHorsesInRace() {
-		Race race = new RaceBuilder().build();
+		Race race = aRace().build();
 		race.calculateWinner();
 		
 		HoldYourHorseAssertions.assertThat(race.winner).isNull();
@@ -29,7 +31,7 @@ public class RacesCalculateWinnerTest extends UnitTest {
 	@Test
 	public void winnerIsOnlyHorseEnteringTheRace() {
 		Horse horse = HorseBuilder.aHorse().build();
-		Race race = new RaceBuilder().withHorses(horse).build();
+		Race race = aRace().withHorses(horse).build();
 		race.calculateWinner();
 		
 		HoldYourHorseAssertions.assertThat(race.winner).isSameAs(horse);
@@ -59,7 +61,7 @@ public class RacesCalculateWinnerTest extends UnitTest {
 			.withId(3L)
 			.build();
 		
-		Race race = new RaceBuilder()
+		Race race = aRace()
 			.withHorses(winningHorse, losingHorse1, losingHorse2)
 			.build();
 		race.calculateWinner();

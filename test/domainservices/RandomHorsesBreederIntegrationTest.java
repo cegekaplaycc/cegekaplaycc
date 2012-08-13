@@ -1,14 +1,11 @@
 package domainservices;
 
 import models.*;
-
 import org.fest.assertions.Assertions;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import domainservices.RandomHorsesBreeder;
 
 public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 
@@ -24,11 +21,11 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 		new HorseNamePrefix("Cloudy").save();
 		new HorseNamePrefix("Stormy").save();
 
-		HorseBuilder.aHorse().withName("Windy Zorro").persist();
-		HorseBuilder.aHorse().withName("Stormy Zorro").persist();
-		HorseBuilder.aHorse().withName("Windy Jumper").persist();
-		HorseBuilder.aHorse().withName("Cloudy Jumper").persist();
-		HorseBuilder.aHorse().withName("Stormy Jumper").persist();
+		HorseBuilder.aHorse().withName("Windy Zorro").save();
+		HorseBuilder.aHorse().withName("Stormy Zorro").save();
+		HorseBuilder.aHorse().withName("Windy Jumper").save();
+		HorseBuilder.aHorse().withName("Cloudy Jumper").save();
+		HorseBuilder.aHorse().withName("Stormy Jumper").save();
 	}
 
 	@Test
@@ -39,7 +36,7 @@ public class RandomHorsesBreederIntegrationTest extends IntegrationTest {
 
 	@Test
 	public void getRandomHorse_WhenAllHorsesAreExhausted_RandomHorseBreederThrowsException() {
-		HorseBuilder.aHorse().withName("Cloudy Zorro").persist();
+		HorseBuilder.aHorse().withName("Cloudy Zorro").save();
 		
 		expectedException.expect(RuntimeException.class);
 		expectedException.expectMessage("All horses exhausted. Couldn't breed new horse!");

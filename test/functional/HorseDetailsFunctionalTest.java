@@ -14,11 +14,11 @@ public class HorseDetailsFunctionalTest extends HoldYourHorsesFunctionalTest {
 	@Test
 	public void statsAreShown() {
 		Horse horse = HorseBuilder.aHorse().withFitness(12).withTraining(34)
-				.withFood(Food.HAY).persist();
+				.withFood(Food.HAY).save();
 
-		Box box = BoxBuilder.aBox().withHorse(horse).persist();
+		Box box = BoxBuilder.aBox().withHorse(horse).save();
 
-		createPlayerBuilder("joske", "vermeulen").withBoxes(box).persist();
+		createPlayerBuilder("joske", "vermeulen").withBoxes(box).save();
 
 		login("joske", "vermeulen");
 
@@ -29,11 +29,11 @@ public class HorseDetailsFunctionalTest extends HoldYourHorsesFunctionalTest {
 
 	@Test
 	public void foodAndTrainingAreShown() {
-		Horse horse = HorseBuilder.aHorse().withFood(Food.HAY).persist();
+		Horse horse = HorseBuilder.aHorse().withFood(Food.HAY).save();
 
-		Box box = BoxBuilder.aBox().withHorse(horse).persist();
+		Box box = BoxBuilder.aBox().withHorse(horse).save();
 
-		createPlayerBuilder("joske", "vermeulen").withBoxes(box).persist();
+		createPlayerBuilder("joske", "vermeulen").withBoxes(box).save();
 
 		login("joske", "vermeulen");
 

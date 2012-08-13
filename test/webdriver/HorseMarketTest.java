@@ -19,7 +19,7 @@ public class HorseMarketTest extends WebdriverTest {
 			.withDisplayName("matti")
 			.withPassword("matti")
 			.withUserId("matti")
-			.persist();
+			.save();
 	}
 	
 	@Test

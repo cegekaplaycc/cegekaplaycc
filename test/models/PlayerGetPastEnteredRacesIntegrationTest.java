@@ -2,53 +2,55 @@ package models;
 
 import models.stable.Box;
 import models.stable.BoxBuilder;
-
 import org.fest.assertions.Assertions;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+import static models.PlayerBuilder.aPlayer;
+import static models.RaceBuilder.aRace;
+
 public class PlayerGetPastEnteredRacesIntegrationTest extends IntegrationTest {
 
-	@Test
-	public void getPastEnteredRaces_ReturnsEmptyListWhenNoRacesFound() {
-		Player player = PlayerBuilder.aPlayer().persist();
+    @Test
+    public void getPastEnteredRaces_ReturnsEmptyListWhenNoRacesFound() {
+        Player player = aPlayer().save();
 
-		Assertions.assertThat(player.getPastEnteredRaces()).isEmpty();
-	}
+        Assertions.assertThat(player.getPastEnteredRaces()).isEmpty();
+    }
 
-	@Test
-	public void getPastEnteredRaces_ReturnsEmptyListWhenOnlyFutureEnteredRaces() {
-		Horse horse = HorseBuilder.aHorse().persist();
-		Box box = BoxBuilder.aBox().withHorse(horse).persist();
+    @Test
+    public void getPastEnteredRaces_ReturnsEmptyListWhenOnlyFutureEnteredRaces() {
+        Horse horse = HorseBuilder.aHorse().save();
+        Box box = BoxBuilder.aBox().withHorse(horse).save();
 
-		Player player = PlayerBuilder.aPlayer().withBoxes(box).persist();
-		new RaceBuilder().withHorses(horse)
-				.withStartTime(new DateTime().plusYears(1).toDate()).build()
-				.save();
+        Player player = aPlayer().withBoxes(box).save();
+        aRace().withHorses(horse)
+                .withStartTime(new DateTime().plusYears(1).toDate())
+                .save();
 
-		Assertions.assertThat(player.getPastEnteredRaces()).isEmpty();
-	}
+        assertThat(player.getPastEnteredRaces()).isEmpty();
+    }
 
-	@Test
-	public void getPastEnteredRaces_ReturnsEmptyListWhenNoPastRacesEntered() {
-		Player player = PlayerBuilder.aPlayer().persist();
-		new RaceBuilder().withStartTime(new DateTime().minusYears(1).toDate())
-				.persist();
+    @Test
+    public void getPastEnteredRaces_ReturnsEmptyListWhenNoPastRacesEntered() {
+        Player player = aPlayer().save();
+        aRace().withStartTime(new DateTime().minusYears(1).toDate()).save();
 
-		Assertions.assertThat(player.getPastEnteredRaces()).isEmpty();
-	}
+        assertThat(player.getPastEnteredRaces()).isEmpty();
+    }
 
-	@Test
-	public void getPastEnteredRaces_ReturnsListOfRacesEnteredInThePast() {
-		Horse horse = HorseBuilder.aHorse().persist();
-		Box box = BoxBuilder.aBox().withHorse(horse).persist();
+    @Test
+    public void getPastEnteredRaces_ReturnsListOfRacesEnteredInThePast() {
+        Horse horse = HorseBuilder.aHorse().save();
+        Box box = BoxBuilder.aBox().withHorse(horse).save();
 
-		Player player = PlayerBuilder.aPlayer().withBoxes(box).persist();
-		Race race = new RaceBuilder().withHorses(horse)
-				.withStartTime(new DateTime().minusDays(1).toDate()).build()
-				.save();
+        Player player = aPlayer().withBoxes(box).save();
+        Race race = aRace()
+                .withHorses(horse)
+                .withStartTime(new DateTime().minusDays(1).toDate())
+                .save();
 
-		Assertions.assertThat(player.getPastEnteredRaces()).contains(race);
-	}
+        assertThat(player.getPastEnteredRaces()).contains(race);
+    }
 
 }

@@ -33,7 +33,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void find_PlayerFound_ReturnPlayer() {
 		String id = "myUserId";
 		ProviderType providerType = facebook;
-		aPlayer().withUserId(id).withProviderType(providerType).persist();
+		aPlayer().withUserId(id).withProviderType(providerType).save();
 
 		UserId userId = new UserId();
 		userId.id = id;
@@ -49,7 +49,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void find_PlayerNotFound_ReturnNull() {
-		aPlayer().withUserId("myUserId").withProviderType(facebook).persist();
+		aPlayer().withUserId("myUserId").withProviderType(facebook).save();
 
 		UserId userId = new UserId();
 		userId.id = "myOtherUserId";
@@ -84,7 +84,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void save_PlayerDoesExist_PlayerNotSavedAgain() {
-		Player player = aPlayer().persist();
+		Player player = aPlayer().save();
 		SocialUser socialUser = SocialUserFactory.create(player);
 		UserId userId = socialUser.id;
 
@@ -104,7 +104,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void createActivation_FindsPlayerAndAddsUUID_ReturnsUUID() {
-		Player player = aPlayer().persist();
+		Player player = aPlayer().save();
 		SocialUser socialUser = SocialUserFactory.create(player);
 
 		String UUID = service.createActivation(socialUser);
@@ -122,7 +122,7 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 	public void activate_FindsPlayerWithUUIDSetsEmailVerifiedTrue_ReturnsTrue() {
 		String uuid = "myUUID";
 		Player player = aPlayer().withEmailVerified(false).withUUID(uuid)
-				.persist();
+				.save();
 
 		assertFalse(player.isEmailVerified);
 		assertTrue(service.activate(uuid));
@@ -143,11 +143,11 @@ public class SecureSocialPlayerServiceTest extends UnitTest {
 
 	@Test
 	public void deletePendingActivations_DeletesAllPlayersWhereUUIDNotIsNull() {
-		aPlayer().withUUID("UUID1").persist();
-		aPlayer().withUUID("UUID2").persist();
-		aPlayer().withUUID("UUID3").persist();
-		aPlayer().withUUID("UUID4").persist();
-		aPlayer().withUUID("UUID5").persist();
+		aPlayer().withUUID("UUID1").save();
+		aPlayer().withUUID("UUID2").save();
+		aPlayer().withUUID("UUID3").save();
+		aPlayer().withUUID("UUID4").save();
+		aPlayer().withUUID("UUID5").save();
 
 		service.deletePendingActivations();
 

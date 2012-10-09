@@ -1,7 +1,6 @@
 package models;
 
 import org.joda.time.DateTime;
-import org.mockito.internal.util.reflection.Whitebox;
 import util.AbstractBuilder;
 
 import java.util.Date;

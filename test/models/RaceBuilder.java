@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.Set;
 
 import static com.google.common.collect.Sets.newHashSet;
+import static org.mockito.internal.util.reflection.Whitebox.setInternalState;
 
 public class RaceBuilder extends AbstractBuilder<Race> {
 
@@ -30,7 +31,7 @@ public class RaceBuilder extends AbstractBuilder<Race> {
 			race.startTime = startTime;
 		}
 
-		Whitebox.setInternalState(race, "horses", horses);
+		setInternalState(race, "horses", horses);
 		if (withStarted) {
 			race.calculateWinner();
 		}

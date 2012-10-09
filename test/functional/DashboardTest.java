@@ -10,23 +10,22 @@ import static models.stable.BoxBuilder.aBox;
 
 public class DashboardTest extends HoldYourHorsesFunctionalTest {
 
-	@Test
-	public void whenNotLoggedInICannotSeeTheDashboard() {
-		assertThat(get("/dashboard")).isRedirectTo("/auth/login");
-	}
+    @Test
+    public void whenNotLoggedInICannotSeeTheDashboard() {
+        assertThat(get("/dashboard")).isRedirectTo("/auth/login");
+    }
 
-	@Test
-	public void iCanSeeTheNameOfSubscribedHorses() {
-		Horse paardje = HorseBuilder.aHorse().withName("mijnPaardje").save();
-		Box box = aBox().withHorse(paardje).save();
+    @Test
+    public void iCanSeeTheNameOfSubscribedHorses() {
+        Horse paardje = HorseBuilder.aHorse().withName("mijnPaardje").save();
+        Box box = aBox().withHorse(paardje).save();
+        aRace().withStartTimeInFuture().withHorses(paardje).save();
 
-		aRace().withHorses(paardje).save();
-		createPlayerBuilder("ben", "matti").withBoxes(box).save();
+        createPlayerBuilder("ben", "matti").withBoxes(box).save();
 
-		login("ben", "matti");
+        login("ben", "matti");
 
-		assertThat(getHtml("/dashboard").selectSingle("#upcomingRacesTable"))
-				.containsText("mijnPaardje");
-	}
+        assertThat(getHtml("/dashboard").selectSingle("#upcomingRacesTable")).containsText("mijnPaardje");
+    }
 
 }

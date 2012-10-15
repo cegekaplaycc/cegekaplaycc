@@ -18,11 +18,4 @@ public class Box extends Model {
 		return new Box().save();
 	}
 
-	public static Box createBoxWithRandomHorse() {
-		Box box = createBox();
-		box.horse = randomHorsesBreeder.createRandomHorse().save();
-		box.save();
-		return box;
-	}
-
 }

@@ -1,21 +1,7 @@
 package models;
 
-import static com.google.common.collect.Collections2.filter;
-import static com.google.common.collect.Collections2.transform;
-import static com.google.common.collect.Sets.newHashSet;
-import static models.stable.Box.createBoxWithRandomHorse;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 import models.stable.Box;
 import models.stock.Stock;
 import play.data.validation.Email;
@@ -26,8 +12,15 @@ import securesocial.provider.ProviderType;
 import securesocial.provider.SocialUser;
 import securesocial.provider.UserId;
 
-import com.google.common.base.Function;
-import com.google.common.base.Predicate;
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import static com.google.common.collect.Collections2.filter;
+import static com.google.common.collect.Collections2.transform;
+import static com.google.common.collect.Sets.newHashSet;
+import static models.stable.Box.createBox;
 
 @Entity
 public class Player extends Model {
@@ -83,7 +76,6 @@ public class Player extends Model {
 
 	public static Player create(SocialUser user) {
 		Player player = new Player();
-
 		player.userId = user.id.id;
 		player.providerType = user.id.provider;
 		player.displayName = user.displayName;
@@ -96,9 +88,7 @@ public class Player extends Model {
 		player.accessToken = user.accessToken;
 		player.password = user.password;
 		player.isEmailVerified = user.isEmailVerified;
-
-		player.boxes.add(createBoxWithRandomHorse());
-
+		player.boxes.add(createBox());
 		return player;
 	}
 
@@ -152,7 +142,7 @@ public class Player extends Model {
 	}
 
 	public void buildNewBox() {
-		boxes.add(Box.createBox());
+		boxes.add(createBox());
 		cash -= 10;
 		this.save();
 	}

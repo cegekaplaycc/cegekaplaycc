@@ -28,11 +28,9 @@ public class CustomSecureSocialPlayerService implements UserService.Service {
 	@Override
 	public String createActivation(SocialUser user) {
 		String uuid = Codec.UUID();
-
 		Player player = Player.findByUserId(user.id);
 		player.UUID = uuid;
 		player.validateAndSave();
-
 		return uuid;
 	}
 

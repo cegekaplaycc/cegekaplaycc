@@ -9,7 +9,6 @@ public class SocialUserFactory {
 
 	public static SocialUser create(Player player) {
 		SocialUser socialUser = new SocialUser();
-
 		socialUser.id = createUserId(player.userId, player.providerType);
 		socialUser.displayName = player.displayName;
 		socialUser.email = player.email;
@@ -21,16 +20,13 @@ public class SocialUserFactory {
 		socialUser.accessToken = player.accessToken;
 		socialUser.password = player.password;
 		socialUser.isEmailVerified = player.isEmailVerified;
-
 		return socialUser;
 	}
 
 	private static UserId createUserId(String id, ProviderType provider) {
 		UserId userId = new UserId();
-
 		userId.id = id;
 		userId.provider = provider;
-
 		return userId;
 	}
 

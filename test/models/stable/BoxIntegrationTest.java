@@ -18,20 +18,9 @@ public class BoxIntegrationTest extends IntegrationTest {
 	@Test
 	public void buildNewBox_CreatesNewBoxWithoutHorse() {
 		Box actual = Box.createBox();
-
 		assertThat(actual).isNotNull();
 		assertThat(actual.id).isNotNull();
 		assertThat(actual.horse).isNull();
-	}
-
-	@Test
-	public void buildNewBoxWithRandomHorse() {
-		Box actual = Box.createBoxWithRandomHorse();
-
-		assertThat(actual).isNotNull();
-		assertThat(actual.id).isNotNull();
-		assertThat(actual.horse).isNotNull();
-		assertThat(actual.horse.id).isNotNull();
 	}
 
 }

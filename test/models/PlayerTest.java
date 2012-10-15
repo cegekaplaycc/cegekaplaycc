@@ -1,5 +1,6 @@
 package models;
 
+import static com.google.common.collect.Iterables.getOnlyElement;
 import static domainservices.ServiceLocator.randomHorsesBreeder;
 import static models.PlayerBuilder.PLAYER_ACCESS_TOKEN;
 import static models.PlayerBuilder.PLAYER_AUTH_METHOD;
@@ -15,6 +16,8 @@ import static models.PlayerBuilder.PLAYER_USER_ID;
 import static models.PlayerBuilder.PLAYER_USER_PROVIDER_TYPE;
 import static models.PlayerBuilder.aPlayer;
 import static org.mockito.Mockito.when;
+
+import com.google.common.collect.Iterables;
 import litmus.unit.UnitTest;
 import models.stable.Box;
 import models.stable.BoxBuilder;
@@ -65,13 +68,10 @@ public class PlayerTest extends UnitTest {
 	}
 
 	@Test
-	public void create_AddsOneBoxWithAHorseToSet() {
+	public void create_AddsOneBox() {
 		SocialUser socialUser = SocialUserFactory.create(aPlayer().build());
-
 		Player actualPlayer = Player.create(socialUser);
-
-		assertThat(actualPlayer.boxes).hasSize(1);
-		assertThat(actualPlayer.boxes.iterator().next().horse).isEqualTo(horse);
+        assertThat(getOnlyElement(actualPlayer.boxes).horse).isNull();
 	}
 
 	@Test

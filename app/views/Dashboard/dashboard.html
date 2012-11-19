@@ -75,6 +75,12 @@
             </tr>
             </thead>
             <tbody>
+            #{if upcomingRaces.isEmpty()}
+                <tr>
+                    <td colspan="2">There are no upcoming races</td>
+                </tr>
+            #{/if}
+            #{else}
             #{list items:upcomingRaces, as: 'race'}
             <tr>
                 <td>${race.startTime.format()}</td>
@@ -88,6 +94,7 @@
                 </td>
             </tr>
             #{/list}
+            #{/else}
             </tbody>
         </table>
     </div>

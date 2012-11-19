@@ -6,4 +6,33 @@
 <div class="page-header">
     <h1>Upcoming Races</h1>
 </div>
+<div class="row">
+    <div class="span12">
+        <table class="table table-striped table-bordered">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Subscription Fee</th>
+                <th>Places left</th>
+                <th>&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            #{if races.isEmpty()}
+                <tr><td colspan="40">No upcoming races!</td></tr>
+            #{/if}
+            #{else}
+                #{list items: races, as: 'race'}
+                    <tr>
+                        <td>${race.startTime.format()}</td>
+                        <td>${race.subscriptionFee}</td>
+                        <td>${race.getAvailableSlots()}</td>
+                        <td>Subscribe</td>
+                    </tr>
+                #{/list}
+            #{/else}
+            </tbody>
+        </table>
+    </div>
+</div>
 

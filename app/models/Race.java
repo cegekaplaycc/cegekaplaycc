@@ -3,6 +3,7 @@ package models;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import play.data.validation.Required;
+import play.db.jpa.GenericModel;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -16,92 +17,97 @@ import static java.util.Collections.sort;
 @Entity
 public class Race extends Model {
 
-	public static final int MAX_AVAILABLE_SLOTS = 8;
-	public static final String MAX_AVAILABLE_SLOTS_EXCEEDED = "Cannot enter more than the maximum available slots";
+    public static final int MAX_AVAILABLE_SLOTS = 8;
+    public static final String MAX_AVAILABLE_SLOTS_EXCEEDED = "Cannot enter more than the maximum available slots";
 
-	@ManyToMany
-	private Set<Horse> horses = new HashSet<Horse>();
+    @ManyToMany
+    private Set<Horse> horses = new HashSet<Horse>();
 
-	@OneToOne
-	public Horse winner;
+    @OneToOne
+    public Horse winner;
 
-	@Required
-	public Date startTime;
+    @Required
+    public Date startTime;
 
-	@Required
-	public Integer subscriptionFee;
+    @Required
+    public Integer subscriptionFee;
 
-	public Race(Date startTime, Integer subscriptionFee) {
-		this.startTime = startTime;
-		this.subscriptionFee = subscriptionFee;
-	}
+    public Race(Date startTime, Integer subscriptionFee) {
+        this.startTime = startTime;
+        this.subscriptionFee = subscriptionFee;
+    }
 
-	public Race() {
-	}
+    public Race() {
+    }
 
-	public void enter(Horse horse) {
-		if (!canEnterHorse()) {
-			throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
-		}
-		this.horses.add(horse);
-	}
+    public void enter(Horse horse) {
+        if (!canEnterHorse()) {
+            throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
+        }
+        this.horses.add(horse);
+    }
 
-	public boolean canEnterHorse() {
-		return getAvailableSlots() > 0;
-	}
+    public boolean canEnterHorse() {
+        return getAvailableSlots() > 0;
+    }
 
-	public Horse getHorseOfPlayer(Player player) {
-		for (Horse horse : player.getHorses()) {
-			for (Horse enteredHorse : getEnteredHorses()) {
-				if (horse.equals(enteredHorse)) {
-					return horse;
-				}
-			}
-		}
+    public Horse getHorseOfPlayer(Player player) {
+        for (Horse horse : player.getHorses()) {
+            for (Horse enteredHorse : getEnteredHorses()) {
+                if (horse.equals(enteredHorse)) {
+                    return horse;
+                }
+            }
+        }
 
-		return null;
-	}
-
-	public int getAvailableSlots() {
-		return MAX_AVAILABLE_SLOTS - horses.size();
-	}
-
-	public void calculateWinner() {
-		if (!horses.isEmpty()) {
-			Map<Double, Horse> scoresPerHorse = createHorseResultScoresMap();
-			ArrayList<Double> all = Lists.newArrayList(scoresPerHorse.keySet());
-			sort(all, reverseOrder());
-			winner = scoresPerHorse.get(all.get(0));
-		}
-
-	}
-
-	private Map<Double, Horse> createHorseResultScoresMap() {
-		Map<Double, Horse> scoresPerHorse = Maps.newHashMap();
-		for (Horse horse : horses) {
-			scoresPerHorse.put(horse.calculateRaceScore(), horse);
-		}
-		return scoresPerHorse;
-	}
-
-	public boolean startTimeInFuture() {
-		return startTime.after(new Date());
-	}
-
-	public boolean hasRun() {
-		return winner != null;
-	}
-
-	public Set<Horse> getEnteredHorses() {
-		return Collections.unmodifiableSet(horses);
-	}
-
-	public static List<Race> findUpcomingRaces(int limit) {
-		return Race.find("startTime > ? order by startTime asc", new Date()).fetch(limit);
-	}
-
-    public static List<Race> findRacesThatHorseEntered(Horse horse) {
         return null;
+    }
+
+    public int getAvailableSlots() {
+        return MAX_AVAILABLE_SLOTS - horses.size();
+    }
+
+    public void calculateWinner() {
+        if (!horses.isEmpty()) {
+            Map<Double, Horse> scoresPerHorse = createHorseResultScoresMap();
+            ArrayList<Double> all = Lists.newArrayList(scoresPerHorse.keySet());
+            sort(all, reverseOrder());
+            winner = scoresPerHorse.get(all.get(0));
+        }
+
+    }
+
+    private Map<Double, Horse> createHorseResultScoresMap() {
+        Map<Double, Horse> scoresPerHorse = Maps.newHashMap();
+        for (Horse horse : horses) {
+            scoresPerHorse.put(horse.calculateRaceScore(), horse);
+        }
+        return scoresPerHorse;
+    }
+
+    public boolean startTimeInFuture() {
+        return startTime.after(new Date());
+    }
+
+    public boolean hasRun() {
+        return winner != null;
+    }
+
+    public Set<Horse> getEnteredHorses() {
+        return Collections.unmodifiableSet(horses);
+    }
+
+    public static List<Race> findUpcomingRaces(int limit) {
+        return findUpcomingRacesQuery().fetch(limit);
+    }
+
+    public static List<Race> findUpcomingRaces() {
+        return findUpcomingRacesQuery().fetch();
+    }
+
+
+    private static JPAQuery findUpcomingRacesQuery() {
+        return find("startTime > ? order by startTime asc", new Date());
     }
 
     public boolean horseEnteredRace(Horse horse) {

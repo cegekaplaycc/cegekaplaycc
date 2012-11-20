@@ -1,6 +1,7 @@
 package jobs;
 
 import models.Horse;
+import models.RaceFactory;
 import models.stable.Box;
 import models.stable.BoxBuilder;
 import play.jobs.Job;
@@ -32,6 +33,8 @@ public class TestDataBootstrap extends Job {
             aRace().withHorses(horse1).withStartTimeInPast().withWinner(horse1).save();
             aRace().withHorses(horse1, horse2).withStartTimeInPast().withWinner(horse2).save();
             aRace().withHorses(horse2).withStartTimeInPast().save();
+
+            new RaceFactory().create().save();
         }
     }
 

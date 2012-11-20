@@ -45,6 +45,7 @@ public class Race extends Model {
             throw new IllegalStateException(MAX_AVAILABLE_SLOTS_EXCEEDED);
         }
         this.horses.add(horse);
+        this.save();
     }
 
     public boolean canEnterHorse() {

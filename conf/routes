@@ -10,6 +10,7 @@ POST	/horseDetail/changeFood					HorseDetail.changeFood
 POST	/horseDetail/changeMoneyForTrainer		HorseDetail.changeMoneyForTrainer
 
 GET     /races/upcoming                         Races.showAllUpcoming
+POST    /races/subscribe                        Races.subscribeHorse
 
 # pages for development
 GET		/@jobs									Jobs.index

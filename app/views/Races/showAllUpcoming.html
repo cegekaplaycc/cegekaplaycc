@@ -22,35 +22,12 @@
                 <tr><td colspan="40">No upcoming races!</td></tr>
             #{/if}
             #{else}
-                <script type="text/javascript">
-                    $(function () {
-                        $(".subscribeLink").click(function () {
-                            $(this).hide();
-                            $(this).parent().find(".selectHorse").show();
-                        });
-                    });
-                </script>
-
-                #{list items: races, as: 'race'}
+               #{list items: races, as: 'race'}
                     <tr>
                         <td>${race.startTime.format()}</td>
                         <td>${race.subscriptionFee}</td>
                         <td>${race.getAvailableSlots()}</td>
-                        <td>
-                            #{if race.getHorseOfPlayer(player) != null}
-                                ${race.getHorseOfPlayer(player)}
-                            #{/if}
-                            #{else}
-                                <a class="subscribeLink" href="#">Subscribe!</a>
-                                <span style="display:none" class="selectHorse">
-                                #{form @subscribeHorse(), class:'form-inline'}
-                                    #{select 'horseId', items:player.getHorses(), id:'horses', valueProperty:'id' /}
-                                    <input type="hidden" name="raceId" value="${race.id}" />
-                                    <input type="submit" value="Subscribe" class="btn"/>
-                                #{/form}
-                            </span>
-                            #{/else}
-                        </td>
+                        <td>#{subscribeHorse race: race, player: player/}</td>
                     </tr>
                 #{/list}
             #{/else}

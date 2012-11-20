@@ -1,0 +1,22 @@
+<script type="text/javascript">
+    $(function () {
+        $(".subscribeLink").click(function () {
+            $(this).hide();
+            $(this).parent().find(".selectHorse").show();
+        });
+    });
+</script>
+
+#{if _race.getHorseOfPlayer(_player) != null}
+${_race.getHorseOfPlayer(_player)}
+#{/if}
+#{else}
+<a class="subscribeLink" href="#">Subscribe!</a>
+<span style="display:none" class="selectHorse">
+    #{form @Races.subscribeHorse(), class:'form-inline'}
+        #{select 'horseId', items:_player.getHorses(), id:'horses', valueProperty:'id' /}
+        <input type="hidden" name="raceId" value="${_race.id}" />
+        <input type="submit" value="Subscribe" class="btn"/>
+    #{/form}
+</span>
+#{/else}

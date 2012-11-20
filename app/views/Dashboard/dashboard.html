@@ -111,14 +111,7 @@
             #{list items:upcomingRaces, as: 'race'}
             <tr>
                 <td>${race.startTime.format()}</td>
-                <td>
-                    #{if race.getHorseOfPlayer(player) != null}
-                        ${race.getHorseOfPlayer(player)}
-                    #{/if}
-                    #{else}
-                        subscribe!
-                    #{/else}
-                </td>
+                <td>#{subscribeHorse race: race, player: player/}</td>
             </tr>
             #{/list}
             #{/else}

@@ -106,9 +106,20 @@ public class Race extends Model {
         return findUpcomingRacesQuery().fetch();
     }
 
-
     private static JPAQuery findUpcomingRacesQuery() {
         return find("startTime > ? order by startTime asc", new Date());
+    }
+
+    public static List<Race> findPastRaces(int limit) {
+        return findPastRacesQuery().fetch(limit);
+    }
+
+    public static List<Race> findPastRaces() {
+        return findPastRacesQuery().fetch();
+    }
+
+    private static JPAQuery findPastRacesQuery() {
+        return find("startTime < ? order by startTime asc", new Date());
     }
 
     public boolean horseEnteredRace(Horse horse) {
@@ -118,4 +129,5 @@ public class Race extends Model {
     public boolean hasWon(Horse horse) {
         return winner != null && winner.equals(horse);
     }
+
 }

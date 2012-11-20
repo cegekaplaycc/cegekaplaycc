@@ -16,8 +16,9 @@ public class Dashboard extends Controller {
 
 	public static void dashboard() {
 		Player player = getCurrentPlayer(renderArgs);
-		List<Race> upcomingRaces = findUpcomingRaces(3);
-		render(player, upcomingRaces);
+		List<Race> upcomingRaces = findUpcomingRaces(5);
+        List<Race> pastRaces = Race.findPastRaces(5);
+		render(player, upcomingRaces, pastRaces);
 	}
 
 	public static void buildANewBox() {

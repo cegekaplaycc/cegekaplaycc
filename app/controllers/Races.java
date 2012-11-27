@@ -26,6 +26,7 @@ public class Races extends Controller {
         Race race = Race.findById(raceId);
         Horse byId = Horse.findById(horseId);
         race.enter(byId);
+        race.save();
         showAllUpcoming();
     }
 }

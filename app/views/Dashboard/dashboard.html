@@ -64,10 +64,12 @@
             #{/if}
             #{else}
             #{list items:player.stock.items, as:'stockItem'}
+                #{if stockItem.amount > 0}
                 <tr>
                     <td>${stockItem.supply.label}</td>
                     <td>${stockItem.amount}</td>
                 </tr>
+                #{/if}
             #{/list}
             #{/else}
             </tbody>

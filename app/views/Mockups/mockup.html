@@ -1,0 +1,42 @@
+#{extends 'main.html'/}
+
+<style type="text/css">
+
+    .ribbon {
+        background-color: #12870d;
+        position: absolute;
+        right: -4em;
+        top: 4em;
+        z-index: 999999;
+
+        -moz-transform: rotate(40deg);
+        -webkit-transform: rotate(40deg);
+        transform: rotate(40deg);
+
+        -moz-box-shadow: 0 0 1em #444;
+        box-shadow: 0 0 1em #444;
+
+        font-family:  Arial, sans-serif;
+        border: 2px solid #0b5108;
+        color: #fff;
+        display: block;
+        font-weight: bold;
+        padding: 0.6em 6em;
+        text-align: center;
+        text-decoration: none;
+        text-shadow: 1px 1px 1px #0b5108;
+    }
+
+    .ribbon:hover {
+        opacity:0.2;
+    }
+
+</style>
+
+<div class="ribbon">
+    This is a MOCKUP!
+</div>
+
+
+
+#{doLayout /}

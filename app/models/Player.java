@@ -150,4 +150,9 @@ public class Player extends Model {
 	public boolean hasEnoughCash(int amount) {
 		return cash >= amount;
 	}
+
+    public void takeMoney(Integer money) {
+        this.cash = cash - money;
+        this.save();
+    }
 }

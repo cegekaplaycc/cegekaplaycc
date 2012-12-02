@@ -15,6 +15,7 @@ public class RaceBuilder extends AbstractBuilder<Race> {
     private Set<Horse> horses = newHashSet();
     private Horse winningHorse;
     private Date startTime = new Date();
+    private int fee = 100;
 
     private RaceBuilder() {
 
@@ -37,6 +38,7 @@ public class RaceBuilder extends AbstractBuilder<Race> {
         if (winningHorse != null) {
             race.winner = winningHorse;
         }
+        race.subscriptionFee = fee;
 
         return race;
     }
@@ -90,4 +92,8 @@ public class RaceBuilder extends AbstractBuilder<Race> {
         return this;
     }
 
+    public RaceBuilder withSubscriptionFee(int fee) {
+        this.fee = fee;
+        return this;
+    }
 }

@@ -25,6 +25,7 @@ public class Races extends Controller {
     public static void subscribeHorse(@Required Long raceId, @Required Long horseId) {
         Race race = Race.findById(raceId);
         Horse byId = Horse.findById(horseId);
+        getCurrentPlayer(renderArgs).takeMoney(race.subscriptionFee);
         race.enter(byId);
         race.save();
         showAllUpcoming();

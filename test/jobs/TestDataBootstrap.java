@@ -39,6 +39,7 @@ public class TestDataBootstrap extends Job {
 
     private void createAnotherRaceInTheFutureWithoutHorse() {
         aRace().withStartTime(2013, 1, 1, 10, 0)
+                .withSubscriptionFee(500)
                 .withHorses(
                         aHorse().withName("Amazing Waltz").save(),
                         aHorse().withName("The Great Radetsky").save(),
@@ -48,6 +49,7 @@ public class TestDataBootstrap extends Job {
 
     private void createARaceInTheFuture(Horse heavyStumper) {
         aRace().withStartTime(2012, 12, 24, 20, 0)
+                .withSubscriptionFee(250)
                 .withHorses(
                         heavyStumper,
                         aHorse().withName("Holy Night")

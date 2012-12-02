@@ -11,66 +11,71 @@ import static org.mockito.internal.util.reflection.Whitebox.setInternalState;
 
 public class RaceBuilder extends AbstractBuilder<Race> {
 
-	private boolean withStarted;
-	private Set<Horse> horses = newHashSet();
-	private Horse winningHorse;
-	private Date startTime = new Date();
+    private boolean withStarted;
+    private Set<Horse> horses = newHashSet();
+    private Horse winningHorse;
+    private Date startTime = new Date();
 
-    private RaceBuilder(){
+    private RaceBuilder() {
 
     }
 
-    public static RaceBuilder aRace(){
+    public static RaceBuilder aRace() {
         return new RaceBuilder();
     }
 
-	public Race build() {
-		Race race = new Race();
-		if (startTime != null) {
-			race.startTime = startTime;
-		}
+    public Race build() {
+        Race race = new Race();
+        if (startTime != null) {
+            race.startTime = startTime;
+        }
 
-		setInternalState(race, "horses", horses);
-		if (withStarted) {
-			race.calculateWinner();
-		}
-		if (winningHorse != null) {
-			race.winner = winningHorse;
-		}
+        setInternalState(race, "horses", horses);
+        if (withStarted) {
+            race.calculateWinner();
+        }
+        if (winningHorse != null) {
+            race.winner = winningHorse;
+        }
 
-		return race;
-	}
+        return race;
+    }
 
-	public Race save() {
-		Race race = build();
-		for (Horse enteredHorses : race.getEnteredHorses()) {
-			if (enteredHorses.getId() == null) {
-				enteredHorses.save();
-			}
-		}
-		race.save();
-		return race;
-	}
+    public Race save() {
+        Race race = build();
+        for (Horse enteredHorses : race.getEnteredHorses()) {
+            if (enteredHorses.getId() == null) {
+                enteredHorses.save();
+            }
+        }
+        race.save();
+        return race;
+    }
 
-	public RaceBuilder withStarted() {
-		this.withStarted = true;
-		return this;
-	}
+    public RaceBuilder withStarted() {
+        this.withStarted = true;
+        return this;
+    }
 
-	public RaceBuilder withHorses(Horse... horses) {
-		this.horses = newHashSet(horses);
-		return this;
-	}
+    public RaceBuilder withHorses(Horse... horses) {
+        this.horses = newHashSet(horses);
+        return this;
+    }
 
-	public RaceBuilder withWinner(Horse winningHorse) {
-		this.winningHorse = winningHorse;
-		return this;
-	}
+    public RaceBuilder withWinner(Horse winningHorse) {
+        this.winningHorse = winningHorse;
+        return this;
+    }
 
-	public RaceBuilder withStartTime(Date startTime) {
-		this.startTime = startTime;
-		return this;
-	}
+    public RaceBuilder withStartTime(Date startTime) {
+        this.startTime = startTime;
+        return this;
+    }
+
+
+    public RaceBuilder withStartTime(int year, int month, int day, int hours, int minutes) {
+        return withStartTime(new DateTime(year, month, day, hours, minutes).toDate());
+    }
 
     public RaceBuilder withStartTimeInPast() {
         return withStartTime(new DateTime().minusMinutes(15).toDate());
@@ -84,4 +89,5 @@ public class RaceBuilder extends AbstractBuilder<Race> {
         this.horses = newHashSet();
         return this;
     }
+
 }

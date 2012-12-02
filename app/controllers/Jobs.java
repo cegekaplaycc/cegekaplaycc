@@ -27,6 +27,11 @@ public class Jobs extends Controller {
         index();
     }
 
+    public static void initDb() {
+        run("TestDataBootstrap");
+        index();
+    }
+
     private static List<String> getJobs() {
         File jobsDir = new File("app/jobs");
         List<File> list = newArrayList(jobsDir.listFiles());
@@ -38,12 +43,15 @@ public class Jobs extends Controller {
         return jobs;
     }
 
-    public static void run(String job) throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-        Job<?> jobToRun = (Job) Class.forName("jobs." + job).newInstance();
-        jobToRun.now();
-
-        flash.success("Started job " + job + "!");
-        index();
+    public static void run(String job) {
+        try {
+            Job<?> jobToRun = (Job) Class.forName("jobs." + job).newInstance();
+            jobToRun.now();
+            flash.success("Started job " + job + "!");
+            index();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

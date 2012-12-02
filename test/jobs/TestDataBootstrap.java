@@ -55,7 +55,7 @@ public class TestDataBootstrap extends Job {
                                 .withTraining(80)
                                 .save(),
                         aHorse().withName("Made In Heaven").save(),
-                        aHorse().withName("Golden Earring").save())
+                        aHorse().withName("Golden Balthazar").save())
                 .save();
     }
 

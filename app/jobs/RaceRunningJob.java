@@ -2,7 +2,6 @@ package jobs;
 import java.util.List;
 
 import models.Race;
-import play.db.jpa.JPABase;
 import play.jobs.Job;
 
 public class RaceRunningJob extends Job<Void> {
@@ -12,8 +11,7 @@ public class RaceRunningJob extends Job<Void> {
 		List<Race> allRaces = Race.findAll();
 		for (Race race : allRaces) {
 			if (!race.hasRun() && !race.startTimeInFuture()) {
-				race.calculateWinner();
-				race.save();
+				race.calculateWinnerAndSave();
 			}
 		}
 	}

@@ -3,7 +3,6 @@ package models;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import play.data.validation.Required;
-import play.db.jpa.GenericModel;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
@@ -14,6 +13,7 @@ import java.util.*;
 import static java.util.Collections.reverseOrder;
 import static java.util.Collections.sort;
 
+@SuppressWarnings("UnusedDeclaration")
 @Entity
 public class Race extends Model {
 
@@ -129,4 +129,8 @@ public class Race extends Model {
         return winner != null && winner.equals(horse);
     }
 
+    public void calculateWinnerAndSave() {
+        calculateWinner();
+        save();
+    }
 }

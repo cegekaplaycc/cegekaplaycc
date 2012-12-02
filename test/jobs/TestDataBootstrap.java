@@ -1,15 +1,13 @@
 package jobs;
 
 import models.Horse;
-import models.RaceFactory;
-import models.stable.Box;
-import models.stable.BoxBuilder;
 import play.jobs.Job;
 import play.jobs.OnApplicationStart;
 
 import static models.HorseBuilder.aHorse;
 import static models.PlayerBuilder.aPlayer;
 import static models.RaceBuilder.aRace;
+import static models.stable.BoxBuilder.aBox;
 import static play.Play.mode;
 
 @OnApplicationStart
@@ -18,23 +16,24 @@ public class TestDataBootstrap extends Job {
     @Override
     public void doJob() throws Exception {
         if (mode.isDev()) {
-            Horse horse1 = aHorse().withName("Tom").withFitness(20).withTraining(30).save();
-            Horse horse2 = aHorse().withName("Matti").save();
 
-            Box box1 = BoxBuilder.aBox().withHorse(horse1).save();
-            Box box2 = BoxBuilder.aBox().withHorse(horse2).save();
+            Horse heavyStumper = aHorse().withName("Heavy Stumper").save();
+            Horse windyLegend = aHorse().withName("Windy Legend").save();
 
-            aPlayer().withDisplayName("matti")
-                    .withPassword("matti")
-                    .withUserId("matti")
-                    .withBoxes(box1, box2)
+            aPlayer().withDisplayName("Ben Verbeken")
+                    .withUserId("bver")
+                    .withPassword("bver")
+                    .withCash(5000)
+                    .withBoxes(
+                            aBox().withHorse(heavyStumper).save(),
+                            aBox().withHorse(windyLegend).save())
                     .save();
 
-            aRace().withHorses(horse1).withStartTimeInPast().withWinner(horse1).save();
-            aRace().withHorses(horse1, horse2).withStartTimeInPast().withWinner(horse2).save();
-            aRace().withHorses(horse2).withStartTimeInPast().save();
 
-            new RaceFactory().create().save();
+            aRace().withStartTimeInFuture().save();
+            aRace().withStartTimeInFuture().save();
+            aRace().withStartTimeInFuture().save();
+
         }
     }
 
